@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archetype Quiz Prototype</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            min-height: calc(100vh - 40px);
+        }
+        
+        .quiz-page h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        
+        /* Results Page Styles */
+        .results-page {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .results-header h1 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+        
+        .archetype-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 10px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .archetype-badge h2 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .archetype-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .description-section,
+        .traits-section,
+        .next-steps-section,
+        .cta-section {
+            background: #f8f9fa;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .description-section h3,
+        .traits-section h3,
+        .next-steps-section h3,
+        .cta-section h3 {
+            color: #4a5568;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        #traitsList {
+            list-style: none;
+            padding: 0;
+        }
+        
+        #traitsList li {
+            background: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 3px solid #48bb78;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .cta-btn.secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+            border: 2px solid #cbd5e0;
+        }
+        
+        .confirmation-notice {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .check-icon {
+            font-size: 2em;
+        }
+        
+        .confirmation-notice p {
+            margin: 0;
+        }
+        
+        .question {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .question h3 {
+            margin-top: 0;
+            color: #4a5568;
+            font-size: 1.2em;
+        }
+        
+        .options {
+            margin-top: 15px;
+        }
+        
+        .option {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option input[type="radio"],
+        .option input[type="checkbox"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+            accent-color: #667eea;
+        }
+        
+        .option label {
+            cursor: pointer;
+            padding: 8px 0;
+            flex: 1;
+        }
+        
+        .option label:hover {
+            color: #667eea;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .result h2 {
+            margin-top: 0;
+            font-size: 2em;
+        }
+        
+        .result p {
+            font-size: 1.1em;
+            margin-bottom: 0;
+        }
+        
+        .no-match {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+        }
+        
+        .debug {
+            margin-top: 20px;
+            padding: 15px;
+            background: #edf2f7;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9em;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="quizPage" class="quiz-page">
+            <h1>Archetype Quiz</h1>
+            <p class="subtitle">Discover your business archetype</p>
+            
+            <form id="archetypeForm" netlify name="archetype-quiz">
+                <!-- Hidden fields for Netlify to capture results -->
+                <input type="hidden" name="calculated-archetype" id="calculatedArchetype">
+                <input type="hidden" name="all-responses" id="allResponses">
+                
+                <div class="question">
+                    <h3>1. Are you looking for support in:</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q1a" name="q1" value="A">
+                            <label for="q1a">Business clarity & direction</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1b" name="q1" value="B">
+                            <label for="q1b">Beauty & visibility support</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q1c" name="q1" value="C">
+                            <label for="q1c">Both</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>2. Where do you feel most confident in life currently?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q2a" name="q2" value="A">
+                            <label for="q2a">Home life, kids, family, hobbies</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2b" name="q2" value="B">
+                            <label for="q2b">Personal appearance and health</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2c" name="q2" value="C">
+                            <label for="q2c">Career and skills</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q2d" name="q2" value="D">
+                            <label for="q2d">Everything!</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>3. What stage of business are you currently in?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q3a" name="q3" value="A">
+                            <label for="q3a">Idea stage / just getting started</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3b" name="q3" value="B">
+                            <label for="q3b">Recently launched</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3c" name="q3" value="C">
+                            <label for="q3c">Been in business a while, but need new direction</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q3d" name="q3" value="D">
+                            <label for="q3d">Other</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>4. What's feeling unclear, overwhelming, or jumbled right now? (Select all that apply)</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="checkbox" id="q4a" name="q4" value="A">
+                            <label for="q4a">My goals</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="q4b" name="q4" value="B">
+                            <label for="q4b">Organizing my time</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="q4c" name="q4" value="C">
+                            <label for="q4c">Visibility</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="q4d" name="q4" value="D">
+                            <label for="q4d">My confidence</label>
+                        </div>
+                        <div class="option">
+                            <input type="checkbox" id="q4e" name="q4" value="E">
+                            <label for="q4e">All of the above</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>5. How do you want to be seen in business?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q5a" name="q5" value="A">
+                            <label for="q5a">Calm and grounded</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5b" name="q5" value="B">
+                            <label for="q5b">Seen and confident</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5c" name="q5" value="C">
+                            <label for="q5c">Creative and inspired</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q5d" name="q5" value="D">
+                            <label for="q5d">Focused and Driven</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h3>6. Would you like this session to include beauty/appearance-based guidance?</h3>
+                    <div class="options">
+                        <div class="option">
+                            <input type="radio" id="q6a" name="q6" value="A">
+                            <label for="q6a">Yes</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6b" name="q6" value="B">
+                            <label for="q6b">No</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="q6c" name="q6" value="C">
+                            <label for="q6c">Maybe</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Calculate My Archetype</button>
+            </form>
+        </div>
+
+        <!-- Results Page - Hidden initially -->
+        <div id="resultsPage" class="results-page" style="display: none;">
+            <div class="results-header">
+                <h1>Your Archetype Results</h1>
+                <div class="archetype-badge">
+                    <h2 id="archetypeName"></h2>
+                </div>
+            </div>
+
+            <div class="archetype-content">
+                <div class="description-section">
+                    <h3>About Your Archetype</h3>
+                    <p id="archetypeDescription"></p>
+                </div>
+
+                <div class="traits-section">
+                    <h3 id="traitsTitle">Key Traits</h3>
+                    <ul id="traitsList"></ul>
+                </div>
+
+                <div class="next-steps-section">
+                    <h3>Your Next Steps</h3>
+                    <div id="nextStepsContent"></div>
+                </div>
+
+                <div class="cta-section">
+                    <h3>Ready to Take Action?</h3>
+                    <p>Your results have been saved. We'll be in touch soon with your personalized archetype guide!</p>
+                    <div class="cta-buttons">
+                        <button class="cta-btn primary" onclick="window.location.reload()">Take Quiz Again</button>
+                        <button class="cta-btn secondary" onclick="shareResults()">Share Results</button>
+                    </div>
+                </div>
+
+                <div class="confirmation-notice">
+                    <div class="check-icon">✅</div>
+                    <p><strong>Submission Confirmed!</strong><br>Your responses have been recorded successfully.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="debug" class="debug">
+            <strong>Debug Info:</strong><br>
+            <span id="debugInfo"></span>
+        </div>
+    </div>
+
+    <script>
+        // Archetype calculation function
+        function calculateArchetype(q1, q2, q3, q4, q5, q6) {
+            // Convert q1 and q4 to arrays if they're not already
+            const q1Array = Array.isArray(q1) ? q1 : [q1];
+            const q4Array = Array.isArray(q4) ? q4 : [q4];
+            
+            // Helper function to check if array contains value
+            function contains(arr, value) {
+                return arr.includes(value);
+            }
+            
+            // Rule 1: The Muse
+            if (contains(q1Array, "B") && q2 === "A" && (q3 === "A" || q3 === "B") && 
+                contains(q4Array, "E") && q5 === "A" && (q6 === "A" || q6 === "C")) {
+                return "The Muse";
+            }
+            
+            // Rule 2: The Stylist  
+            if (contains(q1Array, "C") && q2 === "B" && q3 === "C" && contains(q4Array, "B") &&
+                (q5 === "C" || q5 === "D") && (q6 === "C" || q6 === "B")) {
+                return "The Stylist";
+            }
+            
+            // Rule 3: The Editor
+            if (contains(q1Array, "C") && q2 === "A" && (q3 === "A" || q3 === "B") &&
+                (contains(q4Array, "C") || contains(q4Array, "D")) && q5 === "B" && q6 === "A") {
+                return "The Editor";
+            }
+            
+            // Rule 4: The Supermodel
+            if (contains(q1Array, "A") && q2 === "D" && (q3 === "A" || q3 === "B" || q3 === "C") &&
+                contains(q4Array, "A") && (q5 === "B" || q5 === "D") && q6 === "A") {
+                return "The Supermodel";
+            }
+            
+            return "No archetype match";
+        }
+
+        // Archetype detailed information
+        const archetypeDetails = {
+            "The Muse": {
+                description: "You're seeking beauty and visibility support while balancing home life. You're in the early stages of business but feeling overwhelmed by everything. You want to be seen as calm and grounded.",
+                traits: [
+                    "Values beauty and aesthetics in business",
+                    "Strong connection to home and family life",
+                    "Early-stage entrepreneur with big dreams",
+                    "Seeks calm, grounded presence",
+                    "Feels overwhelmed by multiple priorities"
+                ],
+                nextSteps: "Focus on creating systems that support both your business growth and home life balance. Start with one clear priority each week and build beautiful, sustainable routines."
+            },
+            "The Stylist": {
+                description: "You want comprehensive support and feel confident in your appearance. You've been in business a while but need help organizing your time. You want to be seen as creative or driven.",
+                traits: [
+                    "Confident in personal appearance and health",
+                    "Established business owner seeking refinement",
+                    "Struggles with time organization",
+                    "Values creativity and drive",
+                    "Wants both business and beauty support"
+                ],
+                nextSteps: "Implement time-blocking systems and productivity tools. Consider hiring support for tasks outside your zone of genius so you can focus on creative, high-impact activities."
+            },
+            "The Editor": {
+                description: "You want both business and beauty support while being confident at home. You're early in your business journey with visibility or confidence challenges. You want to be seen and confident.",
+                traits: [
+                    "Strong home life foundation",
+                    "Early-stage business with growth potential",
+                    "Visibility and confidence challenges",
+                    "Desires to be seen and confident",
+                    "Seeks comprehensive support"
+                ],
+                nextSteps: "Work on visibility strategies and confidence-building activities. Start with small, consistent actions to build your online presence and practice sharing your expertise."
+            },
+            "The Supermodel": {
+                description: "You're focused on business clarity and feel confident in everything. You're at any business stage but need goal clarity. You want to be seen as confident and driven.",
+                traits: [
+                    "High confidence across all life areas",
+                    "Strong business focus and clarity needs",
+                    "Goal-setting and clarity challenges",
+                    "Driven and confident presence",
+                    "Ready for high-level strategic support"
+                ],
+                nextSteps: "Create a clear 90-day strategic plan with specific, measurable goals. Consider working with a high-level business strategist to maximize your potential and accelerate growth."
+            },
+            "No archetype match": {
+                description: "Your responses don't match any of our current archetypes. This could indicate you have a unique combination of needs that doesn't fit our current categories.",
+                traits: [
+                    "Unique combination of needs",
+                    "May benefit from personalized assessment",
+                    "Doesn't fit standard categories",
+                    "Requires customized approach"
+                ],
+                nextSteps: "Consider a one-on-one consultation to create a personalized action plan that addresses your specific combination of needs and goals."
+            }
+        };
+
+        // Share results function
+        function shareResults() {
+            const archetype = document.getElementById('archetypeName').textContent;
+            const text = `I just discovered I'm "${archetype}" in this business archetype quiz! Take the quiz to find your archetype.`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Business Archetype Results',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback - copy to clipboard
+                navigator.clipboard.writeText(text + ' ' + window.location.href).then(() => {
+                    alert('Results copied to clipboard!');
+                });
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('archetypeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get single-answer questions
+            const formData = new FormData(this);
+            const q2 = formData.get('q2');
+            const q3 = formData.get('q3');
+            const q5 = formData.get('q5');
+            const q6 = formData.get('q6');
+            
+            // Get multiple-answer questions (checkboxes)
+            const q1Checkboxes = document.querySelectorAll('input[name="q1"]:checked');
+            const q1 = Array.from(q1Checkboxes).map(cb => cb.value);
+            
+            const q4Checkboxes = document.querySelectorAll('input[name="q4"]:checked');
+            const q4 = Array.from(q4Checkboxes).map(cb => cb.value);
+            
+            // Check if all questions are answered
+            if (q1.length === 0 || !q2 || !q3 || q4.length === 0 || !q5 || !q6) {
+                alert('Please answer all questions before submitting.');
+                return;
+            }
+            
+            // Calculate archetype
+            const archetype = calculateArchetype(q1, q2, q3, q4, q5, q6);
+            
+            // Display result
+            const resultDiv = document.getElementById('result');
+            const archetypeName = document.getElementById('archetypeName');
+            const archetypeDescription = document.getElementById('archetypeDescription');
+            
+            archetypeName.textContent = archetype;
+            archetypeDescription.textContent = archetypeDescriptions[archetype];
+            
+            // Add special styling for no match
+            if (archetype === "No archetype match") {
+                resultDiv.classList.add('no-match');
+            } else {
+                resultDiv.classList.remove('no-match');
+            }
+            
+            resultDiv.style.display = 'block';
+            
+            // Show debug info
+            const debugDiv = document.getElementById('debug');
+            const debugInfo = document.getElementById('debugInfo');
+            debugInfo.innerHTML = `Responses: Q1=[${q1.join(',')}], Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}<br>Result: ${archetype}`;
+            debugDiv.style.display = 'block';
+            
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Enable submit button only when all questions are answered
+        const form = document.getElementById('archetypeForm');
+        const submitBtn = document.querySelector('.submit-btn');
+        
+        function checkFormCompletion() {
+            const formData = new FormData(form);
+            const q1Checkboxes = document.querySelectorAll('input[name="q1"]:checked');
+            const q4Checkboxes = document.querySelectorAll('input[name="q4"]:checked');
+            
+            const allAnswered = q1Checkboxes.length > 0 && formData.get('q2') && 
+                              formData.get('q3') && q4Checkboxes.length > 0 && 
+                              formData.get('q5') && formData.get('q6');
+            
+            submitBtn.disabled = !allAnswered;
+            console.log('Form completion check:', allAnswered); // Debug log
+        }
+        
+        // Add event listeners to all form inputs
+        form.addEventListener('change', function(e) {
+            console.log('Form changed:', e.target.name, e.target.value); // Debug log
+            checkFormCompletion();
+        });
+        
+        // Initial check
+        submitBtn.disabled = true;
+        checkFormCompletion();
+    </script>
+</body>
+</html>

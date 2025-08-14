@@ -3,39 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archetype Quiz Prototype</title>
+    <title>The Aligned Visibility Quiz - Discover Your Business Archetype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Arial', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Open Sans', sans-serif;
+            background: #f8f9fa;
             min-height: 100vh;
+            color: #37474f;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            min-height: calc(100vh - 40px);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
         .quiz-page h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3em;
+            font-weight: 700;
+            color: #607d8b;
+            margin-bottom: 20px;
             text-align: center;
-            color: #4a5568;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         .subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.4em;
+            color: #78909c;
             text-align: center;
-            color: #718096;
             margin-bottom: 40px;
-            font-style: italic;
+            font-weight: 400;
         }
         
         /* Results Page Styles */
@@ -54,19 +63,22 @@
         }
         
         .results-header h1 {
-            color: #4a5568;
+            font-family: 'Oswald', sans-serif;
+            color: #607d8b;
             margin-bottom: 20px;
             font-size: 2.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         
         .archetype-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #607d8b;
             color: white;
             padding: 20px 40px;
-            border-radius: 50px;
+            border-radius: 4px;
             display: inline-block;
             margin: 10px 0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);
         }
         
         .archetype-badge h2 {
@@ -84,21 +96,25 @@
         .traits-section,
         .next-steps-section,
         .cta-section {
-            background: #f8f9fa;
-            padding: 25px;
+            background: white;
+            padding: 30px;
             margin: 20px 0;
-            border-radius: 12px;
-            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            border-left: 4px solid #607d8b;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .description-section h3,
         .traits-section h3,
         .next-steps-section h3,
         .cta-section h3 {
-            color: #4a5568;
+            font-family: 'Oswald', sans-serif;
+            color: #607d8b;
             margin-top: 0;
             margin-bottom: 15px;
             font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         #traitsList {
@@ -107,12 +123,13 @@
         }
         
         #traitsList li {
-            background: white;
+            background: #eceff1;
             padding: 10px 15px;
             margin: 8px 0;
-            border-radius: 8px;
-            border-left: 3px solid #48bb78;
+            border-radius: 4px;
+            border-left: 3px solid #607d8b;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            color: #546e7a;
         }
         
         .cta-buttons {
@@ -138,14 +155,20 @@
         }
         
         .cta-btn.primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #607d8b;
             color: white;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .cta-btn.secondary {
-            background: #e2e8f0;
-            color: #4a5568;
-            border: 2px solid #cbd5e0;
+            background: #eceff1;
+            color: #607d8b;
+            border: 2px solid #cfd8dc;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .confirmation-notice {
@@ -171,16 +194,28 @@
         
         .question {
             margin-bottom: 35px;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 5px solid #667eea;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #607d8b;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         
         .question h3 {
+            font-family: 'Oswald', sans-serif;
+            color: #607d8b;
             margin-top: 0;
-            color: #4a5568;
-            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
         
         .options {
@@ -197,7 +232,7 @@
         .option input[type="checkbox"] {
             margin-right: 12px;
             transform: scale(1.2);
-            accent-color: #667eea;
+            accent-color: #607d8b;
         }
         
         .option label {
@@ -206,33 +241,63 @@
             flex: 1;
         }
         
+        .option label {
+            color: #546e7a;
+        }
+        
         .option label:hover {
-            color: #667eea;
+            color: #607d8b;
         }
         
         .submit-btn {
             display: block;
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 18px 45px;
+            background: #607d8b;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
+            border-radius: 4px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 30px;
-            transition: transform 0.2s;
+            margin-top: 40px;
+            box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
         }
         
         .submit-btn:hover {
-            transform: translateY(-2px);
+            background: #546e7a;
+            box-shadow: 0 6px 16px rgba(96, 125, 139, 0.4);
+        }
+        
+        .submit-btn:hover:before {
+            left: 100%;
         }
         
         .submit-btn:disabled {
-            background: #cbd5e0;
+            background: #cfd8dc;
             cursor: not-allowed;
-            transform: none;
+            box-shadow: none;
+        }
+        
+        .submit-btn:disabled:before {
+            display: none;
         }
         
         .result {
@@ -259,6 +324,103 @@
             background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
         }
         
+        header {
+            text-align: center;
+            padding: 0;
+            animation: fadeInDown 0.8s ease-out;
+            position: relative;
+        }
+        
+        .banner {
+            width: 100%;
+            height: 400px;
+            margin: 0;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            position: relative;
+            background: linear-gradient(rgba(96, 125, 139, 0.7), rgba(84, 110, 122, 0.7));
+        }
+        
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.8;
+        }
+        
+        .logo-overlay {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .logo-overlay img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .hero {
+            background: white;
+            border-radius: 0;
+            padding: 80px 60px 60px;
+            margin: 0;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: none;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            position: relative;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(96, 125, 139, 0.1);
+            color: #607d8b;
+            padding: 6px 16px;
+            border-radius: 3px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .debug {
             margin-top: 20px;
             padding: 15px;
@@ -268,13 +430,51 @@
             font-size: 0.9em;
             display: none;
         }
+        
+        @media (max-width: 768px) {
+            .quiz-page h1 {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .hero {
+                padding: 60px 20px 40px;
+                margin-top: 60px;
+            }
+            
+            .submit-btn {
+                padding: 15px 40px;
+                font-size: 1.1em;
+            }
+            
+            .logo-overlay {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 70px;
+                height: 70px;
+                bottom: -35px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="quizPage" class="quiz-page">
-            <h1>Archetype Quiz</h1>
-            <p class="subtitle">Discover your business archetype</p>
+        <header>
+            <div class="banner">
+                <img src="sgm-archetype-quiz-banner.jpg" alt="The Aligned Visibility Quiz - Woman in peaceful meditation">
+            </div>
+            <div class="logo-overlay">
+                <img src="Beige-and-White-Aesthetic-Minimalist-Modern-Typography-Beauty-Brand-Logo.png" alt="The Aligned Visibility Quiz Logo">
+            </div>
+        </header>
+        
+        <main class="hero quiz-page">
+            <div class="badge">5-Minute Quiz</div>
+            <h1>The Aligned Visibility Quiz</h1>
+            <p class="subtitle">Discover Your Business Archetype & Unlock Your Authentic Presence</p>
             
             <form id="archetypeForm" netlify name="archetype-quiz">
                 <!-- Hidden fields for Netlify to capture results -->
@@ -411,7 +611,7 @@
 
                 <button type="submit" class="submit-btn">Calculate My Archetype</button>
             </form>
-        </div>
+        </main>
 
         <!-- Results Page - Hidden initially -->
         <div id="resultsPage" class="results-page" style="display: none;">

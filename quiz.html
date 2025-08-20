@@ -787,15 +787,14 @@
             const q5 = formData.get('q5');
             const q6 = formData.get('q6');
             
-            // Get multiple-answer questions (checkboxes)
-            const q1Checkboxes = document.querySelectorAll('input[name="q1"]:checked');
-            const q1 = Array.from(q1Checkboxes).map(cb => cb.value);
+            // Get Q1 answer (radio button)
+            const q1 = formData.get('q1');
             
             const q4Checkboxes = document.querySelectorAll('input[name="q4"]:checked');
             const q4 = Array.from(q4Checkboxes).map(cb => cb.value);
             
             // Check if all questions are answered
-            if (q1.length === 0 || !q2 || !q3 || q4.length === 0 || !q5 || !q6) {
+            if (!q1 || !q2 || !q3 || q4.length === 0 || !q5 || !q6) {
                 alert('Please answer all questions before submitting.');
                 return;
             }
@@ -803,31 +802,44 @@
             // Calculate archetype
             const archetype = calculateArchetype(q1, q2, q3, q4, q5, q6);
             
-            // Display result
-            const resultDiv = document.getElementById('result');
+            // Hide quiz form and show results page
+            document.querySelector('.quiz-page').style.display = 'none';
+            document.getElementById('resultsPage').style.display = 'block';
+            
+            // Populate results
             const archetypeName = document.getElementById('archetypeName');
             const archetypeDescription = document.getElementById('archetypeDescription');
+            const traitsList = document.getElementById('traitsList');
+            const nextStepsContent = document.getElementById('nextStepsContent');
+            
+            const details = archetypeDetails[archetype];
             
             archetypeName.textContent = archetype;
-            archetypeDescription.textContent = archetypeDescriptions[archetype];
+            archetypeDescription.textContent = details.description;
             
-            // Add special styling for no match
-            if (archetype === "No archetype match") {
-                resultDiv.classList.add('no-match');
-            } else {
-                resultDiv.classList.remove('no-match');
-            }
+            // Populate traits
+            traitsList.innerHTML = '';
+            details.traits.forEach(trait => {
+                const li = document.createElement('li');
+                li.textContent = trait;
+                traitsList.appendChild(li);
+            });
             
-            resultDiv.style.display = 'block';
+            // Populate next steps
+            nextStepsContent.innerHTML = `<p>${details.nextSteps}</p>`;
+            
+            // Store results for form submission
+            document.getElementById('calculatedArchetype').value = archetype;
+            document.getElementById('allResponses').value = JSON.stringify({q1, q2, q3, q4, q5, q6});
             
             // Show debug info
             const debugDiv = document.getElementById('debug');
             const debugInfo = document.getElementById('debugInfo');
-            debugInfo.innerHTML = `Responses: Q1=[${q1.join(',')}], Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}<br>Result: ${archetype}`;
+            debugInfo.innerHTML = `Responses: Q1=${q1}, Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}<br>Result: ${archetype}`;
             debugDiv.style.display = 'block';
             
-            // Scroll to result
-            resultDiv.scrollIntoView({ behavior: 'smooth' });
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Enable submit button only when all questions are answered
@@ -836,10 +848,9 @@
         
         function checkFormCompletion() {
             const formData = new FormData(form);
-            const q1Checkboxes = document.querySelectorAll('input[name="q1"]:checked');
             const q4Checkboxes = document.querySelectorAll('input[name="q4"]:checked');
             
-            const allAnswered = q1Checkboxes.length > 0 && formData.get('q2') && 
+            const allAnswered = formData.get('q1') && formData.get('q2') && 
                               formData.get('q3') && q4Checkboxes.length > 0 && 
                               formData.get('q5') && formData.get('q6');
             

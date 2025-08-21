@@ -512,7 +512,7 @@ Completed: ${new Date(parsedResponses.timestamp).toLocaleString()}`;
 
         // Initialize EmailJS
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+            emailjs.init("z9KJSmqcfXbX2hjR9"); // Replace with your EmailJS public key
         })();
 
         // Handle form submission
@@ -525,41 +525,26 @@ Completed: ${new Date(parsedResponses.timestamp).toLocaleString()}`;
             submitButton.disabled = true;
             
             const templateParams = {
-                to_email: 'sgm@stephanieg-m.com',
-                from_name: document.getElementById('name').value,
-                from_email: document.getElementById('email').value,
+                to_email: document.getElementById('email').value,
+                to_name: document.getElementById('name').value,
+                user_email: document.getElementById('email').value,
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
                 archetype: document.getElementById('form-archetype').value,
-                quiz_responses: document.getElementById('form-quiz-responses').value,
-                subject: 'New Quiz Result: ' + document.getElementById('form-archetype').value
+                responses: document.getElementById('form-quiz-responses').value
             };
             
-            // For testing - you can replace this with your EmailJS service
-            // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            // Debug: log what we're sending
+            console.log('Sending template params:', templateParams);
             
-            // Temporary solution for local testing - show success message
-            setTimeout(() => {
-                submitButton.textContent = 'Thank you!';
-                submitButton.style.background = '#4caf50';
-                
-                // Show the data that would be sent
-                alert(`Form submitted successfully!\n\nData that would be sent:\nName: ${templateParams.from_name}\nEmail: ${templateParams.from_email}\nArchetype: ${templateParams.archetype}\n\nTo enable email sending:\n1. Sign up at emailjs.com\n2. Replace YOUR_PUBLIC_KEY and service details\n3. Set up email template`);
-                
-                // Reset form after 3 seconds
-                setTimeout(() => {
-                    submitButton.textContent = originalText;
-                    submitButton.style.background = '#607d8b';
-                    submitButton.disabled = false;
-                    document.getElementById('contact-form').reset();
-                }, 3000);
-            }, 1000);
-            
-            /* Uncomment this when you have EmailJS configured:
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            // Send email using EmailJS
+            emailjs.send('service_rynmz8z', 'template_6t9di1a', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     submitButton.textContent = 'Thank you!';
                     submitButton.style.background = '#4caf50';
                     
+                    // Reset form after 3 seconds
                     setTimeout(() => {
                         submitButton.textContent = originalText;
                         submitButton.style.background = '#607d8b';
@@ -568,11 +553,11 @@ Completed: ${new Date(parsedResponses.timestamp).toLocaleString()}`;
                     }, 3000);
                 }, function(error) {
                     console.log('FAILED...', error);
-                    alert('Failed to send. Please try again.');
+                    console.log('Error details:', JSON.stringify(error));
+                    alert('Failed to send email. Error: ' + (error.text || error.message || 'Unknown error'));
                     submitButton.textContent = originalText;
                     submitButton.disabled = false;
                 });
-            */
         });
 
         // Initialize page

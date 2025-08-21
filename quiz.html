@@ -635,25 +635,36 @@
 
             </form>
 
-            <!-- FLODESK FORM INTEGRATION (Hidden until quiz completion) -->
-            <div class="flodesk-section" style="display: none; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
-                <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 1.5em;">Get Your Complete Results</h3>
-                <p style="text-align: center; color: #546e7a; margin-bottom: 30px; font-size: 1.1em; line-height: 1.7;">
-                    Enter your details below to receive your detailed archetype breakdown with personalized insights and next steps delivered straight to your inbox.
-                </p>
+            <!-- FLODESK FORM INTEGRATION (Visible for debugging) -->
+            <div class="flodesk-section" style="display: block; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
                 
                 <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
                     <div id="fd-form-689e112803c67004d676162c"></div>
                     <script>
-                      // Initialize Flodesk form with delay to ensure script is loaded
-                      setTimeout(() => {
+                      console.log('Script executed, window.fd available:', typeof window.fd);
+                      console.log('Container element:', document.getElementById('fd-form-689e112803c67004d676162c'));
+                      
+                      // Try multiple times with different delays
+                      function tryInitForm(attempt = 1) {
+                        console.log('Attempt', attempt, '- window.fd:', typeof window.fd);
+                        
                         if (window.fd) {
+                          console.log('Initializing Flodesk form...');
                           window.fd('form', {
                             formId: '689e112803c67004d676162c',
                             containerEl: '#fd-form-689e112803c67004d676162c'
                           });
+                          console.log('Form initialization called');
+                        } else if (attempt < 5) {
+                          console.log('Retrying in 1 second...');
+                          setTimeout(() => tryInitForm(attempt + 1), 1000);
+                        } else {
+                          console.error('Failed to load Flodesk after 5 attempts');
                         }
-                      }, 2000);
+                      }
+                      
+                      // Start trying immediately and then with delays
+                      tryInitForm();
                     </script>
                 </div>
                 
@@ -1022,50 +1033,34 @@
         submitBtn.disabled = true;
         checkFormCompletion();
 
-        // Function to populate Flodesk form with quiz data
+        // Function to populate Flodesk form with archetype
         function populateFlodeskForm(quizData) {
-            // Wait for Flodesk form to load, then add hidden fields
-            setTimeout(() => {
-                const flodeskContainer = document.getElementById('fd-form-689e112803c67004d676162c');
-                if (flodeskContainer) {
-                    // Create hidden fields for quiz data
-                    const hiddenFields = [
-                        { name: 'archetype', value: quizData.archetype },
-                        { name: 'quiz_responses', value: JSON.stringify(quizData) },
-                        { name: 'q1', value: quizData.q1 },
-                        { name: 'q2', value: quizData.q2 },
-                        { name: 'q3', value: quizData.q3 },
-                        { name: 'q4', value: Array.isArray(quizData.q4) ? quizData.q4.join(', ') : quizData.q4 },
-                        { name: 'q5', value: quizData.q5 },
-                        { name: 'q6', value: quizData.q6 },
-                        { name: 'completed_date', value: new Date().toLocaleDateString() }
-                    ];
-
-                    // Find the form within the Flodesk container
+            const flodeskContainer = document.getElementById('fd-form-689e112803c67004d676162c');
+            if (flodeskContainer) {
+                // Add hidden archetype field directly to the container
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'archetype';
+                hiddenInput.value = quizData.archetype;
+                flodeskContainer.appendChild(hiddenInput);
+                
+                console.log('Archetype added to Flodesk form:', quizData.archetype);
+                
+                // Find the form and add submission handler for redirect
+                setTimeout(() => {
                     const flodeskForm = flodeskContainer.querySelector('form');
                     if (flodeskForm) {
-                        hiddenFields.forEach(field => {
-                            const hiddenInput = document.createElement('input');
-                            hiddenInput.type = 'hidden';
-                            hiddenInput.name = field.name;
-                            hiddenInput.value = field.value;
-                            flodeskForm.appendChild(hiddenInput);
-                        });
-                        
-                        // Add submission handler to redirect to results page
                         flodeskForm.addEventListener('submit', function(e) {
                             setTimeout(() => {
                                 // Redirect to results page after form submission
                                 const quizData = JSON.parse(sessionStorage.getItem('quizData'));
                                 const responsesString = encodeURIComponent(JSON.stringify(quizData));
                                 window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
-                            }, 1000); // Small delay to ensure form submission completes
+                            }, 1000);
                         });
-                        
-                        console.log('Quiz data added to Flodesk form:', quizData);
                     }
-                }
-            }, 1000); // Wait 1 second for Flodesk form to fully load
+                }, 2000); // Wait for form to fully load
+            }
         }
 
         // Function to show quiz completion message

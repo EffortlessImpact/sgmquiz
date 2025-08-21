@@ -619,17 +619,15 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Calculate My Archetype</button>
             </form>
 
-            <!-- Contact Form Section -->
-            <div class="contact-section" style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
+            <!-- FLODESK FORM INTEGRATION -->
+            <div class="flodesk-section" style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
                 <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 1.5em;">Get Your Complete Results</h3>
                 <p style="text-align: center; color: #546e7a; margin-bottom: 30px; font-size: 1.1em; line-height: 1.7;">
                     Enter your details below to receive your detailed archetype breakdown with personalized insights and next steps delivered straight to your inbox.
                 </p>
                 
-                <!-- FLODESK FORM INTEGRATION -->
                 <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
                     <div id="fd-form-689e112803c67004d676162c"></div>
                     <script>
@@ -943,10 +941,10 @@
             console.log('Quiz responses:', {q1, q2, q3, q4, q5, q6});
             console.log('Calculated archetype:', archetype);
             
-            // Only redirect if we have a valid archetype
+            // Only store quiz data and show Flodesk form if we have a valid archetype
             if (archetype !== "No archetype match") {
-                // Create detailed responses string for the email
-                const responsesData = {
+                // Store quiz data for Flodesk form
+                const quizData = {
                     q1: q1,
                     q2: q2, 
                     q3: q3,
@@ -957,8 +955,19 @@
                     timestamp: new Date().toISOString()
                 };
                 
-                const responsesString = encodeURIComponent(JSON.stringify(responsesData));
-                window.location.href = `results.html?archetype=${encodeURIComponent(archetype)}&responses=${responsesString}`;
+                // Store in session storage for Flodesk form
+                sessionStorage.setItem('quizData', JSON.stringify(quizData));
+                
+                // Scroll to Flodesk form and populate hidden fields
+                populateFlodeskForm(quizData);
+                document.querySelector('.flodesk-section').scrollIntoView({ behavior: 'smooth' });
+                
+                // Hide the quiz form
+                document.getElementById('archetypeForm').style.display = 'none';
+                
+                // Show success message
+                showQuizCompletedMessage(archetype);
+                
             } else {
                 alert(`Debug: No archetype match found.\nResponses: Q1=${q1}, Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}`);
             }
@@ -989,6 +998,76 @@
         // Initial check
         submitBtn.disabled = true;
         checkFormCompletion();
+
+        // Function to populate Flodesk form with quiz data
+        function populateFlodeskForm(quizData) {
+            // Wait for Flodesk form to load, then add hidden fields
+            setTimeout(() => {
+                const flodeskContainer = document.getElementById('fd-form-689e112803c67004d676162c');
+                if (flodeskContainer) {
+                    // Create hidden fields for quiz data
+                    const hiddenFields = [
+                        { name: 'archetype', value: quizData.archetype },
+                        { name: 'quiz_responses', value: JSON.stringify(quizData) },
+                        { name: 'q1', value: quizData.q1 },
+                        { name: 'q2', value: quizData.q2 },
+                        { name: 'q3', value: quizData.q3 },
+                        { name: 'q4', value: Array.isArray(quizData.q4) ? quizData.q4.join(', ') : quizData.q4 },
+                        { name: 'q5', value: quizData.q5 },
+                        { name: 'q6', value: quizData.q6 },
+                        { name: 'completed_date', value: new Date().toLocaleDateString() }
+                    ];
+
+                    // Find the form within the Flodesk container
+                    const flodeskForm = flodeskContainer.querySelector('form');
+                    if (flodeskForm) {
+                        hiddenFields.forEach(field => {
+                            const hiddenInput = document.createElement('input');
+                            hiddenInput.type = 'hidden';
+                            hiddenInput.name = field.name;
+                            hiddenInput.value = field.value;
+                            flodeskForm.appendChild(hiddenInput);
+                        });
+                        
+                        // Add submission handler to redirect to results page
+                        flodeskForm.addEventListener('submit', function(e) {
+                            setTimeout(() => {
+                                // Redirect to results page after form submission
+                                const quizData = JSON.parse(sessionStorage.getItem('quizData'));
+                                const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                            }, 1000); // Small delay to ensure form submission completes
+                        });
+                        
+                        console.log('Quiz data added to Flodesk form:', quizData);
+                    }
+                }
+            }, 1000); // Wait 1 second for Flodesk form to fully load
+        }
+
+        // Function to show quiz completion message
+        function showQuizCompletedMessage(archetype) {
+            const completionMessage = document.createElement('div');
+            completionMessage.style.cssText = `
+                background: linear-gradient(135deg, #4caf50, #45a049);
+                color: white;
+                padding: 30px;
+                border-radius: 8px;
+                text-align: center;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            `;
+            completionMessage.innerHTML = `
+                <div style="font-size: 2.5em; margin-bottom: 15px;">🎉</div>
+                <h3 style="font-family: 'Oswald', sans-serif; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Quiz Complete!</h3>
+                <p style="font-size: 1.1em; margin-bottom: 10px;">Your archetype is: <strong>${archetype}</strong></p>
+                <p style="font-size: 1em; opacity: 0.9;">Enter your details below to get your complete personalized breakdown!</p>
+            `;
+            
+            // Insert before the Flodesk section
+            const flodeskSection = document.querySelector('.flodesk-section');
+            flodeskSection.parentNode.insertBefore(completionMessage, flodeskSection);
+        }
         
         // Debug toggle functionality
         document.getElementById('toggleDebug').addEventListener('click', function() {

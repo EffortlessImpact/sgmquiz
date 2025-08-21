@@ -91,10 +91,10 @@
         
         h1 {
             font-family: 'Oswald', sans-serif;
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: 700;
             color: #607d8b;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -342,10 +342,6 @@
                     <p id="archetype-description"></p>
                 </div>
                 
-                <div class="traits-section">
-                    <h2 class="section-title">Your Traits</h2>
-                    <div class="traits-grid" id="traits-grid"></div>
-                </div>
                 
                 <div class="next-steps">
                     <h3>Your Next Steps</h3>
@@ -393,12 +389,9 @@
                 traits: [
                     "Keywords: Soft, intuitive, creative, thoughtful, reserved, empathic",
                     "You may see yourself as: Calm, reflective, unsure how to take up space",
-                    "You want to be seen as: Empowered, expressed, magnetic",
-                    "Common struggles you face: Owning her voice, putting herself out there, visibility",
-                    "Beauty vibe: Minimal, ethereal, hesitant to \"take up too much room\"",
-                    "Business block: Overthinking, perfectionism, waiting for permission"
+                    "You want to be seen as: Empowered, expressed, magnetic"
                 ],
-                nextSteps: "What you need: Gentle structure, permission to be bold, beauty rituals that energize",
+                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "muse-archetype.jpg"
             },
             "The Stylist": {
@@ -406,12 +399,9 @@
                 traits: [
                     "Keywords: Creative, idea-driven, scattered, soulful, passionate",
                     "You may see yourself as: Inspired but overwhelmed",
-                    "You want to be seen as: Clear, capable, influential",
-                    "Common struggles you face: Focus, translating ideas into action, presenting herself clearly",
-                    "Beauty vibe: Playful, experimental, inconsistent",
-                    "Business block: Too many ideas, unclear offers, chaotic messaging"
+                    "You want to be seen as: Clear, capable, influential"
                 ],
-                nextSteps: "What you need: Simplified brand story, visual consistency, a signature look or message",
+                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "stylist-archetype.jpg"
             },
             "The Editor": {
@@ -419,12 +409,9 @@
                 traits: [
                     "Keywords: Warm, supportive, community-driven, nurturing",
                     "You may see yourself as: Grounded but behind the scenes",
-                    "You want to be seen as: Trusted, magnetic, real",
-                    "Common struggles you face: Charging what she's worth, stepping into expert role",
-                    "Beauty vibe: Natural, relatable, a little muted",
-                    "Business block: Boundaries, confidence in leadership"
+                    "You want to be seen as: Trusted, magnetic, real"
                 ],
-                nextSteps: "What you need: Messaging rooted in service, soft power visibility strategy, embodiment",
+                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "editor-archetype.jpg"
             },
             "The Supermodel": {
@@ -432,12 +419,9 @@
                 traits: [
                     "Keywords: Confident, direct, bold, high standards, no-nonsense",
                     "You may see yourself as: Determined, clear, driven",
-                    "You want to be seen as: Powerful, polished, already \"there\"",
-                    "Common struggles you face: Vulnerability, translating her inner power to outer clarity",
-                    "Beauty vibe: Intentional, sleek, high impact—but might feel disconnected from authenticity",
-                    "Business block: Brand feels flat or misaligned, trying to \"look the part\" instead of being it"
+                    "You want to be seen as: Powerful, polished, already \"there\""
                 ],
-                nextSteps: "What you need: Grounded reconnection to values, messaging that matches her real energy, permission to soften or expand",
+                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "supermodel-archetype.jpg"
             }
         };
@@ -472,15 +456,6 @@
             document.getElementById('archetype-image').alt = archetype + ' Archetype';
             document.getElementById('next-steps-content').textContent = data.nextSteps;
             
-            // Populate traits
-            const traitsGrid = document.getElementById('traits-grid');
-            traitsGrid.innerHTML = '';
-            data.traits.forEach(trait => {
-                const traitElement = document.createElement('div');
-                traitElement.className = 'trait-item';
-                traitElement.textContent = trait;
-                traitsGrid.appendChild(traitElement);
-            });
             
             // Populate hidden form fields
             document.getElementById('form-archetype').value = archetype;
@@ -524,21 +499,98 @@ Completed: ${new Date(parsedResponses.timestamp).toLocaleString()}`;
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
             
-            const templateParams = {
-                to_email: document.getElementById('email').value,
-                to_name: document.getElementById('name').value,
-                user_email: document.getElementById('email').value,
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                archetype: document.getElementById('form-archetype').value,
-                responses: document.getElementById('form-quiz-responses').value
+            // Get archetype and user data
+            const archetype = document.getElementById('form-archetype').value;
+            const userName = document.getElementById('name').value;
+            const userEmail = document.getElementById('email').value;
+            const quizResponses = document.getElementById('form-quiz-responses').value;
+            
+            // Define archetype-specific content
+            const archetypeContent = {
+                "The Muse": {
+                    image: "muse-archetype.jpg",
+                    description: "You are The Muse - a visionary who values beauty, aesthetics, and maintaining balance between your business dreams and family life. You feel drawn to create something meaningful while staying true to your nurturing nature.",
+                    keywords: "Soft, intuitive, creative, thoughtful, reserved, empathic",
+                    self_perception: "Calm, reflective, unsure how to take up space",
+                    desired_perception: "Empowered, expressed, magnetic",
+                    struggles: "Owning her voice, putting herself out there, visibility",
+                    beauty_vibe: "Minimal, ethereal, hesitant to take up too much room",
+                    business_block: "Overthinking, perfectionism, waiting for permission",
+                    next_steps: "Gentle structure, permission to be bold, beauty rituals that energize. Focus on creating simple systems that support both your business growth and life balance. Start with one small, beautiful step each day and build sustainable routines that honor your energy and family commitments.",
+                    cta_message: "Ready to embrace your Muse energy and build a business that flows with your natural rhythm? I'd love to help you create gentle structure and give you permission to shine."
+                },
+                "The Stylist": {
+                    image: "stylist-archetype.jpg",
+                    description: "You are The Stylist - a creative entrepreneur with many ideas who needs focus and consistency to truly flourish. Your creative energy is powerful, but it needs better structure to reach its full potential.",
+                    keywords: "Creative, idea-driven, scattered, soulful, passionate",
+                    self_perception: "Inspired but overwhelmed",
+                    desired_perception: "Clear, capable, influential",
+                    struggles: "Focus, translating ideas into action, presenting herself clearly",
+                    beauty_vibe: "Playful, experimental, inconsistent",
+                    business_block: "Too many ideas, unclear offers, chaotic messaging",
+                    next_steps: "Simplified brand story, visual consistency, a signature look or message. Focus on creating structured routines that support your creative flow. Consider streamlining your offers and developing a consistent visual identity that reflects your creative essence while maintaining professional clarity.",
+                    cta_message: "Ready to channel your creative energy into clear, consistent action? I'd love to help you simplify your brand story and create visual consistency."
+                },
+                "The Editor": {
+                    image: "editor-archetype.jpg",
+                    description: "You are The Editor - a warm, supportive entrepreneur who prefers to work behind the scenes but has valuable expertise to share. Your nurturing nature and community focus are your greatest strengths.",
+                    keywords: "Warm, supportive, community-driven, nurturing",
+                    self_perception: "Grounded but behind the scenes",
+                    desired_perception: "Trusted, magnetic, real",
+                    struggles: "Charging what she's worth, stepping into expert role",
+                    beauty_vibe: "Natural, relatable, a little muted",
+                    business_block: "Boundaries, confidence in leadership",
+                    next_steps: "Messaging rooted in service, soft power visibility strategy, embodiment. Focus on sharing your expertise in small, comfortable ways while building confidence through celebrating small wins. Your natural ability to support others is a gift - learn to value and price it accordingly.",
+                    cta_message: "Ready to step into your expert role with confidence and set boundaries that honor your worth? I'd love to help you develop messaging rooted in service and a visibility strategy that feels authentic."
+                },
+                "The Supermodel": {
+                    image: "supermodel-archetype.jpg",
+                    description: "You are The Supermodel - a confident, driven entrepreneur who excels in many areas but may feel disconnected from authenticity. Your high standards and no-nonsense approach are powerful assets when aligned with your true values.",
+                    keywords: "Confident, direct, bold, high standards, no-nonsense",
+                    self_perception: "Determined, clear, driven",
+                    desired_perception: "Powerful, polished, already there",
+                    struggles: "Vulnerability, translating her inner power to outer clarity",
+                    beauty_vibe: "Intentional, sleek, high impact—but might feel disconnected from authenticity",
+                    business_block: "Brand feels flat or misaligned, trying to look the part instead of being it",
+                    next_steps: "Grounded reconnection to values, messaging that matches her real energy, permission to soften or expand. Focus on aligning your polished exterior with your authentic inner power. Create space for vulnerability and genuine connection while maintaining your high standards and strategic thinking.",
+                    cta_message: "Ready to align your powerful presence with authentic messaging and give yourself permission to expand? I'd love to help you reconnect with your values and create messaging that matches your real energy."
+                }
             };
             
-            // Debug: log what we're sending
-            console.log('Sending template params:', templateParams);
+            // Get content for the specific archetype
+            const content = archetypeContent[archetype] || archetypeContent["The Muse"];
+            
+            const templateParams = {
+                to_email: userEmail,
+                name: userName,
+                email: userEmail,
+                archetype: archetype,
+                responses: quizResponses,
+                // Archetype-specific content
+                archetype_image: content.image,
+                archetype_description: content.description,
+                keywords: content.keywords,
+                self_perception: content.self_perception,
+                desired_perception: content.desired_perception,
+                struggles: content.struggles,
+                beauty_vibe: content.beauty_vibe,
+                business_block: content.business_block,
+                next_steps: content.next_steps,
+                cta_message: content.cta_message
+            };
+            
+            // Enhanced Debug: log everything we're sending
+            console.log('=== EMAIL DEBUG INFO ===');
+            console.log('Full template params:', templateParams);
+            console.log('to_email (recipient):', templateParams.to_email);
+            console.log('name (user name):', templateParams.name);
+            console.log('archetype:', templateParams.archetype);
+            console.log('Form archetype field value:', document.getElementById('form-archetype').value);
+            console.log('Form responses field value:', document.getElementById('form-quiz-responses').value);
+            console.log('=== END DEBUG INFO ===');
             
             // Send email using EmailJS
-            emailjs.send('service_rynmz8z', 'template_6t9di1a', templateParams)
+            emailjs.send('service_yg96yjo', 'template_m51ikq3', templateParams)
                 .then(function(response) {
                     console.log('SUCCESS!', response.status, response.text);
                     submitButton.textContent = 'Thank you!';

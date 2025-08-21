@@ -502,32 +502,38 @@
             bodyFont: "'Open Sans', sans-serif"
         };
 
-        // Check if user is already logged in
-        if (localStorage.getItem('sgm_admin_logged_in') === 'true') {
-            showAdminPanel();
-        }
-
-        // Login form handler
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('login-error');
-            
-            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-                localStorage.setItem('sgm_admin_logged_in', 'true');
+        // Wait for DOM to load before setting up event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            if (localStorage.getItem('sgm_admin_logged_in') === 'true') {
                 showAdminPanel();
-                errorDiv.textContent = '';
-            } else {
-                errorDiv.textContent = 'Invalid credentials. Please try again.';
             }
-        });
 
-        // Logout handler
-        document.getElementById('logout-button').addEventListener('click', function() {
-            localStorage.removeItem('sgm_admin_logged_in');
-            showLoginScreen();
+            // Login form handler
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const errorDiv = document.getElementById('login-error');
+                
+                console.log('Login attempt:', email, password); // Debug log
+                console.log('Expected:', ADMIN_EMAIL, ADMIN_PASSWORD); // Debug log
+                
+                if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                    localStorage.setItem('sgm_admin_logged_in', 'true');
+                    showAdminPanel();
+                    errorDiv.textContent = '';
+                } else {
+                    errorDiv.textContent = 'Invalid credentials. Please try again.';
+                }
+            });
+
+            // Logout handler
+            document.getElementById('logout-button').addEventListener('click', function() {
+                localStorage.removeItem('sgm_admin_logged_in');
+                showLoginScreen();
+            });
         });
 
         function showAdminPanel() {

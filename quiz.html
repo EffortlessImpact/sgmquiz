@@ -635,8 +635,8 @@
 
             </form>
 
-            <!-- FLODESK FORM INTEGRATION (Temporarily visible for testing) -->
-            <div class="flodesk-section" style="display: block; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
+            <!-- FLODESK FORM INTEGRATION (Hidden until quiz completion) -->
+            <div class="flodesk-section" style="display: none; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
                 <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 1.5em;">Get Your Complete Results</h3>
                 <p style="text-align: center; color: #546e7a; margin-bottom: 30px; font-size: 1.1em; line-height: 1.7;">
                     Enter your details below to receive your detailed archetype breakdown with personalized insights and next steps delivered straight to your inbox.
@@ -645,20 +645,13 @@
                 <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
                     <div id="fd-form-689e112803c67004d676162c"></div>
                     <script>
-                      console.log('Flodesk window.fd available:', typeof window.fd);
-                      console.log('Flodesk container found:', document.getElementById('fd-form-689e112803c67004d676162c'));
-                      
-                      // Add a delay to ensure Flodesk script is loaded
+                      // Initialize Flodesk form with delay to ensure script is loaded
                       setTimeout(() => {
-                        console.log('Attempting to load Flodesk form...');
                         if (window.fd) {
                           window.fd('form', {
                             formId: '689e112803c67004d676162c',
                             containerEl: '#fd-form-689e112803c67004d676162c'
                           });
-                          console.log('Flodesk form initialized');
-                        } else {
-                          console.error('Flodesk script not loaded - window.fd not available');
                         }
                       }, 2000);
                     </script>

@@ -611,6 +611,68 @@
 
                 <button type="submit" class="submit-btn">Calculate My Archetype</button>
             </form>
+            
+            <!-- Debug Section for Testing -->
+            <div class="debug-section" style="margin-top: 40px;">
+                <button type="button" id="toggleDebug" class="debug-toggle" style="background: #eceff1; border: 1px solid #cfd8dc; padding: 10px 20px; border-radius: 4px; cursor: pointer; color: #607d8b; font-family: 'Open Sans', sans-serif;">
+                    🐛 Show Debug - Answer Combinations for Each Archetype
+                </button>
+                <div id="debugCombinations" class="debug-combinations" style="display: none; margin-top: 20px; padding: 20px; background: #f5f5f5; border-radius: 4px; font-family: monospace; font-size: 0.9em; line-height: 1.6;">
+                    <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; margin-bottom: 20px;">Answer Combinations to Get Each Archetype:</h3>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #546e7a; margin-bottom: 10px;">🎨 The Muse:</h4>
+                        <ul style="margin-left: 20px; color: #37474f;">
+                            <li><strong>Q1:</strong> B (Beauty & visibility support)</li>
+                            <li><strong>Q2:</strong> A (Home/family life)</li>
+                            <li><strong>Q3:</strong> A (Idea stage) OR B (Recently launched)</li>
+                            <li><strong>Q4:</strong> E (All of the above - feeling overwhelmed!)</li>
+                            <li><strong>Q5:</strong> A (Calm and grounded)</li>
+                            <li><strong>Q6:</strong> A (Yes, absolutely!) OR C (Maybe...)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #546e7a; margin-bottom: 10px;">💄 The Stylist:</h4>
+                        <ul style="margin-left: 20px; color: #37474f;">
+                            <li><strong>Q1:</strong> C (Both business clarity and beauty support)</li>
+                            <li><strong>Q2:</strong> B (Personal appearance)</li>
+                            <li><strong>Q3:</strong> C (Established and growing)</li>
+                            <li><strong>Q4:</strong> B (Managing my time effectively)</li>
+                            <li><strong>Q5:</strong> C (Creative and expressive) OR D (Driven and strategic)</li>
+                            <li><strong>Q6:</strong> B (Not really) OR C (Maybe...)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #546e7a; margin-bottom: 10px;">✏️ The Editor:</h4>
+                        <ul style="margin-left: 20px; color: #37474f;">
+                            <li><strong>Q1:</strong> C (Both business clarity and beauty support)</li>
+                            <li><strong>Q2:</strong> A (Home/family life)</li>
+                            <li><strong>Q3:</strong> A (Idea stage) OR B (Recently launched)</li>
+                            <li><strong>Q4:</strong> C (Being visible and putting myself out there) OR D (Confidence in my abilities)</li>
+                            <li><strong>Q5:</strong> B (Confident and polished)</li>
+                            <li><strong>Q6:</strong> A (Yes, absolutely!)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h4 style="color: #546e7a; margin-bottom: 10px;">👑 The Supermodel:</h4>
+                        <ul style="margin-left: 20px; color: #37474f;">
+                            <li><strong>Q1:</strong> A (Business clarity and strategy)</li>
+                            <li><strong>Q2:</strong> D (Everything - I feel confident across the board)</li>
+                            <li><strong>Q3:</strong> A (Idea stage) OR B (Recently launched) OR C (Established and growing)</li>
+                            <li><strong>Q4:</strong> A (Clarifying my goals and direction)</li>
+                            <li><strong>Q5:</strong> B (Confident and polished) OR D (Driven and strategic)</li>
+                            <li><strong>Q6:</strong> A (Yes, absolutely!)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 4px; margin-top: 20px;">
+                        <p style="margin: 0; color: #2e7d32;"><strong>💡 Testing Tip:</strong> If exact combinations don't match, the quiz uses a scoring system to find the best fit archetype based on your answers.</p>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <!-- Results Page - Hidden initially -->
@@ -672,31 +734,73 @@
                 return arr.includes(value);
             }
             
-            // Rule 1: The Muse
+            // Rule 1: The Muse - Beauty/visibility support, home focused, early stage, overwhelmed, calm
             if (contains(q1Array, "B") && q2 === "A" && (q3 === "A" || q3 === "B") && 
                 contains(q4Array, "E") && q5 === "A" && (q6 === "A" || q6 === "C")) {
                 return "The Muse";
             }
             
-            // Rule 2: The Stylist  
+            // Rule 2: The Stylist - Comprehensive support, appearance confident, established, time issues, creative/driven
             if (contains(q1Array, "C") && q2 === "B" && q3 === "C" && contains(q4Array, "B") &&
                 (q5 === "C" || q5 === "D") && (q6 === "C" || q6 === "B")) {
                 return "The Stylist";
             }
             
-            // Rule 3: The Editor
+            // Rule 3: The Editor - Both support, home confident, early stage, visibility/confidence issues, confident image, beauty guidance
             if (contains(q1Array, "C") && q2 === "A" && (q3 === "A" || q3 === "B") &&
                 (contains(q4Array, "C") || contains(q4Array, "D")) && q5 === "B" && q6 === "A") {
                 return "The Editor";
             }
             
-            // Rule 4: The Supermodel
+            // Rule 4: The Supermodel - Business clarity, confident in everything, goal issues, confident/driven image, beauty guidance
             if (contains(q1Array, "A") && q2 === "D" && (q3 === "A" || q3 === "B" || q3 === "C") &&
                 contains(q4Array, "A") && (q5 === "B" || q5 === "D") && q6 === "A") {
                 return "The Supermodel";
             }
             
-            return "No archetype match";
+            // Fallback logic - score based approach if no exact match
+            let scores = {
+                "The Muse": 0,
+                "The Stylist": 0,
+                "The Editor": 0,
+                "The Supermodel": 0
+            };
+            
+            // Score for The Muse (beauty focus, home confident, early stage, overwhelmed)
+            if (contains(q1Array, "B")) scores["The Muse"] += 2;
+            if (q2 === "A") scores["The Muse"] += 2;
+            if (q3 === "A" || q3 === "B") scores["The Muse"] += 1;
+            if (contains(q4Array, "E")) scores["The Muse"] += 2;
+            if (q5 === "A") scores["The Muse"] += 1;
+            if (q6 === "A" || q6 === "C") scores["The Muse"] += 1;
+            
+            // Score for The Stylist (comprehensive, appearance confident, established, time issues)
+            if (contains(q1Array, "C")) scores["The Stylist"] += 2;
+            if (q2 === "B") scores["The Stylist"] += 2;
+            if (q3 === "C") scores["The Stylist"] += 2;
+            if (contains(q4Array, "B")) scores["The Stylist"] += 2;
+            if (q5 === "C" || q5 === "D") scores["The Stylist"] += 1;
+            
+            // Score for The Editor (both support, home confident, visibility issues)
+            if (contains(q1Array, "C")) scores["The Editor"] += 2;
+            if (q2 === "A") scores["The Editor"] += 2;
+            if (q3 === "A" || q3 === "B") scores["The Editor"] += 1;
+            if (contains(q4Array, "C") || contains(q4Array, "D")) scores["The Editor"] += 2;
+            if (q5 === "B") scores["The Editor"] += 1;
+            if (q6 === "A") scores["The Editor"] += 1;
+            
+            // Score for The Supermodel (business clarity, highly confident, goal-focused)
+            if (contains(q1Array, "A")) scores["The Supermodel"] += 2;
+            if (q2 === "D") scores["The Supermodel"] += 2;
+            if (contains(q4Array, "A")) scores["The Supermodel"] += 2;
+            if (q5 === "B" || q5 === "D") scores["The Supermodel"] += 1;
+            if (q6 === "A") scores["The Supermodel"] += 1;
+            
+            // Return the archetype with the highest score
+            const maxScore = Math.max(...Object.values(scores));
+            const bestMatch = Object.keys(scores).find(key => scores[key] === maxScore);
+            
+            return bestMatch || "The Muse"; // Default to The Muse if no clear winner
         }
 
         // Archetype detailed information
@@ -802,8 +906,29 @@
             // Calculate archetype
             const archetype = calculateArchetype(q1, q2, q3, q4, q5, q6);
             
-            // Redirect to results page with archetype parameter
-            window.location.href = `results.html?archetype=${encodeURIComponent(archetype)}`;
+            // Debug: log the responses and result
+            console.log('Quiz responses:', {q1, q2, q3, q4, q5, q6});
+            console.log('Calculated archetype:', archetype);
+            
+            // Only redirect if we have a valid archetype
+            if (archetype !== "No archetype match") {
+                // Create detailed responses string for the email
+                const responsesData = {
+                    q1: q1,
+                    q2: q2, 
+                    q3: q3,
+                    q4: q4,
+                    q5: q5,
+                    q6: q6,
+                    archetype: archetype,
+                    timestamp: new Date().toISOString()
+                };
+                
+                const responsesString = encodeURIComponent(JSON.stringify(responsesData));
+                window.location.href = `results.html?archetype=${encodeURIComponent(archetype)}&responses=${responsesString}`;
+            } else {
+                alert(`Debug: No archetype match found.\nResponses: Q1=${q1}, Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}`);
+            }
         });
 
         // Enable submit button only when all questions are answered
@@ -831,6 +956,20 @@
         // Initial check
         submitBtn.disabled = true;
         checkFormCompletion();
+        
+        // Debug toggle functionality
+        document.getElementById('toggleDebug').addEventListener('click', function() {
+            const debugCombinations = document.getElementById('debugCombinations');
+            const toggleButton = document.getElementById('toggleDebug');
+            
+            if (debugCombinations.style.display === 'none') {
+                debugCombinations.style.display = 'block';
+                toggleButton.textContent = '🐛 Hide Debug - Answer Combinations';
+            } else {
+                debugCombinations.style.display = 'none';
+                toggleButton.textContent = '🐛 Show Debug - Answer Combinations for Each Archetype';
+            }
+        });
     </script>
 </body>
 </html>

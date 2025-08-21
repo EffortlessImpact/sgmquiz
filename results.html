@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Business Archetype - The Aligned Visibility Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -112,11 +113,12 @@
         
         .archetype-image {
             text-align: center;
-            margin: 40px 0;
+            margin: 30px 0;
         }
         
         .archetype-image img {
-            max-width: 100%;
+            max-width: 300px;
+            width: 100%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -350,10 +352,30 @@
                     <p id="next-steps-content"></p>
                 </div>
                 
-                <div class="action-buttons">
-                    <button class="action-button" onclick="shareResults()">Share Results</button>
-                    <a href="quiz.html" class="action-button secondary">Retake Quiz</a>
-                </div>
+                <form class="contact-form" id="contact-form">
+                    <input type="hidden" id="form-archetype" />
+                    <input type="hidden" id="form-quiz-responses" />
+                    
+                    <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Want to learn more?</h3>
+                    
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="name" style="display: block; margin-bottom: 8px; color: #546e7a; font-weight: 500;">Name</label>
+                        <input type="text" id="name" name="name" required style="width: 100%; padding: 12px; border: 2px solid #cfd8dc; border-radius: 4px; font-size: 1em; font-family: 'Open Sans', sans-serif;" />
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <label for="email" style="display: block; margin-bottom: 8px; color: #546e7a; font-weight: 500;">Email</label>
+                        <input type="email" id="email" name="email" required style="width: 100%; padding: 12px; border: 2px solid #cfd8dc; border-radius: 4px; font-size: 1em; font-family: 'Open Sans', sans-serif;" />
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button type="submit" class="action-button" style="margin: 0;">I want to learn more</button>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="quiz.html" style="color: #78909c; text-decoration: underline; font-size: 0.9em;">Retake Quiz</a>
+                    </div>
+                </form>
             </div>
         </main>
         
@@ -367,55 +389,55 @@
         // Archetype data definitions
         const archetypeData = {
             "The Muse": {
-                description: "You are The Muse - a visionary who values beauty, aesthetics, and maintaining balance between your business dreams and family life. You feel drawn to create something meaningful while staying true to your nurturing nature.",
+                description: "You are The Muse - a visionary who values beauty, aesthetics, and maintaining balance between your business dreams and family life.",
                 traits: [
-                    "Values aesthetics and beauty in business",
-                    "Strong connection to home and family",
-                    "Seeks calm, peaceful energy",
-                    "Has big dreams but feels overwhelmed",
-                    "Early-stage entrepreneur",
-                    "Needs systems for growth and balance"
+                    "Keywords: Soft, intuitive, creative, thoughtful, reserved, empathic",
+                    "You may see yourself as: Calm, reflective, unsure how to take up space",
+                    "You want to be seen as: Empowered, expressed, magnetic",
+                    "Common struggles you face: Owning her voice, putting herself out there, visibility",
+                    "Beauty vibe: Minimal, ethereal, hesitant to \"take up too much room\"",
+                    "Business block: Overthinking, perfectionism, waiting for permission"
                 ],
-                nextSteps: "Focus on creating simple systems that support both your business growth and life balance. Start with one small, beautiful step each day. Consider how you can weave your aesthetic sense into your business offerings while building sustainable routines that honor your energy and family commitments.",
+                nextSteps: "What you need: Gentle structure, permission to be bold, beauty rituals that energize",
                 image: "muse-archetype.jpg"
             },
             "The Stylist": {
-                description: "You are The Stylist - a confident, established entrepreneur who knows how to present yourself beautifully but struggles with time management and organization. You have creative energy that needs better structure to truly flourish.",
+                description: "You are The Stylist - a creative entrepreneur with many ideas who needs focus and consistency to truly flourish.",
                 traits: [
-                    "Confident in personal appearance",
-                    "Established business presence",
-                    "Creative and expressive energy",
-                    "Struggles with time management",
-                    "Values comprehensive support",
-                    "Seeks organization and productivity"
+                    "Keywords: Creative, idea-driven, scattered, soulful, passionate",
+                    "You may see yourself as: Inspired but overwhelmed",
+                    "You want to be seen as: Clear, capable, influential",
+                    "Common struggles you face: Focus, translating ideas into action, presenting herself clearly",
+                    "Beauty vibe: Playful, experimental, inconsistent",
+                    "Business block: Too many ideas, unclear offers, chaotic messaging"
                 ],
-                nextSteps: "Implement time-blocking systems and productivity tools that match your creative style. Focus on creating structured routines that support your creative flow. Consider delegating or automating tasks that drain your energy so you can focus on what you do best.",
+                nextSteps: "What you need: Simplified brand story, visual consistency, a signature look or message",
                 image: "stylist-archetype.jpg"
             },
             "The Editor": {
-                description: "You are The Editor - someone with a solid foundation at home but facing challenges with visibility and confidence in your business. You have incredible potential for growth once you overcome the confidence barriers holding you back.",
+                description: "You are The Editor - a warm, supportive entrepreneur who prefers to work behind the scenes but has valuable expertise to share.",
                 traits: [
-                    "Strong home life foundation",
-                    "Early business stage with potential",
-                    "Needs both business and beauty support",
-                    "Struggles with visibility",
-                    "Confidence challenges in business",
-                    "Interested in comprehensive growth"
+                    "Keywords: Warm, supportive, community-driven, nurturing",
+                    "You may see yourself as: Grounded but behind the scenes",
+                    "You want to be seen as: Trusted, magnetic, real",
+                    "Common struggles you face: Charging what she's worth, stepping into expert role",
+                    "Beauty vibe: Natural, relatable, a little muted",
+                    "Business block: Boundaries, confidence in leadership"
                 ],
-                nextSteps: "Work on visibility strategies and confidence-building activities. Start by sharing your expertise in small, comfortable ways. Practice showing up consistently, even when it feels uncomfortable. Focus on building your confidence through small wins and celebrating your progress.",
+                nextSteps: "What you need: Messaging rooted in service, soft power visibility strategy, embodiment",
                 image: "editor-archetype.jpg"
             },
             "The Supermodel": {
-                description: "You are The Supermodel - a high-achieving, confident entrepreneur who excels in most areas but needs strategic clarity and goal-setting to reach the next level. You have the drive and confidence; you just need the right roadmap.",
+                description: "You are The Supermodel - a confident, driven entrepreneur who excels in many areas but may feel disconnected from authenticity.",
                 traits: [
-                    "High confidence across all areas",
-                    "Strong business and personal presence",
-                    "Goal-oriented and driven",
-                    "Needs strategic planning",
-                    "Seeks business clarity",
-                    "Ready for next-level growth"
+                    "Keywords: Confident, direct, bold, high standards, no-nonsense",
+                    "You may see yourself as: Determined, clear, driven",
+                    "You want to be seen as: Powerful, polished, already \"there\"",
+                    "Common struggles you face: Vulnerability, translating her inner power to outer clarity",
+                    "Beauty vibe: Intentional, sleek, high impact—but might feel disconnected from authenticity",
+                    "Business block: Brand feels flat or misaligned, trying to \"look the part\" instead of being it"
                 ],
-                nextSteps: "Create a strategic 90-day plan with clear, measurable goals. Focus on defining your vision and breaking it down into actionable steps. Consider working with a strategist or coach who can help you channel your confidence and drive into a clear roadmap for exponential growth.",
+                nextSteps: "What you need: Grounded reconnection to values, messaging that matches her real energy, permission to soften or expand",
                 image: "supermodel-archetype.jpg"
             }
         };
@@ -459,27 +481,99 @@
                 traitElement.textContent = trait;
                 traitsGrid.appendChild(traitElement);
             });
-        }
-
-        // Share results function
-        function shareResults() {
-            const archetype = getArchetypeFromURL();
-            if (archetype) {
-                const shareText = `I just discovered I'm ${archetype} in The Aligned Visibility Quiz! Find out your business archetype: ${window.location.origin}`;
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'My Business Archetype',
-                        text: shareText
-                    });
-                } else {
-                    // Fallback: copy to clipboard
-                    navigator.clipboard.writeText(shareText).then(() => {
-                        alert('Results copied to clipboard!');
-                    });
+            
+            // Populate hidden form fields
+            document.getElementById('form-archetype').value = archetype;
+            
+            // Get quiz responses from URL if available, or use current archetype
+            const urlParams = new URLSearchParams(window.location.search);
+            const responsesParam = urlParams.get('responses');
+            let responsesData = `Archetype Result: ${archetype}`;
+            
+            if (responsesParam) {
+                try {
+                    const parsedResponses = JSON.parse(decodeURIComponent(responsesParam));
+                    responsesData = `Quiz Results:
+Archetype: ${parsedResponses.archetype}
+Q1 (Support type): ${parsedResponses.q1}
+Q2 (Confidence area): ${parsedResponses.q2}
+Q3 (Business stage): ${parsedResponses.q3}
+Q4 (Challenges): ${Array.isArray(parsedResponses.q4) ? parsedResponses.q4.join(', ') : parsedResponses.q4}
+Q5 (Desired image): ${parsedResponses.q5}
+Q6 (Beauty guidance): ${parsedResponses.q6}
+Completed: ${new Date(parsedResponses.timestamp).toLocaleString()}`;
+                } catch (e) {
+                    console.log('Could not parse responses data');
                 }
             }
+            
+            document.getElementById('form-quiz-responses').value = responsesData;
         }
+
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        })();
+
+        // Handle form submission
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const submitButton = event.target.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            const templateParams = {
+                to_email: 'sgm@stephanieg-m.com',
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                archetype: document.getElementById('form-archetype').value,
+                quiz_responses: document.getElementById('form-quiz-responses').value,
+                subject: 'New Quiz Result: ' + document.getElementById('form-archetype').value
+            };
+            
+            // For testing - you can replace this with your EmailJS service
+            // emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            
+            // Temporary solution for local testing - show success message
+            setTimeout(() => {
+                submitButton.textContent = 'Thank you!';
+                submitButton.style.background = '#4caf50';
+                
+                // Show the data that would be sent
+                alert(`Form submitted successfully!\n\nData that would be sent:\nName: ${templateParams.from_name}\nEmail: ${templateParams.from_email}\nArchetype: ${templateParams.archetype}\n\nTo enable email sending:\n1. Sign up at emailjs.com\n2. Replace YOUR_PUBLIC_KEY and service details\n3. Set up email template`);
+                
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = '#607d8b';
+                    submitButton.disabled = false;
+                    document.getElementById('contact-form').reset();
+                }, 3000);
+            }, 1000);
+            
+            /* Uncomment this when you have EmailJS configured:
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    submitButton.textContent = 'Thank you!';
+                    submitButton.style.background = '#4caf50';
+                    
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.style.background = '#607d8b';
+                        submitButton.disabled = false;
+                        document.getElementById('contact-form').reset();
+                    }, 3000);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send. Please try again.');
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
+            */
+        });
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', displayResults);

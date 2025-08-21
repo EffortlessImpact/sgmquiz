@@ -621,8 +621,8 @@
 
             </form>
 
-            <!-- FLODESK FORM INTEGRATION -->
-            <div class="flodesk-section" style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
+            <!-- FLODESK FORM INTEGRATION (Hidden until quiz completion) -->
+            <div class="flodesk-section" style="display: none; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
                 <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 1.5em;">Get Your Complete Results</h3>
                 <p style="text-align: center; color: #546e7a; margin-bottom: 30px; font-size: 1.1em; line-height: 1.7;">
                     Enter your details below to receive your detailed archetype breakdown with personalized insights and next steps delivered straight to your inbox.
@@ -958,15 +958,19 @@
                 // Store in session storage for Flodesk form
                 sessionStorage.setItem('quizData', JSON.stringify(quizData));
                 
-                // Scroll to Flodesk form and populate hidden fields
-                populateFlodeskForm(quizData);
-                document.querySelector('.flodesk-section').scrollIntoView({ behavior: 'smooth' });
+                // Show and scroll to Flodesk form section
+                const flodeskSection = document.querySelector('.flodesk-section');
+                flodeskSection.style.display = 'block';
                 
                 // Hide the quiz form
                 document.getElementById('archetypeForm').style.display = 'none';
                 
                 // Show success message
                 showQuizCompletedMessage(archetype);
+                
+                // Populate hidden fields and scroll to form
+                populateFlodeskForm(quizData);
+                flodeskSection.scrollIntoView({ behavior: 'smooth' });
                 
             } else {
                 alert(`Debug: No archetype match found.\nResponses: Q1=${q1}, Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}`);

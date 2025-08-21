@@ -802,44 +802,8 @@
             // Calculate archetype
             const archetype = calculateArchetype(q1, q2, q3, q4, q5, q6);
             
-            // Hide quiz form and show results page
-            document.querySelector('.quiz-page').style.display = 'none';
-            document.getElementById('resultsPage').style.display = 'block';
-            
-            // Populate results
-            const archetypeName = document.getElementById('archetypeName');
-            const archetypeDescription = document.getElementById('archetypeDescription');
-            const traitsList = document.getElementById('traitsList');
-            const nextStepsContent = document.getElementById('nextStepsContent');
-            
-            const details = archetypeDetails[archetype];
-            
-            archetypeName.textContent = archetype;
-            archetypeDescription.textContent = details.description;
-            
-            // Populate traits
-            traitsList.innerHTML = '';
-            details.traits.forEach(trait => {
-                const li = document.createElement('li');
-                li.textContent = trait;
-                traitsList.appendChild(li);
-            });
-            
-            // Populate next steps
-            nextStepsContent.innerHTML = `<p>${details.nextSteps}</p>`;
-            
-            // Store results for form submission
-            document.getElementById('calculatedArchetype').value = archetype;
-            document.getElementById('allResponses').value = JSON.stringify({q1, q2, q3, q4, q5, q6});
-            
-            // Show debug info
-            const debugDiv = document.getElementById('debug');
-            const debugInfo = document.getElementById('debugInfo');
-            debugInfo.innerHTML = `Responses: Q1=${q1}, Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}<br>Result: ${archetype}`;
-            debugDiv.style.display = 'block';
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Redirect to results page with archetype parameter
+            window.location.href = `results.html?archetype=${encodeURIComponent(archetype)}`;
         });
 
         // Enable submit button only when all questions are answered

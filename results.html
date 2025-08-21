@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Business Archetype - The Aligned Visibility Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -348,30 +347,31 @@
                     <p id="next-steps-content"></p>
                 </div>
                 
-                <form class="contact-form" id="contact-form">
-                    <input type="hidden" id="form-archetype" />
-                    <input type="hidden" id="form-quiz-responses" />
-                    
-                    <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Want to learn more?</h3>
-                    
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label for="name" style="display: block; margin-bottom: 8px; color: #546e7a; font-weight: 500;">Name</label>
-                        <input type="text" id="name" name="name" required style="width: 100%; padding: 12px; border: 2px solid #cfd8dc; border-radius: 4px; font-size: 1em; font-family: 'Open Sans', sans-serif;" />
+                <!-- Email Notification Message -->
+                <div class="email-notification" style="background: linear-gradient(135deg, #f8f9fa, #eceff1); padding: 40px; border-radius: 8px; text-align: center; border-left: 4px solid #607d8b; margin-top: 40px;">
+                    <div style="font-size: 3em; margin-bottom: 20px;">📧</div>
+                    <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 1.5em;">Check Your Email!</h3>
+                    <p style="color: #546e7a; font-size: 1.1em; line-height: 1.7; margin-bottom: 25px;">
+                        Your complete <strong id="email-archetype-name">archetype</strong> breakdown with personalized insights, detailed traits, and next steps has been sent to your inbox.
+                    </p>
+                    <div style="background: white; padding: 25px; border-radius: 8px; margin: 25px 0; border: 1px solid #cfd8dc;">
+                        <p style="color: #607d8b; font-weight: 600; margin-bottom: 15px;">What you'll find in your email:</p>
+                        <ul style="text-align: left; color: #546e7a; max-width: 400px; margin: 0 auto; line-height: 1.8;">
+                            <li>✨ Complete archetype profile & description</li>
+                            <li>🎯 Your specific keywords & traits</li>
+                            <li>💡 What's blocking your success</li>
+                            <li>🚀 Personalized next steps to thrive</li>
+                            <li>💜 Custom action plan just for you</li>
+                        </ul>
                     </div>
-                    
-                    <div class="form-group" style="margin-bottom: 30px;">
-                        <label for="email" style="display: block; margin-bottom: 8px; color: #546e7a; font-weight: 500;">Email</label>
-                        <input type="email" id="email" name="email" required style="width: 100%; padding: 12px; border: 2px solid #cfd8dc; border-radius: 4px; font-size: 1em; font-family: 'Open Sans', sans-serif;" />
+                    <p style="color: #78909c; font-size: 0.9em; margin-bottom: 25px;">
+                        Don't see it? Check your spam folder or wait a few minutes.
+                    </p>
+                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                        <a href="quiz.html" class="action-button secondary" style="text-decoration: none; display: inline-block; padding: 12px 25px; background: transparent; color: #607d8b; border: 2px solid #607d8b; border-radius: 4px; font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">Retake Quiz</a>
+                        <a href="index.html" class="action-button" style="text-decoration: none; display: inline-block; padding: 12px 25px; background: #607d8b; color: white; border: none; border-radius: 4px; font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">Back to Home</a>
                     </div>
-                    
-                    <div style="text-align: center;">
-                        <button type="submit" class="action-button" style="margin: 0;">I want to learn more</button>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 20px;">
-                        <a href="quiz.html" style="color: #78909c; text-decoration: underline; font-size: 0.9em;">Retake Quiz</a>
-                    </div>
-                </form>
+                </div>
             </div>
         </main>
         
@@ -455,162 +455,9 @@
             document.getElementById('archetype-image').src = data.image;
             document.getElementById('archetype-image').alt = archetype + ' Archetype';
             document.getElementById('next-steps-content').textContent = data.nextSteps;
+            document.getElementById('email-archetype-name').textContent = archetype;
             
-            
-            // Populate hidden form fields
-            document.getElementById('form-archetype').value = archetype;
-            
-            // Get quiz responses from URL if available, or use current archetype
-            const urlParams = new URLSearchParams(window.location.search);
-            const responsesParam = urlParams.get('responses');
-            let responsesData = `Archetype Result: ${archetype}`;
-            
-            if (responsesParam) {
-                try {
-                    const parsedResponses = JSON.parse(decodeURIComponent(responsesParam));
-                    responsesData = `Quiz Results:
-Archetype: ${parsedResponses.archetype}
-Q1 (Support type): ${parsedResponses.q1}
-Q2 (Confidence area): ${parsedResponses.q2}
-Q3 (Business stage): ${parsedResponses.q3}
-Q4 (Challenges): ${Array.isArray(parsedResponses.q4) ? parsedResponses.q4.join(', ') : parsedResponses.q4}
-Q5 (Desired image): ${parsedResponses.q5}
-Q6 (Beauty guidance): ${parsedResponses.q6}
-Completed: ${new Date(parsedResponses.timestamp).toLocaleString()}`;
-                } catch (e) {
-                    console.log('Could not parse responses data');
-                }
-            }
-            
-            document.getElementById('form-quiz-responses').value = responsesData;
         }
-
-        // Initialize EmailJS
-        (function() {
-            emailjs.init("z9KJSmqcfXbX2hjR9"); // Replace with your EmailJS public key
-        })();
-
-        // Handle form submission
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const submitButton = event.target.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            // Get archetype and user data
-            const archetype = document.getElementById('form-archetype').value;
-            const userName = document.getElementById('name').value;
-            const userEmail = document.getElementById('email').value;
-            const quizResponses = document.getElementById('form-quiz-responses').value;
-            
-            // Define archetype-specific content
-            const archetypeContent = {
-                "The Muse": {
-                    image: "muse-archetype.jpg",
-                    description: "You are The Muse - a visionary who values beauty, aesthetics, and maintaining balance between your business dreams and family life. You feel drawn to create something meaningful while staying true to your nurturing nature.",
-                    keywords: "Soft, intuitive, creative, thoughtful, reserved, empathic",
-                    self_perception: "Calm, reflective, unsure how to take up space",
-                    desired_perception: "Empowered, expressed, magnetic",
-                    struggles: "Owning her voice, putting herself out there, visibility",
-                    beauty_vibe: "Minimal, ethereal, hesitant to take up too much room",
-                    business_block: "Overthinking, perfectionism, waiting for permission",
-                    next_steps: "Gentle structure, permission to be bold, beauty rituals that energize. Focus on creating simple systems that support both your business growth and life balance. Start with one small, beautiful step each day and build sustainable routines that honor your energy and family commitments.",
-                    cta_message: "Ready to embrace your Muse energy and build a business that flows with your natural rhythm? I'd love to help you create gentle structure and give you permission to shine."
-                },
-                "The Stylist": {
-                    image: "stylist-archetype.jpg",
-                    description: "You are The Stylist - a creative entrepreneur with many ideas who needs focus and consistency to truly flourish. Your creative energy is powerful, but it needs better structure to reach its full potential.",
-                    keywords: "Creative, idea-driven, scattered, soulful, passionate",
-                    self_perception: "Inspired but overwhelmed",
-                    desired_perception: "Clear, capable, influential",
-                    struggles: "Focus, translating ideas into action, presenting herself clearly",
-                    beauty_vibe: "Playful, experimental, inconsistent",
-                    business_block: "Too many ideas, unclear offers, chaotic messaging",
-                    next_steps: "Simplified brand story, visual consistency, a signature look or message. Focus on creating structured routines that support your creative flow. Consider streamlining your offers and developing a consistent visual identity that reflects your creative essence while maintaining professional clarity.",
-                    cta_message: "Ready to channel your creative energy into clear, consistent action? I'd love to help you simplify your brand story and create visual consistency."
-                },
-                "The Editor": {
-                    image: "editor-archetype.jpg",
-                    description: "You are The Editor - a warm, supportive entrepreneur who prefers to work behind the scenes but has valuable expertise to share. Your nurturing nature and community focus are your greatest strengths.",
-                    keywords: "Warm, supportive, community-driven, nurturing",
-                    self_perception: "Grounded but behind the scenes",
-                    desired_perception: "Trusted, magnetic, real",
-                    struggles: "Charging what she's worth, stepping into expert role",
-                    beauty_vibe: "Natural, relatable, a little muted",
-                    business_block: "Boundaries, confidence in leadership",
-                    next_steps: "Messaging rooted in service, soft power visibility strategy, embodiment. Focus on sharing your expertise in small, comfortable ways while building confidence through celebrating small wins. Your natural ability to support others is a gift - learn to value and price it accordingly.",
-                    cta_message: "Ready to step into your expert role with confidence and set boundaries that honor your worth? I'd love to help you develop messaging rooted in service and a visibility strategy that feels authentic."
-                },
-                "The Supermodel": {
-                    image: "supermodel-archetype.jpg",
-                    description: "You are The Supermodel - a confident, driven entrepreneur who excels in many areas but may feel disconnected from authenticity. Your high standards and no-nonsense approach are powerful assets when aligned with your true values.",
-                    keywords: "Confident, direct, bold, high standards, no-nonsense",
-                    self_perception: "Determined, clear, driven",
-                    desired_perception: "Powerful, polished, already there",
-                    struggles: "Vulnerability, translating her inner power to outer clarity",
-                    beauty_vibe: "Intentional, sleek, high impact—but might feel disconnected from authenticity",
-                    business_block: "Brand feels flat or misaligned, trying to look the part instead of being it",
-                    next_steps: "Grounded reconnection to values, messaging that matches her real energy, permission to soften or expand. Focus on aligning your polished exterior with your authentic inner power. Create space for vulnerability and genuine connection while maintaining your high standards and strategic thinking.",
-                    cta_message: "Ready to align your powerful presence with authentic messaging and give yourself permission to expand? I'd love to help you reconnect with your values and create messaging that matches your real energy."
-                }
-            };
-            
-            // Get content for the specific archetype
-            const content = archetypeContent[archetype] || archetypeContent["The Muse"];
-            
-            const templateParams = {
-                to_email: userEmail,
-                name: userName,
-                email: userEmail,
-                archetype: archetype,
-                responses: quizResponses,
-                // Archetype-specific content
-                archetype_image: content.image,
-                archetype_description: content.description,
-                keywords: content.keywords,
-                self_perception: content.self_perception,
-                desired_perception: content.desired_perception,
-                struggles: content.struggles,
-                beauty_vibe: content.beauty_vibe,
-                business_block: content.business_block,
-                next_steps: content.next_steps,
-                cta_message: content.cta_message
-            };
-            
-            // Enhanced Debug: log everything we're sending
-            console.log('=== EMAIL DEBUG INFO ===');
-            console.log('Full template params:', templateParams);
-            console.log('to_email (recipient):', templateParams.to_email);
-            console.log('name (user name):', templateParams.name);
-            console.log('archetype:', templateParams.archetype);
-            console.log('Form archetype field value:', document.getElementById('form-archetype').value);
-            console.log('Form responses field value:', document.getElementById('form-quiz-responses').value);
-            console.log('=== END DEBUG INFO ===');
-            
-            // Send email using EmailJS
-            emailjs.send('service_yg96yjo', 'template_m51ikq3', templateParams)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    submitButton.textContent = 'Thank you!';
-                    submitButton.style.background = '#4caf50';
-                    
-                    // Reset form after 3 seconds
-                    setTimeout(() => {
-                        submitButton.textContent = originalText;
-                        submitButton.style.background = '#607d8b';
-                        submitButton.disabled = false;
-                        document.getElementById('contact-form').reset();
-                    }, 3000);
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    console.log('Error details:', JSON.stringify(error));
-                    alert('Failed to send email. Error: ' + (error.text || error.message || 'Unknown error'));
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                });
-        });
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', displayResults);

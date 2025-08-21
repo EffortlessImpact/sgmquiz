@@ -1,0 +1,290 @@
+const nodemailer = require('nodemailer');
+
+exports.handler = async (event, context) => {
+  // Only allow POST requests
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ error: 'Method not allowed' })
+    };
+  }
+
+  try {
+    const { name, email, archetype, content, quizData } = JSON.parse(event.body);
+
+    // Configure your email service here
+    // Example using Gmail/Google Workspace
+    const transporter = nodemailer.createTransporter({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER, // Your email
+        pass: process.env.EMAIL_PASS  // Your app password
+      }
+    });
+
+    // Generate HTML email content
+    const htmlContent = generateEmailHTML(name, archetype, content);
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: `Your Complete ${archetype} Archetype Results`,
+      html: htmlContent
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ success: true, message: 'Email sent successfully' })
+    };
+
+  } catch (error) {
+    console.error('Email sending failed:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'Failed to send email' })
+    };
+  }
+};
+
+function generateEmailHTML(name, archetype, content) {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Complete Archetype: ${archetype}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #37474f;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #607d8b, #546e7a);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .logo-overlay {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 4px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .logo-overlay img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .archetype-name {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            color: #546e7a;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .archetype-image {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .archetype-image img {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        
+        .description {
+            font-size: 16px;
+            color: #546e7a;
+            margin-bottom: 30px;
+            text-align: center;
+            line-height: 1.7;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #607d8b;
+            margin: 40px 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        
+        .traits-grid {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .trait-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border-left: 4px solid #607d8b;
+            color: #546e7a;
+            font-weight: 500;
+        }
+        
+        .next-steps {
+            background: linear-gradient(135deg, #f8f9fa, #eceff1);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #607d8b;
+            margin: 30px 0;
+        }
+        
+        .next-steps h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #607d8b;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #eceff1);
+            border-radius: 8px;
+            border-left: 4px solid #607d8b;
+        }
+        
+        .cta-text {
+            color: #546e7a;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            background: #eceff1;
+            padding: 30px;
+            text-align: center;
+            color: #78909c;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <div class="logo-overlay">
+                <img src="https://sgmarchetypequiz.netlify.app/Beige-and-White-Aesthetic-Minimalist-Modern-Typography-Beauty-Brand-Logo.png" alt="The Aligned Visibility Quiz Logo" />
+            </div>
+            <h1>Your Complete Archetype Results</h1>
+            <div class="archetype-name">${archetype}</div>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                Hi ${name},<br><br>
+                Thank you for taking The Aligned Visibility Quiz! Here's your complete archetype breakdown with personalized insights and next steps.
+            </div>
+            
+            <div class="archetype-image">
+                <img src="https://sgmarchetypequiz.netlify.app/${content.image}" alt="${archetype} Archetype" />
+            </div>
+            
+            <div class="description">
+                ${content.description}
+            </div>
+            
+            <h2 class="section-title">Your Complete Profile</h2>
+            
+            <div class="traits-grid">
+                <div class="trait-item">
+                    <strong>Keywords:</strong> ${content.keywords}
+                </div>
+                <div class="trait-item">
+                    <strong>You may see yourself as:</strong> ${content.self_perception}
+                </div>
+                <div class="trait-item">
+                    <strong>You want to be seen as:</strong> ${content.desired_perception}
+                </div>
+                <div class="trait-item">
+                    <strong>Common struggles you face:</strong> ${content.struggles}
+                </div>
+                <div class="trait-item">
+                    <strong>Beauty vibe:</strong> ${content.beauty_vibe}
+                </div>
+                <div class="trait-item">
+                    <strong>Business block:</strong> ${content.business_block}
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h3>What You Need to Thrive</h3>
+                <p>${content.next_steps}</p>
+            </div>
+            
+            <div class="cta-section">
+                <div class="cta-text">
+                    ${content.cta_message}
+                </div>
+                <div style="color: #607d8b; font-size: 16px; font-weight: 600;">
+                    Reply to this email to start the conversation.
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Created with 💜 for moms & soulful creators</p>
+            <p style="margin-top: 10px;">© 2024 The Aligned Visibility Quiz. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
+  `;
+}

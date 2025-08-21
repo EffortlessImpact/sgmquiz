@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Aligned Visibility Quiz - Discover Your Business Archetype</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Flodesk Script -->
+    <script>
+      (function(f, l, o, w, d, e, s, k) {
+        if (f[o]) return;
+        f[o] = function() { (f[o].q = f[o].q || []).push(arguments) };
+        (d = l.createElement(w)).async = 1; d.src = e; (s = l.getElementsByTagName(w)[0]).parentNode.insertBefore(d, s);
+      })(window, document, 'fd', 'script', null, 'https://fd-serve.azurewebsites.net/fd.js');
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -611,6 +621,29 @@
 
                 <button type="submit" class="submit-btn">Calculate My Archetype</button>
             </form>
+
+            <!-- Contact Form Section -->
+            <div class="contact-section" style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
+                <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; text-align: center; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 1.5em;">Get Your Complete Results</h3>
+                <p style="text-align: center; color: #546e7a; margin-bottom: 30px; font-size: 1.1em; line-height: 1.7;">
+                    Enter your details below to receive your detailed archetype breakdown with personalized insights and next steps delivered straight to your inbox.
+                </p>
+                
+                <!-- FLODESK FORM INTEGRATION -->
+                <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
+                    <div id="fd-form-689e112803c67004d676162c"></div>
+                    <script>
+                      window.fd('form', {
+                        formId: '689e112803c67004d676162c',
+                        containerEl: '#fd-form-689e112803c67004d676162c'
+                      });
+                    </script>
+                </div>
+                
+                <p style="text-align: center; color: #78909c; font-size: 0.9em; margin-top: 20px;">
+                    ✨ You'll receive your complete archetype breakdown within minutes!
+                </p>
+            </div>
             
             <!-- Debug Section for Testing -->
             <div class="debug-section" style="margin-top: 40px;">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Aligned Visibility Quiz - Discover Your Business Archetype</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     
     <!-- Flodesk Script -->
     <script>
@@ -38,9 +38,9 @@
         
         body {
             font-family: 'Open Sans', sans-serif;
-            background: #f8f9fa;
+            background: var(--backdrop-color);
             min-height: 100vh;
-            color: #37474f;
+            color: var(--font-color);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -55,7 +55,7 @@
             font-family: 'Oswald', sans-serif;
             font-size: 3em;
             font-weight: 700;
-            color: #607d8b;
+            color: var(--font-color);
             margin-bottom: 20px;
             text-align: center;
             text-transform: uppercase;
@@ -65,7 +65,7 @@
         .subtitle {
             font-family: 'Open Sans', sans-serif;
             font-size: 1.4em;
-            color: #78909c;
+            color: var(--link-color);
             text-align: center;
             margin-bottom: 40px;
             font-weight: 400;
@@ -88,7 +88,7 @@
         
         .results-header h1 {
             font-family: 'Oswald', sans-serif;
-            color: #607d8b;
+            color: var(--font-color);
             margin-bottom: 20px;
             font-size: 2.2em;
             text-transform: uppercase;
@@ -96,7 +96,7 @@
         }
         
         .archetype-badge {
-            background: #607d8b;
+            background: var(--primary-color);
             color: white;
             padding: 20px 40px;
             border-radius: 4px;
@@ -120,11 +120,11 @@
         .traits-section,
         .next-steps-section,
         .cta-section {
-            background: white;
+            background: var(--canvas-color);
             padding: 30px;
             margin: 20px 0;
             border-radius: 8px;
-            border-left: 4px solid #607d8b;
+            border-left: 4px solid var(--primary-color);
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
@@ -133,7 +133,7 @@
         .next-steps-section h3,
         .cta-section h3 {
             font-family: 'Oswald', sans-serif;
-            color: #607d8b;
+            color: var(--font-color);
             margin-top: 0;
             margin-bottom: 15px;
             font-size: 1.3em;
@@ -147,13 +147,13 @@
         }
         
         #traitsList li {
-            background: #eceff1;
+            background: var(--canvas-color);
             padding: 10px 15px;
             margin: 8px 0;
             border-radius: 4px;
-            border-left: 3px solid #607d8b;
+            border-left: 3px solid var(--primary-color);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            color: #546e7a;
+            color: var(--font-color);
         }
         
         .cta-buttons {
@@ -179,7 +179,7 @@
         }
         
         .cta-btn.primary {
-            background: #607d8b;
+            background: var(--primary-color);
             color: white;
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
@@ -187,9 +187,9 @@
         }
         
         .cta-btn.secondary {
-            background: #eceff1;
-            color: #607d8b;
-            border: 2px solid #cfd8dc;
+            background: var(--canvas-color);
+            color: var(--primary-color);
+            border: 2px solid var(--secondary-dark);
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -219,9 +219,9 @@
         .question {
             margin-bottom: 35px;
             padding: 30px;
-            background: white;
+            background: var(--canvas-color);
             border-radius: 8px;
-            border-left: 4px solid #607d8b;
+            border-left: 4px solid var(--primary-color);
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -233,7 +233,7 @@
         
         .question h3 {
             font-family: 'Oswald', sans-serif;
-            color: #607d8b;
+            color: var(--font-color);
             margin-top: 0;
             margin-bottom: 15px;
             font-size: 1.3em;
@@ -256,7 +256,7 @@
         .option input[type="checkbox"] {
             margin-right: 12px;
             transform: scale(1.2);
-            accent-color: #607d8b;
+            accent-color: var(--primary-color);
         }
         
         .option label {
@@ -266,18 +266,18 @@
         }
         
         .option label {
-            color: #546e7a;
+            color: var(--font-color);
         }
         
         .option label:hover {
-            color: #607d8b;
+            color: var(--primary-color);
         }
         
         .submit-btn {
             display: block;
             width: 100%;
             padding: 18px 45px;
-            background: #607d8b;
+            background: var(--primary-color);
             color: white;
             border: none;
             border-radius: 4px;
@@ -306,7 +306,7 @@
         }
         
         .submit-btn:hover {
-            background: #546e7a;
+            background: var(--primary-dark);
             box-shadow: 0 6px 16px rgba(96, 125, 139, 0.4);
         }
         
@@ -315,13 +315,20 @@
         }
         
         .submit-btn:disabled {
-            background: #cfd8dc;
+            background: var(--secondary-dark);
             cursor: not-allowed;
             box-shadow: none;
         }
         
         .submit-btn:disabled:before {
             display: none;
+        }
+        
+        .form-submit {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid var(--canvas-color);
         }
         
         .result {
@@ -398,7 +405,7 @@
         }
         
         .hero {
-            background: white;
+            background: var(--canvas-color);
             border-radius: 0;
             padding: 80px 60px 60px;
             margin: 0;
@@ -633,49 +640,839 @@
                     </div>
                 </div>
 
+
             </form>
 
-            <!-- FLODESK FORM INTEGRATION (Visible for debugging) -->
-            <div class="flodesk-section" style="display: block; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #f8f9fa, #eceff1); border-radius: 8px; border-left: 4px solid #607d8b;">
+            <!-- FLODESK FORM INTEGRATION -->
+            <div class="flodesk-section" style="display: none; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, var(--canvas-color), var(--secondary-color)); border-radius: 8px; border-left: 4px solid var(--primary-color);">
                 
-                <div style="background: white; padding: 30px; border-radius: 8px; margin: 20px 0;">
-                    <div id="fd-form-689e112803c67004d676162c"></div>
-                    <script>
-                      console.log('Script executed, window.fd available:', typeof window.fd);
-                      console.log('Container element:', document.getElementById('fd-form-689e112803c67004d676162c'));
-                      
-                      // Try multiple times with different delays
-                      function tryInitForm(attempt = 1) {
-                        console.log('Attempt', attempt, '- window.fd:', typeof window.fd);
-                        
-                        if (window.fd) {
-                          console.log('Initializing Flodesk form...');
-                          window.fd('form', {
-                            formId: '689e112803c67004d676162c',
-                            containerEl: '#fd-form-689e112803c67004d676162c'
-                          });
-                          console.log('Form initialization called');
-                        } else if (attempt < 5) {
-                          console.log('Retrying in 1 second...');
-                          setTimeout(() => tryInitForm(attempt + 1), 1000);
-                        } else {
-                          console.error('Failed to load Flodesk after 5 attempts');
-                        }
-                      }
-                      
-                      // Start trying immediately and then with delays
-                      tryInitForm();
-                    </script>
+                <link rel="preload" href="https://assets.flodesk.com/flodesk-sans.css" as="style">
+                <link rel="stylesheet" href="https://assets.flodesk.com/flodesk-sans.css">
+                <style>
+                  [data-ff-el="root"].ff-689e112803c67004d676162c *,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c *::before,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c *::after {
+                    box-sizing: border-box;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [tabindex="-1"]:focus {
+                    outline: none !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c h1,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c h2,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c h3,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c h4,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c h5,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c h6 {
+                    margin-top: 0;
+                    margin-bottom: 0.7em;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c p {
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c ol,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c ul,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c dl {
+                    margin-top: 0;
+                    margin-bottom: 1.4rem;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c ol ol,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c ul ul,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c ol ul,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c ul ol {
+                    margin-bottom: 0;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c b,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c strong {
+                    font-weight: bolder;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c small {
+                    font-size: 80%;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c sub,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c sup {
+                    position: relative;
+                    font-size: 75%;
+                    line-height: 0;
+                    vertical-align: baseline;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c sub {
+                    bottom: -0.25em;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c sup {
+                    top: -0.5em;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c {
+                    color: #000000;
+                    text-decoration: none;
+                    background-color: transparent;
+                    -webkit-text-decoration-skip: objects;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c a:hover {
+                    color: #4396fd;
+                    text-decoration: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c img {
+                    border-style: none;
+                    vertical-align: middle;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c svg:not(:root) {
+                    overflow: hidden;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c area,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [role="button"],
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c label,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c select,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c summary,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c textarea {
+                    touch-action: manipulation;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c label {
+                    display: inline-block;
+                    font-weight: bolder;
+                    margin-bottom: 0.7rem;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c button:focus {
+                    outline: 1px dotted;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c select,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c optgroup,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c textarea {
+                    margin: 0;
+                    font-size: inherit;
+                    font-family: inherit;
+                    line-height: inherit;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input {
+                    overflow: visible;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c select {
+                    text-transform: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+                  html[data-ff-el="root"].ff-689e112803c67004d676162c [type="button"],
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="reset"],
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="submit"] {
+                    -webkit-appearance: button;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c button::-moz-focus-inner,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="button"]::-moz-focus-inner,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="reset"]::-moz-focus-inner,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="submit"]::-moz-focus-inner {
+                    padding: 0;
+                    border-style: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="radio"],
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="checkbox"] {
+                    padding: 0;
+                    box-sizing: border-box;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="date"],
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="time"],
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="datetime-local"],
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="month"] {
+                    -webkit-appearance: listbox;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c textarea {
+                    resize: vertical;
+                    overflow: auto;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="number"]::-webkit-inner-spin-button,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="number"]::-webkit-outer-spin-button {
+                    height: auto;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="search"] {
+                    outline-offset: -2px;
+                    -webkit-appearance: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="search"]::-webkit-search-cancel-button,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [type="search"]::-webkit-search-decoration {
+                    -webkit-appearance: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c ::-webkit-file-upload-button {
+                    font: inherit;
+                    -webkit-appearance: button;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c [hidden] {
+                    display: none !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control {
+                    width: 100%;
+                    display: block;
+                    outline: none;
+                    position: relative;
+                    -webkit-appearance: none;
+                    appearance: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control:focus {
+                    outline: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control::placeholder {
+                    color: transparent !important;
+                    opacity: 0 !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control:disabled {
+                    opacity: 1;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-label {
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    margin: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control:not(:placeholder-shown)+.fd-form-label {
+                    opacity: 0;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-description {
+                    margin: 5px 0 0 0;
+                    font-size: 0.8em;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-feedback {
+                    margin: 5px 0 0 0;
+                    font-size: 0.8em;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group {
+                    margin: 0 0 15px;
+                    position: relative;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-feedback,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-check {
+                    color: #02dba8 !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-control {
+                    color: #02dba8 !important;
+                    border-color: #02dba8 !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-feedback {
+                    display: block;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-feedback,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-check {
+                    color: #eb3d3b !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-control {
+                    color: #eb3d3b !important;
+                    border-color: #eb3d3b !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-feedback {
+                    display: block;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn {
+                    cursor: pointer;
+                    display: inline-flex;
+                    outline: none;
+                    max-width: 100%;
+                    -webkit-appearance: none;
+                    appearance: none;
+                    font-style: normal;
+                    text-align: center;
+                    align-items: center;
+                    text-shadow: none;
+                    white-space: normal;
+                    justify-content: center;
+                    text-decoration: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn:hover {
+                    outline: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn:focus {
+                    outline: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn:disabled {
+                    opacity: 0.8;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check {
+                    cursor: pointer;
+                    margin: 0;
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    padding-left: 30px;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input {
+                    top: 0;
+                    left: 0;
+                    width: 18px;
+                    height: 18px;
+                    opacity: 0;
+                    z-index: -1;
+                    position: absolute;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__checkmark {
+                    top: 0;
+                    left: 0;
+                    width: 18px;
+                    height: 18px;
+                    display: block;
+                    position: absolute;
+                    background-size: 18px;
+                    background-image: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg' %3e %3cpath d='M1 4C1 2.34315 2.34315 1 4 1H16C17.6569 1 19 2.34315 19 4V16C19.17.6569 17.6569 19 16 19H4C2.34315 19 1 17.6569 1 16V4Z' fill='white' /%3e %3cpath fill='black' fill-rule='evenodd' clip-rule='evenodd' d='M0.25 4C0.25 1.92893 1.92893 0.25 4 0.25H16C18.0711 0.25 19.75 1.92893 19.75 4V16C19.75 18.0711 18.0711 19.75 16 19.75H4C1.92893 19.75 0.25 18.0711 0.25 16V4ZM4 1.75C2.75736 1.75 1.75 2.75736 1.75 4V16C1.75 17.2426 2.75736 18.25 4 18.25H16C17.2426 18.25 18.25 17.2426 18.25 16V4C18.25 2.75736 17.2426 1.75 16 1.75H4Z' /%3e %3c/svg%3e");
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__label {
+                    flex: 1 1;
+                    margin: 0;
+                    font-size: 14px;
+                    text-align: left;
+                    word-break: break-word;
+                    font-weight: 400;
+                    line-height: 18px;
+                    letter-spacing: 0.01em;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input:checked+.fd-form-check__checkmark::after {
+                    opacity: 1;
+                    z-index: 1;
+                    visibility: visible;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__checkmark::after {
+                    top: 0;
+                    left: 0;
+                    width: 18px;
+                    height: 18px;
+                    content: "";
+                    display: block;
+                    opacity: 0;
+                    z-index: 1;
+                    position: absolute;
+                    transition: opacity 0.4s, z-index 0.4s;
+                    visibility: inherit;
+                    background-size: 12px;
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='black' width='12' height='10' viewBox='0 0 11.51 8.2' %3e %3ctitle%3echeck%3c/title%3e %3cpath d='M4.05%2c8.2A.74.74%2c0%2c0%2c1%2c3.52%2c8L.22%2c4.68A.75.75%2c0%2c0%2c1%2c1.28%2c3.62l3.3%2c3.3A.75.75%2c0%2c1%2c4.58%2c8%2c.74.74%2c0%2c0%2c1%2c4.05%2c8.2Z' /%3e %3cpath d='M4.06%2c8.2A.74.74%2c0%2c0%2c1%2c3.53%2c8a.75.75%2c0%2c0%2c1%2c0-1.06l6.7-6.7a.75.75%2c0%2c0%2c1%2c1.06%2c1.06L4.59%2c8A.74.74%2c0%2c0%2c1%2c4.06%2c8.2Z' /%3e %3c/svg%3e");
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input:focus {
+                    outline: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-content {
+                    position: relative;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-success .fd-form-content {
+                    display: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-captcha .fd-form-content>*:not(.fd-form-captcha) {
+                    opacity: 0;
+                    visibility: hidden;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-captcha {
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    position: absolute;
+                    align-items: center;
+                    justify-content: flex-start;
+                  }
+
+                  /* Hide captcha completely */
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-captcha,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-captcha .fd-form-captcha {
+                    display: none !important;
+                    visibility: hidden !important;
+                    opacity: 0 !important;
+                  }
+
+                  /* Ensure form content is always visible */
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-captcha .fd-form-content>*:not(.fd-form-captcha) {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-success {
+                    width: 100%;
+                    display: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-success .fd-form-success {
+                    display: block;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-success>*:last-child {
+                    margin-bottom: 0;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-error {
+                    display: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-error .fd-form-error {
+                    display: block;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-error>*:last-child {
+                    margin-bottom: 0;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-focus-visible,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input.fd-focus-visible+.fd-form-check__checkmark {
+                    outline: none;
+                    box-shadow: 0 0 0 2px #ffffff, 0 0 0 calc(2px + 4px) #000000 !important;
+                    transition: box-shadow 0.2s !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-focus-visible,
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input.fd-focus-visible+.fd-form-check__checkmark {
+                    outline: none;
+                    box-shadow: 0 0 0 2px #ffffff, 0 0 0 calc(2px + 2px) #717171 !important;
+                    transition: box-shadow 0.2s !important;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c {
+                    background: #ffffff;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__container {
+                    margin: 0 auto;
+                    max-width: 1170px;
+                    background: #ffffff;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form {
+                    color: #333333;
+                    width: 100%;
+                    margin: 0;
+                    padding: 30px;
+                    font-size: 16px;
+                    text-align: center;
+                    font-family: Helvetica, sans-serif;
+                    font-weight: 300;
+                    line-height: 1.6;
+                    letter-spacing: 0.1px;
+                    text-transform: none;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form {
+                      word-wrap: anywhere;
+                      word-break: break-word;
+                      white-space: normal;
+                      overflow-wrap: break-word;
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__title {
+                    color: #000000;
+                    width: 100%;
+                    margin: 0 0 25px;
+                    display: block;
+                    font-size: 37px;
+                    text-align: center;
+                    font-family: Helvetica, sans-serif;
+                    font-weight: 700;
+                    line-height: 1;
+                    letter-spacing: 0px;
+                    text-transform: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__title * {
+                    line-height: inherit;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__subtitle {
+                    width: 100%;
+                    margin: 0 0 30px;
+                    display: block;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__subtitle * {
+                    line-height: inherit;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__content {
+                    margin: -10px -5px 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: start;
+                    flex-direction: row;
+                    justify-content: center;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__content {
+                      display: block;
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c[data-ff-stage="success"] .ff-689e112803c67004d676162c__content {
+                    display: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__fields {
+                    flex: 0 1 auto;
+                    margin: 0px 0px 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    max-width: calc(100% + 10px);
+                    justify-content: center;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__fields {
+                      display: block;
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__field {
+                    flex: 1 1;
+                    margin: 10px 5px 0;
+                    font-size: 13px;
+                    max-width: 250px;
+                    min-width: 140px;
+                    text-align: left;
+                    font-family: Helvetica, sans-serif;
+                    font-weight: 400;
+                    letter-spacing: 0.1px;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__field {
+                      max-width: calc(100% - 10px);
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__control {
+                    color: #000000;
+                    border: 1px solid #dddddd;
+                    height: 46px;
+                    padding: 12px 20px;
+                    font-size: 13px;
+                    background: #ececec;
+                    text-align: left;
+                    font-family: Helvetica, sans-serif;
+                    font-weight: 400;
+                    line-height: 20px;
+                    border-radius: 23px;
+                    letter-spacing: 0.1px;
+                    text-transform: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__label {
+                    color: #000000;
+                    border: 1px solid transparent;
+                    padding: 12px 20px;
+                    font-size: 13px;
+                    text-align: left;
+                    font-family: Helvetica, sans-serif;
+                    font-weight: 400;
+                    line-height: 20px;
+                    letter-spacing: 0.1px;
+                    text-transform: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference {
+                    margin: 30px 5px 0;
+                    display: flex;
+                    flex-direction: column;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-title {
+                    color: #333333;
+                    width: 100%;
+                    margin: 0 0 30px;
+                    display: block;
+                    font-size: 18px;
+                    text-align: center;
+                    font-weight: 700;
+                    line-height: 1.4;
+                    letter-spacing: 0px;
+                    text-transform: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-title * {
+                    line-height: inherit;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-control {
+                    width: 100%;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-list {
+                    width: calc(100% + 24px);
+                    margin: -8px -12px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-list {
+                      display: block;
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-item {
+                    flex: 0 0 33.333333333333336%;
+                    padding: 8px 12px;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__input {
+                    top: 2.200000000000001px;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__checkmark {
+                    top: 2.200000000000001px;
+                    border-radius: 4px;
+                    background-image: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg' %3e %3cpath d='M1 4C1 2.34315 2.34315 1 4 1H16C17.6569 1 19 2.34315 19 4V16C19 17.6569 17.6569 19 16 19H4C2.34315 19 1 17.6569 1 16V4Z' fill='white' /%3e %3cpath fill='black' fill-rule='evenodd' clip-rule='evenodd' d='M0.25 4C0.25 1.92893 1.92893 0.25 4 0.25H16C18.0711 0.25 19.75 1.92893 19.75 4V16C19.75 18.0711 18.0711 19.75 16 19.75H4C1.92893 19.75 0.25 18.0711 0.25 16V4ZM4 1.75C2.75736 1.75 1.75 2.75736 1.75 4V16C1.75 17.2426 2.75736 18.25 4 18.25H16C17.2426 18.25 18.25 17.2426 18.25 16V4C18.25 2.75736 17.2426 1.75 16 1.75H4Z' /%3e %3c/svg%3e");
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__label {
+                    color: #333333;
+                    font-size: 14px;
+                    min-height: 22.400000000000002px;
+                    font-weight: 400;
+                    line-height: 1.6;
+                    letter-spacing: 0px;
+                    text-transform: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__checkmark::after {
+                    background-size: 12px;
+                    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='black' width='12' height='10' viewBox='0 0 11.51 8.2' %3e %3ctitle%3echeck%3c/title%3e %3cpath d='M4.05%2c8.2A.74.74%2c0%2c0%2c1%2c3.52%2c8L.22%2c4.68A.75.75%2c0%2c0%2c1%2c1.28%2c3.62l3.3%2c3.3A.75.75%2c0%2c0%2c1%2c4.58%2c8%2c.74.74%2c0%2c0%2c1%2c4.05%2c8.2Z' /%3e %3cpath d='M4.06%2c8.2A.74.74%2c0%2c0%2c1%2c3.53%2c8a.75.75%2c0%2c0%2c1%2c0-1.06l6.7-6.7a.75.75%2c0%2c0%2c1%2c1.06%2c1.06L4.59%2c8A.74.74%2c0%2c0%2c1%2c4.06%2c8.2Z' /%3e %3c/svg%3e");
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__footer {
+                    flex: 0 1 auto;
+                    margin-top: 10px;
+                    text-align: center;
+                    margin-left: 5px;
+                    margin-right: 5px;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__footer {
+                      margin-top: 25px;
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__button {
+                    color: #ffffff;
+                    width: auto;
+                    border: 1px solid #000000;
+                    display: inline-block;
+                    padding: 12px 20px;
+                    font-size: 13px;
+                    background: #000000;
+                    text-align: center;
+                    font-weight: 400;
+                    line-height: 20px;
+                    white-space: nowrap;
+                    border-radius: 0px;
+                    letter-spacing: 0.1px;
+                    text-transform: none;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__button {
+                      width: 100%;
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__success {
+                    display: none;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c[data-ff-stage="success"] .ff-689e112803c67004d676162c__success {
+                    display: block;
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__success-message {
+                    color: #333333;
+                    width: 100%;
+                    display: block;
+                    font-size: 16px;
+                    word-wrap: anywhere;
+                    min-height: 1.6em;
+                    text-align: center;
+                    word-break: break-word;
+                    font-family: Helvetica, sans-serif;
+                    font-weight: 300;
+                    line-height: 1.6;
+                    white-space: normal;
+                    overflow-wrap: break-word;
+                    letter-spacing: 0.1px;
+                    pointer-events: auto;
+                    text-transform: none;
+                  }
+
+                  @media (max-width: 767px) {
+                    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__success-message {
+                      font-size: 16px;
+                    }
+                  }
+
+                  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__error {
+                    margin: 10px 0 0 0;
+                  }
+                  
+                  /* Hide archetype field from users */
+                  [data-ff-el="root"].ff-689e112803c67004d676162c input[name="fields.archetype"] {
+                    display: none !important;
+                    visibility: hidden !important;
+                    position: absolute !important;
+                    left: -9999px !important;
+                  }
+                  
+                  [data-ff-el="root"].ff-689e112803c67004d676162c label[for="ff-689e112803c67004d676162c-P1hpG613mN"] {
+                    display: none !important;
+                    visibility: hidden !important;
+                  }
+                </style>
+
+                <div class="ff-689e112803c67004d676162c" data-ff-el="root" data-ff-version="3" data-ff-type="inline" data-ff-name="ribbonBanner" data-ff-stage="default">
+                  <div data-ff-el="config" data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJtZXNzYWdlIiwibWVzc2FnZSI6IiIsInJlZGlyZWN0VXJsIjoiIn0sImNvaSI6ZmFsc2UsInNob3dGb3JSZXR1cm5WaXNpdG9ycyI6dHJ1ZSwibm90aWZpY2F0aW9uIjp0cnVlfQ==" style="display: none"></div>
+                  <div class="ff-689e112803c67004d676162c__container">
+                    <form class="ff-689e112803c67004d676162c__form" action="https://form.flodesk.com/forms/689e112803c67004d676162c/submit" method="post" data-ff-el="form">
+                      <div class="ff-689e112803c67004d676162c__title">
+                        <div style="word-break:break-word">
+                          <div data-paragraph="true">Get your personalized archetype breakdown</div>
+                        </div>
+                      </div>
+                      <div class="ff-689e112803c67004d676162c__subtitle">
+                        <div style="word-break:break-word">
+                          <div data-paragraph="true"></div>
+                        </div>
+                      </div>
+                      <div class="ff-689e112803c67004d676162c__content fd-form-content" data-ff-el="content">
+                        <div class="ff-689e112803c67004d676162c__fields" data-ff-el="fields">
+
+                          <div class="ff-689e112803c67004d676162c__field fd-form-group">
+                            <input id="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="firstName" placeholder="Name" data-ff-tab="firstName::email" />
+                            <label for="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__label fd-form-label">
+                              <div>
+                                <div>Name</div>
+                              </div>
+                            </label>
+                          </div>
+
+                          <div class="ff-689e112803c67004d676162c__field fd-form-group">
+                            <input id="ff-689e112803c67004d676162c-email" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="email" placeholder="Email address" data-ff-tab="email:firstName:fields.archetype" required />
+                            <label for="ff-689e112803c67004d676162c-email" class="ff-689e112803c67004d676162c__label fd-form-label">
+                              <div>
+                                <div>Email address</div>
+                              </div>
+                            </label>
+                          </div>
+
+                          <!-- Hidden archetype field -->
+                          <div class="ff-689e112803c67004d676162c__field fd-form-group">
+                            <input id="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="fields.archetype" placeholder="archetype" data-ff-tab="fields.archetype:email:submit" />
+                            <label for="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__label fd-form-label">
+                              <div>
+                                <div>archetype</div>
+                              </div>
+                            </label>
+                          </div>
+
+                          <input type="text" maxlength="255" name="confirm_email_address" style="display: none" />
+                        </div>
+
+                        <div class="ff-689e112803c67004d676162c__footer" data-ff-el="footer">
+                          <button type="submit" class="ff-689e112803c67004d676162c__button fd-btn" data-ff-el="submit" data-ff-tab="submit">
+                            <span>Send me my archetype</span>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="ff-689e112803c67004d676162c__success fd-form-success" data-ff-el="success">
+                        <div class="ff-689e112803c67004d676162c__success-message">
+                          <div>
+                            <div>
+                              <div data-paragraph="true">Thank you!</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ff-689e112803c67004d676162c__error fd-form-error" data-ff-el="error"></div>
+                    </form>
+                  </div>
                 </div>
+                <script>
+                  window.fd('form:handle', {
+                    formId: '689e112803c67004d676162c',
+                    rootEl: '.ff-689e112803c67004d676162c',
+                  });
+                </script>
                 
-                <p style="text-align: center; color: #78909c; font-size: 0.9em; margin-top: 20px;">
+                <p style="text-align: center; color: var(--link-color); font-size: 0.9em; margin-top: 20px;">
                     ✨ You'll receive your complete archetype breakdown within minutes!
                 </p>
             </div>
             
             <!-- Debug Section for Testing -->
-            <div class="debug-section" style="margin-top: 40px;">
-                <button type="button" id="toggleDebug" class="debug-toggle" style="background: #eceff1; border: 1px solid #cfd8dc; padding: 10px 20px; border-radius: 4px; cursor: pointer; color: #607d8b; font-family: 'Open Sans', sans-serif;">
+            <div class="debug-section" style="margin-top: 40px; position: relative; z-index: 10;">
+                <button type="button" id="toggleDebug" class="debug-toggle" style="background: #eceff1; border: 1px solid #cfd8dc; padding: 10px 20px; border-radius: 4px; cursor: pointer; color: #607d8b; font-family: 'Open Sans', sans-serif; position: relative; z-index: 11;">
                     🐛 Show Debug - Answer Combinations for Each Archetype
                 </button>
                 <div id="debugCombinations" class="debug-combinations" style="display: none; margin-top: 20px; padding: 20px; background: #f5f5f5; border-radius: 4px; font-family: monospace; font-size: 0.9em; line-height: 1.6;">
@@ -756,23 +1553,14 @@
                     <ul id="traitsList"></ul>
                 </div>
 
-                <div class="next-steps-section">
-                    <h3>Your Next Steps</h3>
-                    <div id="nextStepsContent"></div>
-                </div>
-
                 <div class="cta-section">
-                    <h3>Ready to Take Action?</h3>
-                    <p>Your results have been saved. We'll be in touch soon with your personalized archetype guide!</p>
-                    <div class="cta-buttons">
-                        <button class="cta-btn primary" onclick="window.location.reload()">Take Quiz Again</button>
-                        <button class="cta-btn secondary" onclick="shareResults()">Share Results</button>
-                    </div>
+                    <h3>Check Your Email</h3>
+                    <p>Your complete archetype guide is on its way!</p>
                 </div>
 
                 <div class="confirmation-notice">
                     <div class="check-icon">✅</div>
-                    <p><strong>Submission Confirmed!</strong><br>Your responses have been recorded successfully.</p>
+                    <p><strong>Quiz Complete!</strong><br>Check your email for detailed results.</p>
                 </div>
             </div>
         </div>
@@ -795,184 +1583,102 @@
                 return arr.includes(value);
             }
             
-            // Rule 1: The Muse - Beauty/visibility support, home focused, early stage, overwhelmed, calm
+            // Rule 1: Muse - Beauty/visibility support, home focused, early stage, overwhelmed, calm
             if (contains(q1Array, "B") && q2 === "A" && (q3 === "A" || q3 === "B") && 
                 contains(q4Array, "E") && q5 === "A" && (q6 === "A" || q6 === "C")) {
-                return "The Muse";
+                return "Muse";
             }
             
-            // Rule 2: The Stylist - Comprehensive support, appearance confident, established, time issues, creative/driven
+            // Rule 2: Stylist - Comprehensive support, appearance confident, established, time issues, creative/driven
             if (contains(q1Array, "C") && q2 === "B" && q3 === "C" && contains(q4Array, "B") &&
                 (q5 === "C" || q5 === "D") && (q6 === "C" || q6 === "B")) {
-                return "The Stylist";
+                return "Stylist";
             }
             
-            // Rule 3: The Editor - Both support, home confident, early stage, visibility/confidence issues, confident image, beauty guidance
+            // Rule 3: Editor - Both support, home confident, early stage, visibility/confidence issues, confident image, beauty guidance
             if (contains(q1Array, "C") && q2 === "A" && (q3 === "A" || q3 === "B") &&
                 (contains(q4Array, "C") || contains(q4Array, "D")) && q5 === "B" && q6 === "A") {
-                return "The Editor";
+                return "Editor";
             }
             
-            // Rule 4: The Supermodel - Business clarity, confident in everything, goal issues, confident/driven image, beauty guidance
+            // Rule 4: Supermodel - Business clarity, confident in everything, goal issues, confident/driven image, beauty guidance
             if (contains(q1Array, "A") && q2 === "D" && (q3 === "A" || q3 === "B" || q3 === "C") &&
                 contains(q4Array, "A") && (q5 === "B" || q5 === "D") && q6 === "A") {
-                return "The Supermodel";
+                return "Supermodel";
             }
             
             // Fallback logic - score based approach if no exact match
             let scores = {
-                "The Muse": 0,
-                "The Stylist": 0,
-                "The Editor": 0,
-                "The Supermodel": 0
+                "Muse": 0,
+                "Stylist": 0,
+                "Editor": 0,
+                "Supermodel": 0
             };
             
-            // Score for The Muse (beauty focus, home confident, early stage, overwhelmed)
-            if (contains(q1Array, "B")) scores["The Muse"] += 2;
-            if (q2 === "A") scores["The Muse"] += 2;
-            if (q3 === "A" || q3 === "B") scores["The Muse"] += 1;
-            if (contains(q4Array, "E")) scores["The Muse"] += 2;
-            if (q5 === "A") scores["The Muse"] += 1;
-            if (q6 === "A" || q6 === "C") scores["The Muse"] += 1;
+            // Score for Muse (beauty focus, home confident, early stage, overwhelmed)
+            if (contains(q1Array, "B")) scores["Muse"] += 2;
+            if (q2 === "A") scores["Muse"] += 2;
+            if (q3 === "A" || q3 === "B") scores["Muse"] += 1;
+            if (contains(q4Array, "E")) scores["Muse"] += 2;
+            if (q5 === "A") scores["Muse"] += 1;
+            if (q6 === "A" || q6 === "C") scores["Muse"] += 1;
             
-            // Score for The Stylist (comprehensive, appearance confident, established, time issues)
-            if (contains(q1Array, "C")) scores["The Stylist"] += 2;
-            if (q2 === "B") scores["The Stylist"] += 2;
-            if (q3 === "C") scores["The Stylist"] += 2;
-            if (contains(q4Array, "B")) scores["The Stylist"] += 2;
-            if (q5 === "C" || q5 === "D") scores["The Stylist"] += 1;
+            // Score for Stylist (comprehensive, appearance confident, established, time issues)
+            if (contains(q1Array, "C")) scores["Stylist"] += 2;
+            if (q2 === "B") scores["Stylist"] += 2;
+            if (q3 === "C") scores["Stylist"] += 2;
+            if (contains(q4Array, "B")) scores["Stylist"] += 2;
+            if (q5 === "C" || q5 === "D") scores["Stylist"] += 1;
             
-            // Score for The Editor (both support, home confident, visibility issues)
-            if (contains(q1Array, "C")) scores["The Editor"] += 2;
-            if (q2 === "A") scores["The Editor"] += 2;
-            if (q3 === "A" || q3 === "B") scores["The Editor"] += 1;
-            if (contains(q4Array, "C") || contains(q4Array, "D")) scores["The Editor"] += 2;
-            if (q5 === "B") scores["The Editor"] += 1;
-            if (q6 === "A") scores["The Editor"] += 1;
+            // Score for Editor (both support, home confident, visibility issues)
+            if (contains(q1Array, "C")) scores["Editor"] += 2;
+            if (q2 === "A") scores["Editor"] += 2;
+            if (q3 === "A" || q3 === "B") scores["Editor"] += 1;
+            if (contains(q4Array, "C") || contains(q4Array, "D")) scores["Editor"] += 2;
+            if (q5 === "B") scores["Editor"] += 1;
+            if (q6 === "A") scores["Editor"] += 1;
             
-            // Score for The Supermodel (business clarity, highly confident, goal-focused)
-            if (contains(q1Array, "A")) scores["The Supermodel"] += 2;
-            if (q2 === "D") scores["The Supermodel"] += 2;
-            if (contains(q4Array, "A")) scores["The Supermodel"] += 2;
-            if (q5 === "B" || q5 === "D") scores["The Supermodel"] += 1;
-            if (q6 === "A") scores["The Supermodel"] += 1;
+            // Score for Supermodel (business clarity, highly confident, goal-focused)
+            if (contains(q1Array, "A")) scores["Supermodel"] += 2;
+            if (q2 === "D") scores["Supermodel"] += 2;
+            if (contains(q4Array, "A")) scores["Supermodel"] += 2;
+            if (q5 === "B" || q5 === "D") scores["Supermodel"] += 1;
+            if (q6 === "A") scores["Supermodel"] += 1;
             
             // Return the archetype with the highest score
             const maxScore = Math.max(...Object.values(scores));
             const bestMatch = Object.keys(scores).find(key => scores[key] === maxScore);
             
-            return bestMatch || "The Muse"; // Default to The Muse if no clear winner
+            return bestMatch || "Muse"; // Default to Muse if no clear winner
         }
 
-        // Archetype detailed information
-        const archetypeDetails = {
-            "The Muse": {
-                description: "You're seeking beauty and visibility support while balancing home life. You're in the early stages of business but feeling overwhelmed by everything. You want to be seen as calm and grounded.",
-                traits: [
-                    "Values beauty and aesthetics in business",
-                    "Strong connection to home and family life",
-                    "Early-stage entrepreneur with big dreams",
-                    "Seeks calm, grounded presence",
-                    "Feels overwhelmed by multiple priorities"
-                ],
-                nextSteps: "Focus on creating systems that support both your business growth and home life balance. Start with one clear priority each week and build beautiful, sustainable routines."
-            },
-            "The Stylist": {
-                description: "You want comprehensive support and feel confident in your appearance. You've been in business a while but need help organizing your time. You want to be seen as creative or driven.",
-                traits: [
-                    "Confident in personal appearance and health",
-                    "Established business owner seeking refinement",
-                    "Struggles with time organization",
-                    "Values creativity and drive",
-                    "Wants both business and beauty support"
-                ],
-                nextSteps: "Implement time-blocking systems and productivity tools. Consider hiring support for tasks outside your zone of genius so you can focus on creative, high-impact activities."
-            },
-            "The Editor": {
-                description: "You want both business and beauty support while being confident at home. You're early in your business journey with visibility or confidence challenges. You want to be seen and confident.",
-                traits: [
-                    "Strong home life foundation",
-                    "Early-stage business with growth potential",
-                    "Visibility and confidence challenges",
-                    "Desires to be seen and confident",
-                    "Seeks comprehensive support"
-                ],
-                nextSteps: "Work on visibility strategies and confidence-building activities. Start with small, consistent actions to build your online presence and practice sharing your expertise."
-            },
-            "The Supermodel": {
-                description: "You're focused on business clarity and feel confident in everything. You're at any business stage but need goal clarity. You want to be seen as confident and driven.",
-                traits: [
-                    "High confidence across all life areas",
-                    "Strong business focus and clarity needs",
-                    "Goal-setting and clarity challenges",
-                    "Driven and confident presence",
-                    "Ready for high-level strategic support"
-                ],
-                nextSteps: "Create a clear 90-day strategic plan with specific, measurable goals. Consider working with a high-level business strategist to maximize your potential and accelerate growth."
-            },
-            "No archetype match": {
-                description: "Your responses don't match any of our current archetypes. This could indicate you have a unique combination of needs that doesn't fit our current categories.",
-                traits: [
-                    "Unique combination of needs",
-                    "May benefit from personalized assessment",
-                    "Doesn't fit standard categories",
-                    "Requires customized approach"
-                ],
-                nextSteps: "Consider a one-on-one consultation to create a personalized action plan that addresses your specific combination of needs and goals."
-            }
-        };
 
-        // Share results function
-        function shareResults() {
-            const archetype = document.getElementById('archetypeName').textContent;
-            const text = `I just discovered I'm "${archetype}" in this business archetype quiz! Take the quiz to find your archetype.`;
+        // Auto-populate Flodesk form when quiz is completed
+        const form = document.getElementById('archetypeForm');
+        
+        function checkFormCompletionAndPopulate() {
+            const formData = new FormData(form);
+            const q4Checkboxes = document.querySelectorAll('input[name="q4"]:checked');
             
-            if (navigator.share) {
-                navigator.share({
-                    title: 'My Business Archetype Results',
-                    text: text,
-                    url: window.location.href
-                });
-            } else {
-                // Fallback - copy to clipboard
-                navigator.clipboard.writeText(text + ' ' + window.location.href).then(() => {
-                    alert('Results copied to clipboard!');
-                });
-            }
-        }
-
-        // Form submission handler
-        document.getElementById('archetypeForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get single-answer questions
-            const formData = new FormData(this);
+            // Get all answers
+            const q1 = formData.get('q1');
             const q2 = formData.get('q2');
             const q3 = formData.get('q3');
+            const q4 = Array.from(q4Checkboxes).map(cb => cb.value);
             const q5 = formData.get('q5');
             const q6 = formData.get('q6');
             
-            // Get Q1 answer (radio button)
-            const q1 = formData.get('q1');
+            const allAnswered = q1 && q2 && q3 && q4.length > 0 && q5 && q6;
+            const flodeskSection = document.querySelector('.flodesk-section');
             
-            const q4Checkboxes = document.querySelectorAll('input[name="q4"]:checked');
-            const q4 = Array.from(q4Checkboxes).map(cb => cb.value);
-            
-            // Check if all questions are answered
-            if (!q1 || !q2 || !q3 || q4.length === 0 || !q5 || !q6) {
-                alert('Please answer all questions before submitting.');
-                return;
-            }
-            
-            // Calculate archetype
-            const archetype = calculateArchetype(q1, q2, q3, q4, q5, q6);
-            
-            // Debug: log the responses and result
-            console.log('Quiz responses:', {q1, q2, q3, q4, q5, q6});
-            console.log('Calculated archetype:', archetype);
-            
-            // Only store quiz data and show Flodesk form if we have a valid archetype
-            if (archetype !== "No archetype match") {
+            if (allAnswered) {
+                // Calculate archetype
+                const archetype = calculateArchetype(q1, q2, q3, q4, q5, q6);
+                
+                // Debug: log the responses and result
+                console.log('Quiz responses:', {q1, q2, q3, q4, q5, q6});
+                console.log('Calculated archetype:', archetype);
+                
                 // Store quiz data for Flodesk form
                 const quizData = {
                     q1: q1,
@@ -988,98 +1694,167 @@
                 // Store in session storage for Flodesk form
                 sessionStorage.setItem('quizData', JSON.stringify(quizData));
                 
-                // Show and scroll to Flodesk form section
-                const flodeskSection = document.querySelector('.flodesk-section');
+                // Hide the quiz form and show results
+                hideQuizAndShowResults(archetype, quizData);
+                
+                // Show the Flodesk form section
+                console.log('Showing Flodesk form section...');
                 flodeskSection.style.display = 'block';
                 
-                // Hide the quiz form
-                document.getElementById('archetypeForm').style.display = 'none';
-                
-                // Show success message
+                // Show completion message and scroll to form
                 showQuizCompletedMessage(archetype);
-                
-                // Populate hidden fields and scroll to form
-                populateFlodeskForm(quizData);
                 flodeskSection.scrollIntoView({ behavior: 'smooth' });
                 
+                // Debug: Check if Flodesk script is loaded
+                console.log('Flodesk script loaded:', !!window.fd);
+                console.log('Flodesk function type:', typeof window.fd);
+                
+                // Populate hidden archetype field in Flodesk form
+                populateFlodeskForm(quizData);
+                
+                console.log('Quiz completed, archetype populated:', archetype);
             } else {
-                alert(`Debug: No archetype match found.\nResponses: Q1=${q1}, Q2=${q2}, Q3=${q3}, Q4=[${q4.join(',')}], Q5=${q5}, Q6=${q6}`);
+                // Hide the Flodesk form section if not all questions are answered
+                flodeskSection.style.display = 'none';
             }
-        });
-
-        // Enable submit button only when all questions are answered
-        const form = document.getElementById('archetypeForm');
-        const submitBtn = document.querySelector('.submit-btn');
-        
-        function checkFormCompletion() {
-            const formData = new FormData(form);
-            const q4Checkboxes = document.querySelectorAll('input[name="q4"]:checked');
-            
-            const allAnswered = formData.get('q1') && formData.get('q2') && 
-                              formData.get('q3') && q4Checkboxes.length > 0 && 
-                              formData.get('q5') && formData.get('q6');
-            
-            submitBtn.disabled = !allAnswered;
-            console.log('Form completion check:', allAnswered); // Debug log
         }
         
         // Add event listeners to all form inputs
         form.addEventListener('change', function(e) {
             console.log('Form changed:', e.target.name, e.target.value); // Debug log
-            checkFormCompletion();
+            checkFormCompletionAndPopulate();
         });
         
         // Initial check
-        submitBtn.disabled = true;
-        checkFormCompletion();
+        checkFormCompletionAndPopulate();
 
-        // Function to populate Flodesk form with archetype
+        // Function to populate the RAW Flodesk form with archetype data
         function populateFlodeskForm(quizData) {
-            const flodeskContainer = document.getElementById('fd-form-689e112803c67004d676162c');
-            if (flodeskContainer) {
-                // Add hidden archetype field directly to the container
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = 'archetype';
-                hiddenInput.value = quizData.archetype;
-                flodeskContainer.appendChild(hiddenInput);
+            console.log('Populating RAW Flodesk form with archetype:', quizData.archetype);
+            
+            // Wait for Flodesk form to be ready and populate the archetype field
+            function populateArchetypeField() {
+                // Find the archetype field in the RAW form
+                const archetypeField = document.querySelector('input[name="fields.archetype"]');
                 
-                console.log('Archetype added to Flodesk form:', quizData.archetype);
-                
-                // Find the form and add submission handler for redirect
-                setTimeout(() => {
-                    const flodeskForm = flodeskContainer.querySelector('form');
-                    if (flodeskForm) {
-                        flodeskForm.addEventListener('submit', function(e) {
+                if (archetypeField) {
+                    console.log('Found archetype field, setting value to:', quizData.archetype);
+                    archetypeField.value = quizData.archetype;
+                    
+                    // Verify the value was set
+                    console.log('Archetype field value after setting:', archetypeField.value);
+                    
+                    // Add form submission handler to verify data
+                    const flodeskForm = document.querySelector('.ff-689e112803c67004d676162c form');
+                    if (flodeskForm && !flodeskForm.hasAttribute('data-submission-handler-added')) {
+                        flodeskForm.setAttribute('data-submission-handler-added', 'true');
+                        
+                        flodeskForm.addEventListener('submit', function(event) {
+                            console.log('🚀 RAW Flodesk form submission detected');
+                            
+                            // Final check to ensure archetype is populated
+                            const finalArchetypeField = this.querySelector('input[name="fields.archetype"]');
+                            if (finalArchetypeField) {
+                                if (!finalArchetypeField.value) {
+                                    finalArchetypeField.value = quizData.archetype;
+                                    console.log('Set archetype value at submission time:', quizData.archetype);
+                                } else {
+                                    console.log('Archetype value confirmed at submission:', finalArchetypeField.value);
+                                }
+                            }
+                            
+                            // Log all form data being submitted
+                            const formData = new FormData(this);
+                            console.log('Form data being submitted:');
+                            for (let [key, value] of formData.entries()) {
+                                console.log(`  ${key}: ${value}`);
+                            }
+                            
+                            // Set up success handler
                             setTimeout(() => {
-                                // Redirect to results page after form submission
-                                const quizData = JSON.parse(sessionStorage.getItem('quizData'));
                                 const responsesString = encodeURIComponent(JSON.stringify(quizData));
                                 window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
-                            }, 1000);
+                            }, 2000);
                         });
                     }
-                }, 2000); // Wait for form to fully load
+                    
+                } else {
+                    console.log('Archetype field not found yet, retrying...');
+                    // Retry if field not found yet
+                    populateArchetypeField.retryCount = (populateArchetypeField.retryCount || 0) + 1;
+                    if (populateArchetypeField.retryCount < 20) {
+                        setTimeout(populateArchetypeField, 250);
+                    } else {
+                        console.error('Could not find archetype field after 20 retries');
+                    }
+                }
             }
+            
+            // Start trying to populate the field
+            setTimeout(populateArchetypeField, 100);
+        }
+        
+        // Fallback form creation if Flodesk fails (updated for RAW form field names)
+        function createFallbackForm(quizData) {
+            const container = document.querySelector('.flodesk-section .form-container');
+            if (container) {
+                container.innerHTML = `
+                    <form action="https://api.flodesk.com/v1/subscribers" method="post" style="text-align: center; padding: 30px;">
+                        <input type="hidden" name="fields.archetype" value="${quizData.archetype}">
+                        
+                        <h3 style="font-family: var(--font-heading); color: var(--font-color); margin-bottom: 20px; text-transform: uppercase;">Get Your Results</h3>
+                        
+                        <div style="margin: 20px 0;">
+                            <input type="text" name="firstName" placeholder="Name" required 
+                                   style="width: 200px; padding: 12px; margin: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+                        
+                        <div style="margin: 20px 0;">
+                            <input type="email" name="email" placeholder="Email address" required
+                                   style="width: 200px; padding: 12px; margin: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+                        
+                        <button type="submit" style="background: var(--primary-color); color: white; padding: 15px 30px; border: none; border-radius: 4px; font-family: var(--font-heading); text-transform: uppercase; cursor: pointer;">
+                            Send me my archetype
+                        </button>
+                    </form>
+                `;
+                console.log('Fallback form created with archetype:', quizData.archetype);
+            }
+        }
+
+        // Function to hide quiz questions after completion
+        function hideQuizAndShowResults(archetype, quizData) {
+            // Hide the quiz form
+            const quizForm = document.getElementById('archetypeForm');
+            if (quizForm) {
+                quizForm.style.display = 'none';
+            }
+            
+            // Hide the debug section
+            const debugSection = document.querySelector('.debug-section');
+            if (debugSection) {
+                debugSection.style.display = 'none';
+            }
+            
+            // Keep results page hidden - details sent via email only
         }
 
         // Function to show quiz completion message
         function showQuizCompletedMessage(archetype) {
             const completionMessage = document.createElement('div');
             completionMessage.style.cssText = `
-                background: linear-gradient(135deg, #4caf50, #45a049);
-                color: white;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                color: var(--font-color);
                 padding: 30px;
                 border-radius: 8px;
                 text-align: center;
                 margin-bottom: 30px;
-                box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+                box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
             `;
             completionMessage.innerHTML = `
                 <div style="font-size: 2.5em; margin-bottom: 15px;">🎉</div>
-                <h3 style="font-family: 'Oswald', sans-serif; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Quiz Complete!</h3>
                 <p style="font-size: 1.1em; margin-bottom: 10px;">Your archetype is: <strong>${archetype}</strong></p>
-                <p style="font-size: 1em; opacity: 0.9;">Enter your details below to get your complete personalized breakdown!</p>
             `;
             
             // Insert before the Flodesk section
@@ -1088,16 +1863,28 @@
         }
         
         // Debug toggle functionality
-        document.getElementById('toggleDebug').addEventListener('click', function() {
-            const debugCombinations = document.getElementById('debugCombinations');
+        document.addEventListener('DOMContentLoaded', function() {
             const toggleButton = document.getElementById('toggleDebug');
+            const debugCombinations = document.getElementById('debugCombinations');
             
-            if (debugCombinations.style.display === 'none') {
-                debugCombinations.style.display = 'block';
-                toggleButton.textContent = '🐛 Hide Debug - Answer Combinations';
+            if (toggleButton) {
+                toggleButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Debug button clicked!'); // Debug log
+                    
+                    if (debugCombinations.style.display === 'none' || debugCombinations.style.display === '') {
+                        debugCombinations.style.display = 'block';
+                        toggleButton.textContent = '🐛 Hide Debug - Answer Combinations';
+                        console.log('Showing debug combinations'); // Debug log
+                    } else {
+                        debugCombinations.style.display = 'none';
+                        toggleButton.textContent = '🐛 Show Debug - Answer Combinations for Each Archetype';
+                        console.log('Hiding debug combinations'); // Debug log
+                    }
+                });
+                console.log('Debug toggle event listener attached'); // Debug log
             } else {
-                debugCombinations.style.display = 'none';
-                toggleButton.textContent = '🐛 Show Debug - Answer Combinations for Each Archetype';
+                console.error('Toggle button not found!'); // Debug log
             }
         });
     </script>

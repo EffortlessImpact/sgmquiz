@@ -322,13 +322,6 @@
                 <p>Calculating your archetype...</p>
             </div>
             
-            <div id="error" class="error" style="display: none;">
-                <p>Unable to determine your archetype. Please retake the quiz.</p>
-                <div class="action-buttons">
-                    <a href="quiz.html" class="action-button">Retake Quiz</a>
-                </div>
-            </div>
-            
             <div id="results-content" style="display: none;">
                 <h1>Your Business Archetype</h1>
                 <div class="archetype-name" id="archetype-name"></div>
@@ -341,11 +334,6 @@
                     <p id="archetype-description"></p>
                 </div>
                 
-                
-                <div class="next-steps">
-                    <h3>Your Next Steps</h3>
-                    <p id="next-steps-content"></p>
-                </div>
                 
                 <!-- Email Notification Message -->
                 <div class="email-notification" style="background: linear-gradient(135deg, #f8f9fa, #eceff1); padding: 40px; border-radius: 8px; text-align: center; border-left: 4px solid #607d8b; margin-top: 40px;">
@@ -361,16 +349,12 @@
                             <li>🎯 Your specific keywords & traits</li>
                             <li>💡 What's blocking your success</li>
                             <li>🚀 Personalized next steps to thrive</li>
-                            <li>💜 Custom action plan just for you</li>
                         </ul>
                     </div>
                     <p style="color: #78909c; font-size: 0.9em; margin-bottom: 25px;">
                         Don't see it? Check your spam folder or wait a few minutes.
                     </p>
-                    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                        <a href="quiz.html" class="action-button secondary" style="text-decoration: none; display: inline-block; padding: 12px 25px; background: transparent; color: #607d8b; border: 2px solid #607d8b; border-radius: 4px; font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">Retake Quiz</a>
-                        <a href="index.html" class="action-button" style="text-decoration: none; display: inline-block; padding: 12px 25px; background: #607d8b; color: white; border: none; border-radius: 4px; font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">Back to Home</a>
-                    </div>
+
                 </div>
             </div>
         </main>
@@ -384,44 +368,40 @@
     <script>
         // Archetype data definitions
         const archetypeData = {
-            "The Muse": {
+            "Muse": {
                 description: "You are The Muse - a visionary who values beauty, aesthetics, and maintaining balance between your business dreams and family life.",
                 traits: [
                     "Keywords: Soft, intuitive, creative, thoughtful, reserved, empathic",
                     "You may see yourself as: Calm, reflective, unsure how to take up space",
                     "You want to be seen as: Empowered, expressed, magnetic"
                 ],
-                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "muse-archetype.jpg"
             },
-            "The Stylist": {
+            "Stylist": {
                 description: "You are The Stylist - a creative entrepreneur with many ideas who needs focus and consistency to truly flourish.",
                 traits: [
                     "Keywords: Creative, idea-driven, scattered, soulful, passionate",
                     "You may see yourself as: Inspired but overwhelmed",
                     "You want to be seen as: Clear, capable, influential"
                 ],
-                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "stylist-archetype.jpg"
             },
-            "The Editor": {
+            "Editor": {
                 description: "You are The Editor - a warm, supportive entrepreneur who prefers to work behind the scenes but has valuable expertise to share.",
                 traits: [
                     "Keywords: Warm, supportive, community-driven, nurturing",
                     "You may see yourself as: Grounded but behind the scenes",
                     "You want to be seen as: Trusted, magnetic, real"
                 ],
-                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "editor-archetype.jpg"
             },
-            "The Supermodel": {
+            "Supermodel": {
                 description: "You are The Supermodel - a confident, driven entrepreneur who excels in many areas but may feel disconnected from authenticity.",
                 traits: [
                     "Keywords: Confident, direct, bold, high standards, no-nonsense",
                     "You may see yourself as: Determined, clear, driven",
                     "You want to be seen as: Powerful, polished, already \"there\""
                 ],
-                nextSteps: "Want to know what's blocking your success and exactly what you need to break through? Enter your email below to get your complete archetype breakdown with personalized next steps!",
                 image: "supermodel-archetype.jpg"
             }
         };
@@ -449,13 +429,13 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('results-content').style.display = 'block';
             
-            // Populate content
-            document.getElementById('archetype-name').textContent = archetype;
+            // Populate content (display "The" prefix for better presentation)
+            const displayName = `The ${archetype}`;
+            document.getElementById('archetype-name').textContent = displayName;
             document.getElementById('archetype-description').textContent = data.description;
             document.getElementById('archetype-image').src = data.image;
             document.getElementById('archetype-image').alt = archetype + ' Archetype';
-            document.getElementById('next-steps-content').textContent = data.nextSteps;
-            document.getElementById('email-archetype-name').textContent = archetype;
+            document.getElementById('email-archetype-name').textContent = displayName;
             
         }
 

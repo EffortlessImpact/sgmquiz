@@ -1,0 +1,251 @@
+/* Global Styles for SGM Quiz */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+
+/* CSS Variables for Colors */
+:root {
+    --backdrop-color: #DED2C3;
+    --canvas-color: #ECECEC;
+    --font-color: #333333;
+    --link-color: #B8B8B8;
+    
+    /* Additional color variants for consistency */
+    --primary-color: #607d8b;
+    --primary-light: #78909c;
+    --primary-dark: #546e7a;
+    --secondary-color: #eceff1;
+    --secondary-dark: #cfd8dc;
+    --accent-color: #48bb78;
+    --accent-dark: #38a169;
+    --error-color: #eb3d3b;
+    --success-color: #02dba8;
+    
+    /* Typography */
+    --font-primary: 'Open Sans', sans-serif;
+    --font-heading: 'Oswald', sans-serif;
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base Typography */
+body {
+    font-family: var(--font-primary);
+    background: var(--backdrop-color);
+    min-height: 100vh;
+    color: var(--font-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--font-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* Links */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--font-color);
+    text-decoration: underline;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Canvas/Card Elements */
+.card, .question, .hero, .description-section, .traits-section, .next-steps-section, .cta-section {
+    background: var(--canvas-color);
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .question:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+.btn, .submit-btn, .cta-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.btn:hover, .submit-btn:hover, .cta-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(96, 125, 139, 0.4);
+}
+
+.btn.secondary, .cta-btn.secondary {
+    background: var(--canvas-color);
+    color: var(--primary-color);
+    border: 2px solid var(--secondary-dark);
+}
+
+.btn:disabled, .submit-btn:disabled {
+    background: var(--secondary-dark);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Form Elements */
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 12px;
+    transform: scale(1.2);
+    accent-color: var(--primary-color);
+}
+
+label {
+    cursor: pointer;
+    color: var(--font-color);
+    padding: 8px 0;
+}
+
+label:hover {
+    color: var(--primary-color);
+}
+
+/* Badges and Tags */
+.badge, .archetype-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);
+}
+
+.badge.small {
+    padding: 6px 16px;
+    font-size: 0.85em;
+    background: rgba(51, 51, 51, 0.1);
+    color: var(--font-color);
+}
+
+/* Lists */
+ul li {
+    background: var(--canvas-color);
+    padding: 10px 15px;
+    margin: 8px 0;
+    border-radius: 4px;
+    border-left: 3px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--font-color);
+    list-style: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .card, .question, .hero {
+        padding: 20px;
+        margin: 15px 0;
+    }
+    
+    .btn, .submit-btn, .cta-btn {
+        padding: 15px 25px;
+        font-size: 1em;
+    }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-10 { margin-bottom: 10px; }
+.mb-15 { margin-bottom: 15px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+.mt-10 { margin-top: 10px; }
+.mt-15 { margin-top: 15px; }
+.mt-20 { margin-top: 20px; }
+.mt-30 { margin-top: 30px; }
+
+.p-10 { padding: 10px; }
+.p-15 { padding: 15px; }
+.p-20 { padding: 20px; }
+.p-30 { padding: 30px; }

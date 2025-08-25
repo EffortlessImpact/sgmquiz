@@ -1746,7 +1746,10 @@
                     
                     // Add form submission handler to verify data
                     const flodeskForm = document.querySelector('.ff-689e112803c67004d676162c form');
+                    console.log('Looking for Flodesk form:', flodeskForm ? 'FOUND' : 'NOT FOUND');
+                    
                     if (flodeskForm && !flodeskForm.hasAttribute('data-submission-handler-added')) {
+                        console.log('Adding form submission handler...');
                         flodeskForm.setAttribute('data-submission-handler-added', 'true');
                         
                         flodeskForm.addEventListener('submit', function(event) {
@@ -1780,8 +1783,9 @@
                             // Set up success handler
                             setTimeout(() => {
                                 console.log('Redirecting to results page...');
-                                const responsesString = encodeURIComponent(JSON.stringify(quizData));
-                                window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                console.log('🔍 DEBUGGING: Redirect disabled - check if you received email');
+                                // const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                // window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
                             }, 2000);
                         });
                     }

@@ -1751,6 +1751,8 @@
                         
                         flodeskForm.addEventListener('submit', function(event) {
                             console.log('🚀 RAW Flodesk form submission detected');
+                            console.log('Current domain:', window.location.hostname);
+                            console.log('Form action:', this.action);
                             
                             // Final check to ensure archetype is populated
                             const finalArchetypeField = this.querySelector('input[name="fields.archetype"]');
@@ -1770,8 +1772,14 @@
                                 console.log(`  ${key}: ${value}`);
                             }
                             
+                            // Add error handling
+                            this.addEventListener('error', function(e) {
+                                console.error('Form submission error:', e);
+                            });
+                            
                             // Set up success handler
                             setTimeout(() => {
+                                console.log('Redirecting to results page...');
                                 const responsesString = encodeURIComponent(JSON.stringify(quizData));
                                 window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
                             }, 2000);

@@ -1569,9 +1569,62 @@
             <strong>Debug Info:</strong><br>
             <span id="debugInfo"></span>
         </div>
+        
+        <!-- Hidden persistent debug log -->
+        <div id="persistentDebugLog" style="position: fixed; top: 10px; right: 10px; background: black; color: lime; padding: 10px; font-family: monospace; font-size: 10px; max-width: 400px; max-height: 400px; overflow-y: auto; z-index: 10000; border-radius: 4px; opacity: 0.9; display: none;">
+            <div style="color: yellow; margin-bottom: 5px;">🔍 FLODESK DEBUG LOG</div>
+            <div id="debugLogContent"></div>
+            <button onclick="document.getElementById('persistentDebugLog').style.display='none'" style="margin-top: 5px; background: red; color: white; border: none; padding: 2px 6px; cursor: pointer;">Close</button>
+        </div>
     </div>
 
     <script>
+        // Persistent debug logging functions
+        function addToDebugLog(message) {
+            const logDiv = document.getElementById('debugLogContent');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `<span style="color: #888;">[${timestamp}]</span> ${message}`;
+            logDiv.appendChild(logEntry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            
+            // Also log to console
+            console.log(message);
+            
+            // Show the debug log
+            document.getElementById('persistentDebugLog').style.display = 'block';
+        }
+        
+        function addToDebugLogError(message) {
+            const logDiv = document.getElementById('debugLogContent');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `<span style="color: #888;">[${timestamp}]</span> <span style="color: red;">❌ ${message}</span>`;
+            logDiv.appendChild(logEntry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            
+            // Also log to console
+            console.error(message);
+            
+            // Show the debug log
+            document.getElementById('persistentDebugLog').style.display = 'block';
+        }
+        
+        function addToDebugLogSuccess(message) {
+            const logDiv = document.getElementById('debugLogContent');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `<span style="color: #888;">[${timestamp}]</span> <span style="color: lightgreen;">✅ ${message}</span>`;
+            logDiv.appendChild(logEntry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            
+            // Also log to console
+            console.log(message);
+            
+            // Show the debug log
+            document.getElementById('persistentDebugLog').style.display = 'block';
+        }
+        
         // Archetype calculation function
         function calculateArchetype(q1, q2, q3, q4, q5, q6) {
             // Convert q1 and q4 to arrays if they're not already
@@ -1753,16 +1806,18 @@
                         flodeskForm.setAttribute('data-submission-handler-added', 'true');
                         
                         flodeskForm.addEventListener('submit', function(event) {
-                            console.log('🚀 RAW Flodesk form submission detected');
-                            console.log('Current domain:', window.location.hostname);
-                            console.log('Form action:', this.action);
+                            addToDebugLog('🚀 Form submission detected');
+                            addToDebugLog('Domain: ' + window.location.hostname);
+                            addToDebugLog('Form action: ' + this.action);
                             
                             // Validate email format
                             const emailField = this.querySelector('input[name="email"]');
                             if (emailField && emailField.value) {
-                                console.log('Email validation:', emailField.checkValidity() ? 'VALID' : 'INVALID');
-                                if (!emailField.checkValidity()) {
-                                    console.error('Email format invalid:', emailField.value);
+                                const isValid = emailField.checkValidity();
+                                if (isValid) {
+                                    addToDebugLogSuccess('Email format VALID: ' + emailField.value);
+                                } else {
+                                    addToDebugLogError('Email format INVALID: ' + emailField.value);
                                 }
                             }
                             
@@ -1771,17 +1826,17 @@
                             if (finalArchetypeField) {
                                 if (!finalArchetypeField.value) {
                                     finalArchetypeField.value = quizData.archetype;
-                                    console.log('Set archetype value at submission time:', quizData.archetype);
+                                    addToDebugLog('Set archetype: ' + quizData.archetype);
                                 } else {
-                                    console.log('Archetype value confirmed at submission:', finalArchetypeField.value);
+                                    addToDebugLogSuccess('Archetype confirmed: ' + finalArchetypeField.value);
                                 }
                             }
                             
                             // Log all form data being submitted
                             const formData = new FormData(this);
-                            console.log('Form data being submitted:');
+                            addToDebugLog('=== FORM DATA SUBMITTED ===');
                             for (let [key, value] of formData.entries()) {
-                                console.log(`  ${key}: ${value}`);
+                                addToDebugLog(`${key}: ${value}`);
                             }
                             
                             // Monitor for Flodesk success/error states
@@ -1791,14 +1846,14 @@
                             const successObserver = new MutationObserver(function(mutations) {
                                 mutations.forEach(function(mutation) {
                                     if (mutation.target.classList.contains('fd-has-success')) {
-                                        console.log('✅ Flodesk form SUCCESS detected');
+                                        addToDebugLogSuccess('Flodesk SUCCESS detected!');
                                         successObserver.disconnect();
                                     }
                                     if (mutation.target.classList.contains('fd-has-error')) {
-                                        console.error('❌ Flodesk form ERROR detected');
+                                        addToDebugLogError('Flodesk ERROR detected!');
                                         const errorElement = document.querySelector('.fd-form-error');
                                         if (errorElement) {
-                                            console.error('Error message:', errorElement.textContent);
+                                            addToDebugLogError('Error: ' + errorElement.textContent);
                                         }
                                         successObserver.disconnect();
                                     }
@@ -1814,29 +1869,33 @@
                             
                             // Set up success handler with longer delay to see results
                             setTimeout(() => {
-                                console.log('Checking if form submission succeeded...');
+                                addToDebugLog('=== CHECKING SUBMISSION RESULT ===');
                                 const hasSuccess = formContainer?.classList.contains('fd-has-success');
                                 const hasError = formContainer?.classList.contains('fd-has-error');
                                 
-                                console.log('Form success state:', hasSuccess);
-                                console.log('Form error state:', hasError);
+                                addToDebugLog('Success state: ' + hasSuccess);
+                                addToDebugLog('Error state: ' + hasError);
                                 
                                 if (hasSuccess) {
-                                    console.log('✅ Form submitted successfully, redirecting...');
-                                    const responsesString = encodeURIComponent(JSON.stringify(quizData));
-                                    window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                    addToDebugLogSuccess('Form SUCCESS - redirecting...');
+                                    setTimeout(() => {
+                                        const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                        window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                    }, 2000);
                                 } else if (hasError) {
-                                    console.error('❌ Form submission failed, not redirecting');
+                                    addToDebugLogError('Form FAILED - NOT redirecting');
                                     const errorElement = document.querySelector('.fd-form-error');
                                     if (errorElement) {
-                                        console.error('Flodesk error:', errorElement.textContent);
+                                        addToDebugLogError('Details: ' + errorElement.textContent);
                                     }
                                 } else {
-                                    console.log('⏳ Form submission status unclear, redirecting anyway...');
-                                    const responsesString = encodeURIComponent(JSON.stringify(quizData));
-                                    window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                    addToDebugLog('Status unclear - redirecting anyway...');
+                                    setTimeout(() => {
+                                        const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                        window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                    }, 2000);
                                 }
-                            }, 3000);
+                            }, 4000);
                         });
                     }
                     

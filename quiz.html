@@ -1418,7 +1418,7 @@
                           </div>
 
                           <div class="ff-689e112803c67004d676162c__field fd-form-group">
-                            <input id="ff-689e112803c67004d676162c-email" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="email" placeholder="Email address" data-ff-tab="email:firstName:fields.archetype" required />
+                            <input id="ff-689e112803c67004d676162c-email" class="ff-689e112803c67004d676162c__control fd-form-control" type="email" maxlength="255" name="email" placeholder="Email address" data-ff-tab="email:firstName:fields.archetype" required />
                             <label for="ff-689e112803c67004d676162c-email" class="ff-689e112803c67004d676162c__label fd-form-label">
                               <div>
                                 <div>Email address</div>
@@ -1757,6 +1757,15 @@
                             console.log('Current domain:', window.location.hostname);
                             console.log('Form action:', this.action);
                             
+                            // Validate email format
+                            const emailField = this.querySelector('input[name="email"]');
+                            if (emailField && emailField.value) {
+                                console.log('Email validation:', emailField.checkValidity() ? 'VALID' : 'INVALID');
+                                if (!emailField.checkValidity()) {
+                                    console.error('Email format invalid:', emailField.value);
+                                }
+                            }
+                            
                             // Final check to ensure archetype is populated
                             const finalArchetypeField = this.querySelector('input[name="fields.archetype"]');
                             if (finalArchetypeField) {
@@ -1775,17 +1784,59 @@
                                 console.log(`  ${key}: ${value}`);
                             }
                             
-                            // Add error handling
-                            this.addEventListener('error', function(e) {
-                                console.error('Form submission error:', e);
+                            // Monitor for Flodesk success/error states
+                            const formContainer = document.querySelector('.ff-689e112803c67004d676162c');
+                            
+                            // Watch for success state
+                            const successObserver = new MutationObserver(function(mutations) {
+                                mutations.forEach(function(mutation) {
+                                    if (mutation.target.classList.contains('fd-has-success')) {
+                                        console.log('✅ Flodesk form SUCCESS detected');
+                                        successObserver.disconnect();
+                                    }
+                                    if (mutation.target.classList.contains('fd-has-error')) {
+                                        console.error('❌ Flodesk form ERROR detected');
+                                        const errorElement = document.querySelector('.fd-form-error');
+                                        if (errorElement) {
+                                            console.error('Error message:', errorElement.textContent);
+                                        }
+                                        successObserver.disconnect();
+                                    }
+                                });
                             });
                             
-                            // Set up success handler
+                            if (formContainer) {
+                                successObserver.observe(formContainer, { 
+                                    attributes: true, 
+                                    attributeFilter: ['class'] 
+                                });
+                            }
+                            
+                            // Set up success handler with longer delay to see results
                             setTimeout(() => {
-                                console.log('Redirecting to results page...');
-                                const responsesString = encodeURIComponent(JSON.stringify(quizData));
-                                window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
-                            }, 2000);
+                                console.log('Checking if form submission succeeded...');
+                                const hasSuccess = formContainer?.classList.contains('fd-has-success');
+                                const hasError = formContainer?.classList.contains('fd-has-error');
+                                
+                                console.log('Form success state:', hasSuccess);
+                                console.log('Form error state:', hasError);
+                                
+                                if (hasSuccess) {
+                                    console.log('✅ Form submitted successfully, redirecting...');
+                                    const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                    window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                } else if (hasError) {
+                                    console.error('❌ Form submission failed, not redirecting');
+                                    const errorElement = document.querySelector('.fd-form-error');
+                                    if (errorElement) {
+                                        console.error('Flodesk error:', errorElement.textContent);
+                                    }
+                                } else {
+                                    console.log('⏳ Form submission status unclear, redirecting anyway...');
+                                    const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                    window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                }
+                            }, 3000);
                         });
                     }
                     

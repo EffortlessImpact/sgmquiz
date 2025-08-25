@@ -1783,9 +1783,8 @@
                             // Set up success handler
                             setTimeout(() => {
                                 console.log('Redirecting to results page...');
-                                console.log('🔍 DEBUGGING: Redirect disabled - check if you received email');
-                                // const responsesString = encodeURIComponent(JSON.stringify(quizData));
-                                // window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
                             }, 2000);
                         });
                     }

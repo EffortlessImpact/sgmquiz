@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Aligned Visibility Quiz - Discover Your Business Archetype</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Flodesk Script -->
+    <script>
+      (function(w, d, t, h, s, n) {
+        w.FlodeskObject = n;
+        var fn = function() {
+          (w[n].q = w[n].q || []).push(arguments);
+        };
+        w[n] = w[n] || fn;
+        var f = d.getElementsByTagName(t)[0];
+        var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+        var sm = d.createElement(t);
+        sm.async = true;
+        sm.type = 'module';
+        sm.src = h + s + '.mjs' + v;
+        f.parentNode.insertBefore(sm, f);
+        var sn = d.createElement(t);
+        sn.async = true;
+        sn.noModule = true;
+        sn.src = h + s + '.js' + v;
+        f.parentNode.insertBefore(sn, f);
+      })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+    </script>
+</head>
+<body>
+    <!-- FLODESK FORM INTEGRATION - Dynamic Approach -->
+    <div class="flodesk-section" style="display: block; margin-top: 60px; padding: 40px;">
+        <div id="fd-form-689e112803c67004d676162c"></div>
+        <p style="text-align: center; margin-top: 20px;">
+            ✨ Dynamic form test
+        </p>
+    </div>
+
+    <script>
+        // Initialize the dynamic form
+        function initDynamicFlodeskForm() {
+            if (window.fd && typeof window.fd === 'function') {
+                console.log('Initializing dynamic Flodesk form...');
+                
+                window.fd('form', {
+                    formId: '689e112803c67004d676162c',
+                    containerEl: '#fd-form-689e112803c67004d676162c',
+                    onReady: function(formElement) {
+                        console.log('✅ Dynamic form ready!');
+                        
+                        // Try to add archetype field after form loads
+                        setTimeout(() => {
+                            const form = document.querySelector('#fd-form-689e112803c67004d676162c form');
+                            if (form) {
+                                console.log('Form found, adding archetype field...');
+                                
+                                const archetypeField = document.createElement('input');
+                                archetypeField.type = 'hidden';
+                                archetypeField.name = 'archetype';
+                                archetypeField.value = 'TestValue';
+                                archetypeField.id = 'dynamic-archetype-field';
+                                
+                                form.appendChild(archetypeField);
+                                console.log('✅ Archetype field added with value: TestValue');
+                            } else {
+                                console.error('❌ Could not find form element');
+                            }
+                        }, 1000);
+                    },
+                    onSubmit: function(formData) {
+                        console.log('🚀 Dynamic form submitted with data:', formData);
+                    }
+                });
+            } else {
+                console.log('Flodesk not ready yet, retrying...');
+                setTimeout(initDynamicFlodeskForm, 500);
+            }
+        }
+        
+        // Start initialization
+        setTimeout(initDynamicFlodeskForm, 1000);
+    </script>
+</body>
+</html>

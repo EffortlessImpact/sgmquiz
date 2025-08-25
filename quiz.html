@@ -643,17 +643,15 @@
 
             </form>
 
-            <!-- FLODESK FORM INTEGRATION -->
+            <!-- FLODESK FORM INTEGRATION - Dynamic Approach -->
             <div class="flodesk-section" style="display: none; margin-top: 60px; padding: 40px; background: linear-gradient(135deg, var(--canvas-color), var(--secondary-color)); border-radius: 8px; border-left: 4px solid var(--primary-color);">
-                
-                <link rel="preload" href="https://assets.flodesk.com/flodesk-sans.css" as="style">
-                <link rel="stylesheet" href="https://assets.flodesk.com/flodesk-sans.css">
-                <style>
-                  [data-ff-el="root"].ff-689e112803c67004d676162c *,
-                  [data-ff-el="root"].ff-689e112803c67004d676162c *::before,
-                  [data-ff-el="root"].ff-689e112803c67004d676162c *::after {
-                    box-sizing: border-box;
-                  }
+                <div id="fd-form-689e112803c67004d676162c"></div>
+                <p style="text-align: center; color: var(--link-color); font-size: 0.9em; margin-top: 20px;">
+                    ✨ You'll receive your complete archetype breakdown within minutes!
+                </p>
+            </div>
+            
+            <!-- Debug Section for Testing -->
 
                   [data-ff-el="root"].ff-689e112803c67004d676162c [tabindex="-1"]:focus {
                     outline: none !important;
@@ -1409,7 +1407,7 @@
                         <div class="ff-689e112803c67004d676162c__fields" data-ff-el="fields">
 
                           <div class="ff-689e112803c67004d676162c__field fd-form-group">
-                            <input id="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="first_name" placeholder="Name" data-ff-tab="firstName::email" />
+                            <input id="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="first_name" placeholder="Name" data-ff-tab="firstName::email" required />
                             <label for="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__label fd-form-label">
                               <div>
                                 <div>Name</div>
@@ -1781,138 +1779,85 @@
         // Initial check
         checkFormCompletionAndPopulate();
 
-        // Function to populate the RAW Flodesk form with archetype data
+        // Function to initialize dynamic Flodesk form with archetype data
         function populateFlodeskForm(quizData) {
-            console.log('Populating RAW Flodesk form with archetype:', quizData.archetype);
+            addToDebugLog('🚀 Initializing dynamic Flodesk form');
+            addToDebugLog('Archetype: ' + quizData.archetype);
             
-            // Wait for Flodesk form to be ready and populate the archetype field
-            function populateArchetypeField() {
-                // Find the archetype field in the RAW form
-                const archetypeField = document.querySelector('input[name="fields.archetype"]');
-                
-                if (archetypeField) {
-                    console.log('Found archetype field, setting value to:', quizData.archetype);
-                    archetypeField.value = quizData.archetype;
+            function initializeDynamicForm() {
+                if (window.fd && typeof window.fd === 'function') {
+                    addToDebugLog('Flodesk SDK loaded, creating form...');
                     
-                    // Verify the value was set
-                    console.log('Archetype field value after setting:', archetypeField.value);
-                    
-                    // Add form submission handler to verify data
-                    const flodeskForm = document.querySelector('.ff-689e112803c67004d676162c form');
-                    console.log('Looking for Flodesk form:', flodeskForm ? 'FOUND' : 'NOT FOUND');
-                    
-                    if (flodeskForm && !flodeskForm.hasAttribute('data-submission-handler-added')) {
-                        console.log('Adding form submission handler...');
-                        flodeskForm.setAttribute('data-submission-handler-added', 'true');
-                        
-                        flodeskForm.addEventListener('submit', function(event) {
-                            addToDebugLog('🚀 Form submission detected');
-                            addToDebugLog('Domain: ' + window.location.hostname);
-                            addToDebugLog('Form action: ' + this.action);
+                    window.fd('form', {
+                        formId: '689e112803c67004d676162c',
+                        containerEl: '#fd-form-689e112803c67004d676162c',
+                        onReady: function(formElement) {
+                            addToDebugLogSuccess('Dynamic form ready!');
                             
-                            // Validate email format
-                            const emailField = this.querySelector('input[name="email"]');
-                            if (emailField && emailField.value) {
-                                const isValid = emailField.checkValidity();
-                                if (isValid) {
-                                    addToDebugLogSuccess('Email format VALID: ' + emailField.value);
-                                } else {
-                                    addToDebugLogError('Email format INVALID: ' + emailField.value);
-                                }
-                            }
-                            
-                            // Final check to ensure archetype is populated
-                            const finalArchetypeField = this.querySelector('input[name="fields.archetype"]');
-                            if (finalArchetypeField) {
-                                if (!finalArchetypeField.value) {
-                                    finalArchetypeField.value = quizData.archetype;
-                                    addToDebugLog('Set archetype: ' + quizData.archetype);
-                                } else {
-                                    addToDebugLogSuccess('Archetype confirmed: ' + finalArchetypeField.value);
-                                }
-                            }
-                            
-                            // Log all form data being submitted
-                            const formData = new FormData(this);
-                            addToDebugLog('=== FORM DATA SUBMITTED ===');
-                            for (let [key, value] of formData.entries()) {
-                                addToDebugLog(`${key}: ${value}`);
-                            }
-                            
-                            // Monitor for Flodesk success/error states
-                            const formContainer = document.querySelector('.ff-689e112803c67004d676162c');
-                            
-                            // Watch for success state
-                            const successObserver = new MutationObserver(function(mutations) {
-                                mutations.forEach(function(mutation) {
-                                    if (mutation.target.classList.contains('fd-has-success')) {
-                                        addToDebugLogSuccess('Flodesk SUCCESS detected!');
-                                        successObserver.disconnect();
-                                    }
-                                    if (mutation.target.classList.contains('fd-has-error')) {
-                                        addToDebugLogError('Flodesk ERROR detected!');
-                                        const errorElement = document.querySelector('.fd-form-error');
-                                        if (errorElement) {
-                                            addToDebugLogError('Error: ' + errorElement.textContent);
-                                        }
-                                        successObserver.disconnect();
-                                    }
-                                });
-                            });
-                            
-                            if (formContainer) {
-                                successObserver.observe(formContainer, { 
-                                    attributes: true, 
-                                    attributeFilter: ['class'] 
-                                });
-                            }
-                            
-                            // Set up success handler with longer delay to see results
+                            // Add archetype field after form loads
                             setTimeout(() => {
-                                addToDebugLog('=== CHECKING SUBMISSION RESULT ===');
-                                const hasSuccess = formContainer?.classList.contains('fd-has-success');
-                                const hasError = formContainer?.classList.contains('fd-has-error');
-                                
-                                addToDebugLog('Success state: ' + hasSuccess);
-                                addToDebugLog('Error state: ' + hasError);
-                                
-                                if (hasSuccess) {
-                                    addToDebugLogSuccess('Form SUCCESS - redirecting...');
-                                    setTimeout(() => {
-                                        const responsesString = encodeURIComponent(JSON.stringify(quizData));
-                                        window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
-                                    }, 2000);
-                                } else if (hasError) {
-                                    addToDebugLogError('Form FAILED - NOT redirecting');
-                                    const errorElement = document.querySelector('.fd-form-error');
-                                    if (errorElement) {
-                                        addToDebugLogError('Details: ' + errorElement.textContent);
-                                    }
+                                const form = document.querySelector('#fd-form-689e112803c67004d676162c form');
+                                if (form) {
+                                    addToDebugLog('Adding archetype field to dynamic form...');
+                                    
+                                    // Remove any existing archetype fields
+                                    const existingFields = form.querySelectorAll('input[name="archetype"], input[name="fields.archetype"]');
+                                    existingFields.forEach(field => field.remove());
+                                    
+                                    // Add archetype field
+                                    const archetypeField = document.createElement('input');
+                                    archetypeField.type = 'hidden';
+                                    archetypeField.name = 'archetype';
+                                    archetypeField.value = quizData.archetype;
+                                    archetypeField.id = 'dynamic-archetype-field';
+                                    
+                                    form.appendChild(archetypeField);
+                                    addToDebugLogSuccess('Archetype field added: ' + quizData.archetype);
+                                    
+                                    // Add form submission handler
+                                    form.addEventListener('submit', function(event) {
+                                        addToDebugLog('🚀 Dynamic form submission detected');
+                                        addToDebugLog('Domain: ' + window.location.hostname);
+                                        addToDebugLog('Form action: ' + (this.action || 'Not set'));
+                                        
+                                        // Log all form data
+                                        const formData = new FormData(this);
+                                        addToDebugLog('=== DYNAMIC FORM DATA ===');
+                                        for (let [key, value] of formData.entries()) {
+                                            addToDebugLog(`${key}: ${value}`);
+                                        }
+                                        
+                                        // Set up redirect after submission
+                                        setTimeout(() => {
+                                            addToDebugLog('Redirecting to results...');
+                                            const responsesString = encodeURIComponent(JSON.stringify(quizData));
+                                            window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
+                                        }, 3000);
+                                    });
+                                    
                                 } else {
-                                    addToDebugLog('Status unclear - redirecting anyway...');
-                                    setTimeout(() => {
-                                        const responsesString = encodeURIComponent(JSON.stringify(quizData));
-                                        window.location.href = `results.html?archetype=${encodeURIComponent(quizData.archetype)}&responses=${responsesString}`;
-                                    }, 2000);
+                                    addToDebugLogError('Could not find dynamic form element');
                                 }
-                            }, 4000);
-                        });
-                    }
-                    
+                            }, 1000);
+                        },
+                        onSubmit: function(submitData) {
+                            addToDebugLogSuccess('Flodesk onSubmit callback triggered');
+                            addToDebugLog('Submit data: ' + JSON.stringify(submitData));
+                        }
+                    });
                 } else {
-                    console.log('Archetype field not found yet, retrying...');
-                    // Retry if field not found yet
-                    populateArchetypeField.retryCount = (populateArchetypeField.retryCount || 0) + 1;
-                    if (populateArchetypeField.retryCount < 20) {
-                        setTimeout(populateArchetypeField, 250);
+                    addToDebugLog('Flodesk SDK not ready, retrying...');
+                    initializeDynamicForm.retryCount = (initializeDynamicForm.retryCount || 0) + 1;
+                    if (initializeDynamicForm.retryCount < 10) {
+                        setTimeout(initializeDynamicForm, 500);
                     } else {
-                        console.error('Could not find archetype field after 20 retries');
+                        addToDebugLogError('Failed to load Flodesk SDK after 10 retries');
                     }
                 }
             }
             
-            // Start trying to populate the field
-            setTimeout(populateArchetypeField, 100);
+            // Start initialization
+            setTimeout(initializeDynamicForm, 500);
         }
         
         // Fallback form creation if Flodesk fails (updated for RAW form field names)

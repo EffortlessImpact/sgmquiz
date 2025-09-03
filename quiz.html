@@ -1342,7 +1342,7 @@
   }
 </style>
 
-            <div id="flodeskFormWrapper" style="display: none;">
+<div id="flodeskFormWrapper" style="display: none;">
 <div class="ff-689e112803c67004d676162c" data-ff-el="root" data-ff-version="3" data-ff-type="inline" data-ff-name="ribbonBanner" data-ff-stage="default">
   <!--tpl {% block config %} tpl-->
   <div data-ff-el="config" data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJtZXNzYWdlIiwibWVzc2FnZSI6IiIsInJlZGlyZWN0VXJsIjoiIn0sImNvaSI6ZmFsc2UsInNob3dGb3JSZXR1cm5WaXNpdG9ycyI6dHJ1ZSwibm90aWZpY2F0aW9uIjp0cnVlfQ==" style="display: none"></div>
@@ -1362,6 +1362,14 @@
       <div class="ff-689e112803c67004d676162c__content fd-form-content" data-ff-el="content">
         <div class="ff-689e112803c67004d676162c__fields" data-ff-el="fields">
           <!--tpl {% block fields %} tpl-->
+          <div class="ff-689e112803c67004d676162c__field fd-form-group">
+            <input id="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="fields.archetype" placeholder="The Muse" data-ff-tab="fields.archetype:email:submit" />
+            <label for="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__label fd-form-label">
+              <div>
+                <div>The Muse</div>
+              </div>
+            </label>
+          </div>
 
           <div class="ff-689e112803c67004d676162c__field fd-form-group">
             <input id="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="firstName" placeholder="Name" data-ff-tab="firstName::email" />
@@ -1383,14 +1391,7 @@
           </div>
 
 
-          <div class="ff-689e112803c67004d676162c__field fd-form-group">
-            <input id="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="fields.archetype" placeholder="The Muse" data-ff-tab="fields.archetype:email:submit" />
-            <label for="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__label fd-form-label">
-              <div>
-                <div>The Muse</div>
-              </div>
-            </label>
-          </div>
+
 
           <input type="text" maxlength="255" name="confirm_email_address" style="display: none" />
           <!--tpl {% endblock %} tpl-->
@@ -1603,70 +1604,70 @@
             // Rule 1: Muse - Beauty/visibility support, home focused, early stage, overwhelmed, calm
             if (contains(q1Array, "B") && q2 === "A" && (q3 === "A" || q3 === "B") && 
                 contains(q4Array, "E") && q5 === "A" && (q6 === "A" || q6 === "C")) {
-                return "Muse";
+                return "You are The Muse";
             }
             
             // Rule 2: Stylist - Comprehensive support, appearance confident, established, time issues, creative/driven
             if (contains(q1Array, "C") && q2 === "B" && q3 === "C" && contains(q4Array, "B") &&
                 (q5 === "C" || q5 === "D") && (q6 === "C" || q6 === "B")) {
-                return "Stylist";
+                return "You are The Stylist";
             }
             
             // Rule 3: Editor - Both support, home confident, early stage, visibility/confidence issues, confident image, beauty guidance
             if (contains(q1Array, "C") && q2 === "A" && (q3 === "A" || q3 === "B") &&
                 (contains(q4Array, "C") || contains(q4Array, "D")) && q5 === "B" && q6 === "A") {
-                return "Editor";
+                return "You are the Editor";
             }
             
             // Rule 4: Supermodel - Business clarity, confident in everything, goal issues, confident/driven image, beauty guidance
             if (contains(q1Array, "A") && q2 === "D" && (q3 === "A" || q3 === "B" || q3 === "C") &&
                 contains(q4Array, "A") && (q5 === "B" || q5 === "D") && q6 === "A") {
-                return "Supermodel";
+                return "You are The Supermodel";
             }
             
             // Fallback logic - score based approach if no exact match
             let scores = {
-                "Muse": 0,
-                "Stylist": 0,
-                "Editor": 0,
-                "Supermodel": 0
+                "You are The Muse": 0,
+                "You are The Stylist": 0,
+                "You are The Editor": 0,
+                "You are The Supermodel": 0
             };
             
             // Score for Muse (beauty focus, home confident, early stage, overwhelmed)
-            if (contains(q1Array, "B")) scores["Muse"] += 2;
-            if (q2 === "A") scores["Muse"] += 2;
-            if (q3 === "A" || q3 === "B") scores["Muse"] += 1;
-            if (contains(q4Array, "E")) scores["Muse"] += 2;
-            if (q5 === "A") scores["Muse"] += 1;
-            if (q6 === "A" || q6 === "C") scores["Muse"] += 1;
+            if (contains(q1Array, "B")) scores["You are The Muse"] += 2;
+            if (q2 === "A") scores["You are The Muse"] += 2;
+            if (q3 === "A" || q3 === "B") scores["You are The Muse"] += 1;
+            if (contains(q4Array, "E")) scores["You are The Muse"] += 2;
+            if (q5 === "A") scores["You are The Muse"] += 1;
+            if (q6 === "A" || q6 === "C") scores["You are The Muse"] += 1;
             
             // Score for Stylist (comprehensive, appearance confident, established, time issues)
-            if (contains(q1Array, "C")) scores["Stylist"] += 2;
-            if (q2 === "B") scores["Stylist"] += 2;
-            if (q3 === "C") scores["Stylist"] += 2;
-            if (contains(q4Array, "B")) scores["Stylist"] += 2;
-            if (q5 === "C" || q5 === "D") scores["Stylist"] += 1;
+            if (contains(q1Array, "C")) scores["You are The Stylist"] += 2;
+            if (q2 === "B") scores["You are The Stylist"] += 2;
+            if (q3 === "C") scores["You are The Stylist"] += 2;
+            if (contains(q4Array, "B")) scores["You are The Stylist"] += 2;
+            if (q5 === "C" || q5 === "D") scores["You are The Stylist"] += 1;
             
             // Score for Editor (both support, home confident, visibility issues)
-            if (contains(q1Array, "C")) scores["Editor"] += 2;
-            if (q2 === "A") scores["Editor"] += 2;
-            if (q3 === "A" || q3 === "B") scores["Editor"] += 1;
-            if (contains(q4Array, "C") || contains(q4Array, "D")) scores["Editor"] += 2;
-            if (q5 === "B") scores["Editor"] += 1;
-            if (q6 === "A") scores["Editor"] += 1;
+            if (contains(q1Array, "C")) scores["You are The Editor"] += 2;
+            if (q2 === "A") scores["You are The Editor"] += 2;
+            if (q3 === "A" || q3 === "B") scores["You are The Editor"] += 1;
+            if (contains(q4Array, "C") || contains(q4Array, "D")) scores["You are The Editor"] += 2;
+            if (q5 === "B") scores["You are The Editor"] += 1;
+            if (q6 === "A") scores["You are The Editor"] += 1;
             
             // Score for Supermodel (business clarity, highly confident, goal-focused)
-            if (contains(q1Array, "A")) scores["Supermodel"] += 2;
-            if (q2 === "D") scores["Supermodel"] += 2;
-            if (contains(q4Array, "A")) scores["Supermodel"] += 2;
-            if (q5 === "B" || q5 === "D") scores["Supermodel"] += 1;
-            if (q6 === "A") scores["Supermodel"] += 1;
+            if (contains(q1Array, "A")) scores["You are The Supermodel"] += 2;
+            if (q2 === "D") scores["You are The Supermodel"] += 2;
+            if (contains(q4Array, "A")) scores["You are The Supermodel"] += 2;
+            if (q5 === "B" || q5 === "D") scores["You are The Supermodel"] += 1;
+            if (q6 === "A") scores["You are The Supermodel"] += 1;
             
             // Return the archetype with the highest score
             const maxScore = Math.max(...Object.values(scores));
             const bestMatch = Object.keys(scores).find(key => scores[key] === maxScore);
             
-            return bestMatch || "Muse"; // Default to Muse if no clear winner
+            return bestMatch || "You are The Muse"; // Default to Muse if no clear winner
         }
 
 

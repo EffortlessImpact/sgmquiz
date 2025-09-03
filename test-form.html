@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flodesk Form Test - Muse Archetype</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Flodesk Script -->
+    <script>
+      (function(w, d, t, h, s, n) {
+        w.FlodeskObject = n;
+        var fn = function() {
+          (w[n].q = w[n].q || []).push(arguments);
+        };
+        w[n] = w[n] || fn;
+        var f = d.getElementsByTagName(t)[0];
+        var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+        var sm = d.createElement(t);
+        sm.async = true;
+        sm.type = 'module';
+        sm.src = h + s + '.mjs' + v;
+        f.parentNode.insertBefore(sm, f);
+        var sn = d.createElement(t);
+        sn.async = true;
+        sn.noModule = true;
+        sn.src = h + s + '.js' + v;
+        f.parentNode.insertBefore(sn, f);
+      })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--backdrop-color);
+            min-height: 100vh;
+            color: var(--font-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--canvas-color);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--font-color);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .archetype-display {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(96, 125, 139, 0.1);
+            border-radius: 4px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .archetype-display h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2em;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .form-container {
+            margin-top: 40px;
+        }
+        
+        .debug-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        
+        .debug-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Make archetype field blend with background - invisible but functional */
+        input[name="fields.archetype"],
+        input[name*="archetype"],
+        input[placeholder*="archetype"],
+        input[id*="archetype"] {
+            background: transparent !important;
+            background-color: transparent !important;
+            border: none !important;
+            color: transparent !important;
+            font-size: 0 !important;
+            height: 1px !important;
+            width: 1px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            outline: none !important;
+            box-shadow: none !important;
+            position: absolute !important;
+            top: -1px !important;
+            left: -1px !important;
+            z-index: -1 !important;
+            opacity: 0.01 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Hide labels for archetype field */
+        label[for*="archetype"],
+        .fd-form-group:has(input[name*="archetype"]) label {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        
+        /* Hide parent containers that only contain archetype field */
+        .fd-form-group:has(input[name="fields.archetype"]):not(:has(input:not([name="fields.archetype"]))) {
+            height: 0 !important;
+            overflow: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            background: transparent !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flodesk Form Test</h1>
+        
+        <div class="archetype-display">
+            <h2>Test Archetype: The Muse</h2>
+            <p>This is a test page to debug the Flodesk form submission with hardcoded archetype value.</p>
+        </div>
+        
+        <div class="debug-info">
+            <h3>Debug Information:</h3>
+            <p><strong>Hardcoded Archetype:</strong> Muse</p>
+            <p><strong>Expected Redirect:</strong> results.html?archetype=Muse</p>
+            <p><strong>Form ID:</strong> 689e112803c67004d676162c</p>
+        </div>
+        
+        <div class="form-container">
+            <div id="fd-form-689e112803c67004d676162c"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Flodesk form when the script is ready
+        function initializeFlodeskForm() {
+            if (typeof window.fd === 'function') {
+                console.log('Initializing Flodesk form...');
+                
+                window.fd('form', {
+                    formId: '689e112803c67004d676162c',
+                    containerEl: '#fd-form-689e112803c67004d676162c',
+                    // Pre-populate hidden data
+                    data: {
+                        'fields.archetype': 'Muse'
+                    },
+                    // Pass URL parameters to form
+                    utm: {
+                        archetype: 'Muse'
+                    },
+                    onReady: function() {
+                        console.log('✅ Flodesk form is ready');
+                        
+                        // Set the hardcoded archetype value with multiple attempts
+                        function setArchetypeValue() {
+                            // Try multiple selectors to find the archetype field
+                            const selectors = [
+                                'input[name="fields.archetype"]',
+                                'input[name*="archetype"]',
+                                'input[placeholder*="archetype"]',
+                                'input[id*="archetype"]'
+                            ];
+                            
+                            let archetypeField = null;
+                            for (const selector of selectors) {
+                                archetypeField = document.querySelector(selector);
+                                if (archetypeField) {
+                                    console.log(`✅ Found archetype field using selector: ${selector}`);
+                                    break;
+                                }
+                            }
+                            
+                            if (archetypeField) {
+                                archetypeField.value = 'Muse';
+                                console.log('✅ Set archetype field to: Muse');
+                                console.log('Field details:', {
+                                    id: archetypeField.id,
+                                    name: archetypeField.name,
+                                    value: archetypeField.value,
+                                    type: archetypeField.type,
+                                    placeholder: archetypeField.placeholder,
+                                    visible: archetypeField.offsetWidth > 0 && archetypeField.offsetHeight > 0
+                                });
+                                
+                                // Apply additional hiding styles directly to the field
+                                archetypeField.style.display = 'none';
+                                archetypeField.style.visibility = 'hidden';
+                                archetypeField.style.position = 'absolute';
+                                archetypeField.style.left = '-9999px';
+                                archetypeField.style.opacity = '0';
+                                
+                                // Hide parent containers
+                                if (archetypeField.parentElement) {
+                                    archetypeField.parentElement.style.display = 'none';
+                                }
+                                
+                                console.log('✅ Archetype field hidden and populated successfully');
+                                
+                            } else {
+                                console.error('❌ Archetype field not found with any selector');
+                                // List all form fields for debugging
+                                const allInputs = document.querySelectorAll('#fd-form-689e112803c67004d676162c input');
+                                console.log('All form inputs:', allInputs.length);
+                                allInputs.forEach((input, index) => {
+                                    console.log(`Input ${index + 1}:`, {
+                                        id: input.id,
+                                        name: input.name,
+                                        type: input.type,
+                                        placeholder: input.placeholder,
+                                        value: input.value
+                                    });
+                                });
+                            }
+                        }
+                        
+                        // Try setting the value multiple times to ensure it works
+                        setTimeout(setArchetypeValue, 500);
+                        setTimeout(setArchetypeValue, 1000);
+                        setTimeout(setArchetypeValue, 2000);
+                    },
+                    onSubmit: function(data) {
+                        console.log('📤 Form submission data:', data);
+                        
+                        // Intercept and modify the submission data
+                        if (data) {
+                            data['fields.archetype'] = 'Muse';
+                            console.log('✅ Added archetype to submission data:', data);
+                        }
+                        
+                        return data; // Return modified data
+                    },
+                    onSuccess: function() {
+                        console.log('✅ Form submitted successfully');
+                        // Manual redirect as fallback
+                        setTimeout(() => {
+                            console.log('Redirecting to results page...');
+                            window.location.href = 'results.html?archetype=Muse';
+                        }, 2000);
+                    },
+                    onError: function(error) {
+                        console.error('❌ Form submission error:', error);
+                    }
+                });
+            } else {
+                console.log('Flodesk not ready yet, retrying...');
+                setTimeout(initializeFlodeskForm, 100);
+            }
+        }
+        
+        // Start initialization when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, starting Flodesk form initialization...');
+            initializeFlodeskForm();
+        });
+        
+        // Additional debugging
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded');
+            console.log('Flodesk object available:', typeof window.fd);
+        });
+    </script>
+</body>
+</html>

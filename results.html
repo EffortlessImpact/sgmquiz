@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Business Archetype - The Aligned Visibility Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A">
     <style>
         * {
             margin: 0;
@@ -110,18 +111,6 @@
             letter-spacing: 3px;
         }
         
-        .archetype-image {
-            text-align: center;
-            margin: 30px 0;
-        }
-        
-        .archetype-image img {
-            max-width: 300px;
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
         
         .archetype-description {
             text-align: center;
@@ -326,9 +315,6 @@
                 <h1>Your Business Archetype</h1>
                 <div class="archetype-name" id="archetype-name"></div>
                 
-                <div class="archetype-image">
-                    <img id="archetype-image" src="" alt="Your Archetype">
-                </div>
                 
                 <div class="archetype-description">
                     <p id="archetype-description"></p>
@@ -374,8 +360,7 @@
                     "Keywords: Soft, intuitive, creative, thoughtful, reserved, empathic",
                     "You may see yourself as: Calm, reflective, unsure how to take up space",
                     "You want to be seen as: Empowered, expressed, magnetic"
-                ],
-                image: "muse-archetype.jpg"
+                ]
             },
             "Stylist": {
                 description: "You are The Stylist - a creative entrepreneur with many ideas who needs focus and consistency to truly flourish.",
@@ -383,8 +368,7 @@
                     "Keywords: Creative, idea-driven, scattered, soulful, passionate",
                     "You may see yourself as: Inspired but overwhelmed",
                     "You want to be seen as: Clear, capable, influential"
-                ],
-                image: "stylist-archetype.jpg"
+                ]
             },
             "Editor": {
                 description: "You are The Editor - a warm, supportive entrepreneur who prefers to work behind the scenes but has valuable expertise to share.",
@@ -392,8 +376,7 @@
                     "Keywords: Warm, supportive, community-driven, nurturing",
                     "You may see yourself as: Grounded but behind the scenes",
                     "You want to be seen as: Trusted, magnetic, real"
-                ],
-                image: "editor-archetype.jpg"
+                ]
             },
             "Supermodel": {
                 description: "You are The Supermodel - a confident, driven entrepreneur who excels in many areas but may feel disconnected from authenticity.",
@@ -401,8 +384,7 @@
                     "Keywords: Confident, direct, bold, high standards, no-nonsense",
                     "You may see yourself as: Determined, clear, driven",
                     "You want to be seen as: Powerful, polished, already \"there\""
-                ],
-                image: "supermodel-archetype.jpg"
+                ]
             }
         };
 
@@ -433,8 +415,6 @@
             const displayName = `The ${archetype}`;
             document.getElementById('archetype-name').textContent = displayName;
             document.getElementById('archetype-description').textContent = data.description;
-            document.getElementById('archetype-image').src = data.image;
-            document.getElementById('archetype-image').alt = archetype + ' Archetype';
             document.getElementById('email-archetype-name').textContent = displayName;
             
         }

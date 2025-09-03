@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Form Submission Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="max-width: 600px; margin: 50px auto; padding: 40px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+        <h1>Direct Flodesk Form Test</h1>
+        <p>Testing direct POST to your Flodesk form endpoint</p>
+        
+        <form id="direct-form" method="POST" action="https://api.flodesk.com/v1/forms/689e112803c67004d676162c/submissions">
+            <div style="margin: 20px 0;">
+                <label>First Name:</label>
+                <input type="text" name="first_name" required style="width: 100%; padding: 10px; margin-top: 5px;">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <label>Email:</label>
+                <input type="email" name="email" required style="width: 100%; padding: 10px; margin-top: 5px;">
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <label>Archetype (Hidden):</label>
+                <input type="text" name="archetype" value="Muse" readonly style="width: 100%; padding: 10px; margin-top: 5px; background: #f0f0f0;">
+            </div>
+            
+            <button type="submit" style="width: 100%; padding: 15px; background: #607d8b; color: white; border: none; border-radius: 4px; font-size: 1.1em;">
+                Submit to Form Endpoint
+            </button>
+        </form>
+        
+        <div id="result" style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 4px; display: none;"></div>
+    </div>
+    
+    <script>
+        document.getElementById('direct-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            // Try to submit directly to the form
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // This might be necessary for cross-origin
+            }).then(() => {
+                document.getElementById('result').innerHTML = `
+                    <h3>Form Submitted!</h3>
+                    <p>Attempted direct submission to Flodesk form endpoint.</p>
+                    <p>Check your email and Flodesk dashboard to see if it worked.</p>
+                `;
+                document.getElementById('result').style.display = 'block';
+            }).catch(error => {
+                document.getElementById('result').innerHTML = `
+                    <h3>Error:</h3>
+                    <p>${error.message}</p>
+                `;
+                document.getElementById('result').style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

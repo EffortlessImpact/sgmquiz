@@ -470,6 +470,7 @@
             }
         }
     </style>
+
 </head>
 <body>
     <div class="container">
@@ -483,7 +484,7 @@
         </header>
         
         <main class="hero quiz-page">
-            <div class="badge">5-Minute Quiz</div>
+            
             <h1>The Aligned Visibility Quiz</h1>
             <p class="subtitle">Discover Your Business Archetype & Unlock Your Authentic Presence</p>
             
@@ -622,101 +623,829 @@
 
             </form>
 
-            <!-- Kit.com Forms - All embedded, hidden by default -->
-            <div id="kitForm" style="display: none;">
-                <h2>Quiz Complete!</h2>
-                <p>Your Archetype: <span id="archetypeName">The [Archetype]</span></p>
-                
-                
-                <!-- Muse Form -->
-                <div id="museForm" style="display: none;">
-                    <div id="museFormContainer" style="min-height: 400px; padding: 20px; border: 2px solid #ccc; background: #f9f9f9; margin: 20px 0;"></div>
-                </div>
-                
-                
-                <!-- Stylist Form -->
-                <div id="stylistForm" style="display: none;">
-                    <!-- TODO: Add Stylist form script here -->
-                    <p>Stylist form coming soon!</p>
-                </div>
-                
-                <!-- Editor Form -->
-                <div id="editorForm" style="display: none;">
-                    <!-- TODO: Add Editor form script here -->
-                    <p>Editor form coming soon!</p>
-                </div>
-                
-                <!-- Supermodel Form -->
-                <div id="supermodelForm" style="display: none;">
-                    <!-- TODO: Add Supermodel form script here -->
-                    <p>Supermodel form coming soon!</p>
-                </div>
+            <!-- Flodesk Form - Universal for all archetypes -->
+<link rel="preload" href="https://assets.flodesk.com/flodesk-sans.css" as="style">
+<link rel="stylesheet" href="https://assets.flodesk.com/flodesk-sans.css">
+<style>
+  [data-ff-el="root"].ff-689e112803c67004d676162c *,
+  [data-ff-el="root"].ff-689e112803c67004d676162c *::before,
+  [data-ff-el="root"].ff-689e112803c67004d676162c *::after {
+    box-sizing: border-box;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c [tabindex="-1"]:focus {
+    outline: none !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c h1,
+  [data-ff-el="root"].ff-689e112803c67004d676162c h2,
+  [data-ff-el="root"].ff-689e112803c67004d676162c h3,
+  [data-ff-el="root"].ff-689e112803c67004d676162c h4,
+  [data-ff-el="root"].ff-689e112803c67004d676162c h5,
+  [data-ff-el="root"].ff-689e112803c67004d676162c h6 {
+    margin-top: 0;
+    margin-bottom: 0.7em;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c ol,
+  [data-ff-el="root"].ff-689e112803c67004d676162c ul,
+  [data-ff-el="root"].ff-689e112803c67004d676162c dl {
+    margin-top: 0;
+    margin-bottom: 1.4rem;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c ol ol,
+  [data-ff-el="root"].ff-689e112803c67004d676162c ul ul,
+  [data-ff-el="root"].ff-689e112803c67004d676162c ol ul,
+  [data-ff-el="root"].ff-689e112803c67004d676162c ul ol {
+    margin-bottom: 0;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c b,
+  [data-ff-el="root"].ff-689e112803c67004d676162c strong {
+    font-weight: bolder;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c small {
+    font-size: 80%;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c sub,
+  [data-ff-el="root"].ff-689e112803c67004d676162c sup {
+    position: relative;
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c sub {
+    bottom: -0.25em;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c sup {
+    top: -0.5em;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c {
+    color: #000000;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c a:hover {
+    color: #4396fd;
+    text-decoration: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c img {
+    border-style: none;
+    vertical-align: middle;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c svg:not(:root) {
+    overflow: hidden;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c,
+  [data-ff-el="root"].ff-689e112803c67004d676162c area,
+  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+  [data-ff-el="root"].ff-689e112803c67004d676162c [role="button"],
+  [data-ff-el="root"].ff-689e112803c67004d676162c input,
+  [data-ff-el="root"].ff-689e112803c67004d676162c label,
+  [data-ff-el="root"].ff-689e112803c67004d676162c select,
+  [data-ff-el="root"].ff-689e112803c67004d676162c summary,
+  [data-ff-el="root"].ff-689e112803c67004d676162c textarea {
+    touch-action: manipulation;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c label {
+    display: inline-block;
+    font-weight: bolder;
+    margin-bottom: 0.7rem;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c button:focus {
+    outline: 1px dotted;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c input,
+  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+  [data-ff-el="root"].ff-689e112803c67004d676162c select,
+  [data-ff-el="root"].ff-689e112803c67004d676162c optgroup,
+  [data-ff-el="root"].ff-689e112803c67004d676162c textarea {
+    margin: 0;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+  [data-ff-el="root"].ff-689e112803c67004d676162c input {
+    overflow: visible;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+  [data-ff-el="root"].ff-689e112803c67004d676162c select {
+    text-transform: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c button,
+  html[data-ff-el="root"].ff-689e112803c67004d676162c [type="button"],
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="reset"],
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="submit"] {
+    -webkit-appearance: button;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c button::-moz-focus-inner,
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="button"]::-moz-focus-inner,
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="reset"]::-moz-focus-inner,
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="submit"]::-moz-focus-inner {
+    padding: 0;
+    border-style: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="radio"],
+  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="checkbox"] {
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="date"],
+  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="time"],
+  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="datetime-local"],
+  [data-ff-el="root"].ff-689e112803c67004d676162c input[type="month"] {
+    -webkit-appearance: listbox;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c textarea {
+    resize: vertical;
+    overflow: auto;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="number"]::-webkit-inner-spin-button,
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="search"] {
+    outline-offset: -2px;
+    -webkit-appearance: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="search"]::-webkit-search-cancel-button,
+  [data-ff-el="root"].ff-689e112803c67004d676162c [type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c ::-webkit-file-upload-button {
+    font: inherit;
+    -webkit-appearance: button;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c [hidden] {
+    display: none !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control {
+    width: 100%;
+    display: block;
+    outline: none;
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control:focus {
+    outline: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control::placeholder {
+    color: transparent !important;
+    opacity: 0 !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control:disabled {
+    opacity: 1;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-label {
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-control:not(:placeholder-shown)+.fd-form-label {
+    opacity: 0;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-description {
+    margin: 5px 0 0 0;
+    font-size: 0.8em;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-feedback {
+    margin: 5px 0 0 0;
+    font-size: 0.8em;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group {
+    margin: 0 0 15px;
+    position: relative;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-feedback,
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-check {
+    color: #02dba8 !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-control {
+    color: #02dba8 !important;
+    border-color: #02dba8 !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-success .fd-form-feedback {
+    display: block;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-feedback,
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-check {
+    color: #eb3d3b !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-control {
+    color: #eb3d3b !important;
+    border-color: #eb3d3b !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-group.fd-has-error .fd-form-feedback {
+    display: block;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn {
+    cursor: pointer;
+    display: inline-flex;
+    outline: none;
+    max-width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    font-style: normal;
+    text-align: center;
+    align-items: center;
+    text-shadow: none;
+    white-space: normal;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn:hover {
+    outline: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn:focus {
+    outline: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-btn:disabled {
+    opacity: 0.8;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check {
+    cursor: pointer;
+    margin: 0;
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding-left: 30px;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input {
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__checkmark {
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: absolute;
+    background-size: 18px;
+    background-image: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg' %3e %3cpath d='M1 4C1 2.34315 2.34315 1 4 1H16C17.6569 1 19 2.34315 19 4V16C19 17.6569 17.6569 19 16 19H4C2.34315 19 1 17.6569 1 16V4Z' fill='white' /%3e %3cpath fill='black' fill-rule='evenodd' clip-rule='evenodd' d='M0.25 4C0.25 1.92893 1.92893 0.25 4 0.25H16C18.0711 0.25 19.75 1.92893 19.75 4V16C19.75 18.0711 18.0711 19.75 16 19.75H4C1.92893 19.75 0.25 18.0711 0.25 16V4ZM4 1.75C2.75736 1.75 1.75 2.75736 1.75 4V16C1.75 17.2426 2.75736 18.25 4 18.25H16C17.2426 18.25 18.25 17.2426 18.25 16V4C18.25 2.75736 17.2426 1.75 16 1.75H4Z' /%3e %3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__label {
+    flex: 1 1;
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+    word-break: break-word;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input:checked+.fd-form-check__checkmark::after {
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__checkmark::after {
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    content: "";
+    display: block;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    transition: opacity 0.4s, z-index 0.4s;
+    visibility: inherit;
+    background-size: 12px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='black' width='12' height='10' viewBox='0 0 11.51 8.2' %3e %3ctitle%3echeck%3c/title%3e %3cpath d='M4.05%2c8.2A.74.74%2c0%2c0%2c1%2c3.52%2c8L.22%2c4.68A.75.75%2c0%2c0%2c1%2c1.28%2c3.62l3.3%2c3.3A.75.75%2c0%2c0%2c1%2c4.58%2c8%2c.74.74%2c0%2c0%2c1%2c4.05%2c8.2Z' /%3e %3cpath d='M4.06%2c8.2A.74.74%2c0%2c0%2c1%2c3.53%2c8a.75.75%2c0%2c0%2c1%2c0-1.06l6.7-6.7a.75.75%2c0%2c0%2c1%2c1.06%2c1.06L4.59%2c8A.74.74%2c0%2c0%2c1%2c4.06%2c8.2Z' /%3e %3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input:focus {
+    outline: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-content {
+    position: relative;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-success .fd-form-content {
+    display: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-captcha .fd-form-content>*:not(.fd-form-captcha) {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-captcha {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-success {
+    width: 100%;
+    display: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-success .fd-form-success {
+    display: block;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-success>*:last-child {
+    margin-bottom: 0;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-error {
+    display: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-has-error .fd-form-error {
+    display: block;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-error>*:last-child {
+    margin-bottom: 0;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-focus-visible,
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input.fd-focus-visible+.fd-form-check__checkmark {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 calc(2px + 4px) #000000 !important;
+    transition: box-shadow 0.2s !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-focus-visible,
+  [data-ff-el="root"].ff-689e112803c67004d676162c .fd-form-check__input.fd-focus-visible+.fd-form-check__checkmark {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 calc(2px + 2px) #717171 !important;
+    transition: box-shadow 0.2s !important;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c {
+    background: #ffffff;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__container {
+    margin: 0 auto;
+    max-width: 1170px;
+    background: #ffffff;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form {
+    color: #333333;
+    width: 100%;
+    margin: 0;
+    padding: 30px;
+    font-size: 16px;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.1px;
+    text-transform: none;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form {
+      word-wrap: anywhere;
+      word-break: break-word;
+      white-space: normal;
+      overflow-wrap: break-word;
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__title {
+    color: #000000;
+    width: 100%;
+    margin: 0 0 25px;
+    display: block;
+    font-size: 37px;
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0px;
+    text-transform: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__title * {
+    line-height: inherit;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__subtitle {
+    width: 100%;
+    margin: 0 0 30px;
+    display: block;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__subtitle * {
+    line-height: inherit;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__content {
+    margin: -10px -5px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__content {
+      display: block;
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c[data-ff-stage="success"] .ff-689e112803c67004d676162c__content {
+    display: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__fields {
+    flex: 0 1 auto;
+    margin: 0px 0px 0;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: calc(100% + 10px);
+    justify-content: center;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__fields {
+      display: block;
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__field {
+    flex: 1 1;
+    margin: 10px 5px 0;
+    font-size: 13px;
+    max-width: 250px;
+    min-width: 140px;
+    text-align: left;
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__field {
+      max-width: calc(100% - 10px);
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__control {
+    color: #000000;
+    border: 1px solid #dddddd;
+    height: 46px;
+    padding: 12px 20px;
+    font-size: 13px;
+    background: #ececec;
+    text-align: left;
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    border-radius: 23px;
+    letter-spacing: 0.1px;
+    text-transform: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__label {
+    color: #000000;
+    border: 1px solid transparent;
+    padding: 12px 20px;
+    font-size: 13px;
+    text-align: left;
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    text-transform: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference {
+    margin: 30px 5px 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-title {
+    color: #333333;
+    width: 100%;
+    margin: 0 0 30px;
+    display: block;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0px;
+    text-transform: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-title * {
+    line-height: inherit;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-control {
+    width: 100%;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-list {
+    width: calc(100% + 24px);
+    margin: -8px -12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-list {
+      display: block;
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__preference-item {
+    flex: 0 0 33.333333333333336%;
+    padding: 8px 12px;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__input {
+    top: 2.200000000000001px;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__checkmark {
+    top: 2.200000000000001px;
+    border-radius: 4px;
+    background-image: url("data:image/svg+xml,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg' %3e %3cpath d='M1 4C1 2.34315 2.34315 1 4 1H16C17.6569 1 19 2.34315 19 4V16C19 17.6569 17.6569 19 16 19H4C2.34315 19 1 17.6569 1 16V4Z' fill='white' /%3e %3cpath fill='black' fill-rule='evenodd' clip-rule='evenodd' d='M0.25 4C0.25 1.92893 1.92893 0.25 4 0.25H16C18.0711 0.25 19.75 1.92893 19.75 4V16C19.75 18.0711 18.0711 19.75 16 19.75H4C1.92893 19.75 0.25 18.0711 0.25 16V4ZM4 1.75C2.75736 1.75 1.75 2.75736 1.75 4V16C1.75 17.2426 2.75736 18.25 4 18.25H16C17.2426 18.25 18.25 17.2426 18.25 16V4C18.25 2.75736 17.2426 1.75 16 1.75H4Z' /%3e %3c/svg%3e");
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__label {
+    color: #333333;
+    font-size: 14px;
+    min-height: 22.400000000000002px;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0px;
+    text-transform: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__form-check .fd-form-check__checkmark::after {
+    background-size: 12px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='black' width='12' height='10' viewBox='0 0 11.51 8.2' %3e %3ctitle%3echeck%3c/title%3e %3cpath d='M4.05%2c8.2A.74.74%2c0%2c0%2c1%2c3.52%2c8L.22%2c4.68A.75.75%2c0%2c0%2c1%2c1.28%2c3.62l3.3%2c3.3A.75.75%2c0%2c0%2c1%2c4.58%2c8%2c.74.74%2c0%2c0%2c1%2c4.05%2c8.2Z' /%3e %3cpath d='M4.06%2c8.2A.74.74%2c0%2c0%2c1%2c3.53%2c8a.75.75%2c0%2c0%2c1%2c0-1.06l6.7-6.7a.75.75%2c0%2c0%2c1%2c1.06%2c1.06L4.59%2c8A.74.74%2c0%2c0%2c1%2c4.06%2c8.2Z' /%3e %3c/svg%3e");
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__footer {
+    flex: 0 1 auto;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__footer {
+      margin-top: 25px;
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__button {
+    color: #ffffff;
+    width: auto;
+    border: 1px solid #000000;
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 13px;
+    background: #000000;
+    text-align: center;
+    font-weight: 400;
+    line-height: 20px;
+    white-space: nowrap;
+    border-radius: 0px;
+    letter-spacing: 0.1px;
+    text-transform: none;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__button {
+      width: 100%;
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__success {
+    display: none;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c[data-ff-stage="success"] .ff-689e112803c67004d676162c__success {
+    display: block;
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__success-message {
+    color: #333333;
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    word-wrap: anywhere;
+    min-height: 1.6em;
+    text-align: center;
+    word-break: break-word;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    white-space: normal;
+    overflow-wrap: break-word;
+    letter-spacing: 0.1px;
+    pointer-events: auto;
+    text-transform: none;
+  }
+
+  @media (max-width: 767px) {
+    [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__success-message {
+      font-size: 16px;
+    }
+  }
+
+  [data-ff-el="root"].ff-689e112803c67004d676162c .ff-689e112803c67004d676162c__error {
+    margin: 10px 0 0 0;
+  }
+</style>
+
+            <div id="flodeskFormWrapper" style="display: none;">
+<div class="ff-689e112803c67004d676162c" data-ff-el="root" data-ff-version="3" data-ff-type="inline" data-ff-name="ribbonBanner" data-ff-stage="default">
+  <!--tpl {% block config %} tpl-->
+  <div data-ff-el="config" data-ff-config="eyJ0cmlnZ2VyIjp7Im1vZGUiOiJpbW1lZGlhdGVseSIsInZhbHVlIjowfSwib25TdWNjZXNzIjp7Im1vZGUiOiJtZXNzYWdlIiwibWVzc2FnZSI6IiIsInJlZGlyZWN0VXJsIjoiIn0sImNvaSI6ZmFsc2UsInNob3dGb3JSZXR1cm5WaXNpdG9ycyI6dHJ1ZSwibm90aWZpY2F0aW9uIjp0cnVlfQ==" style="display: none"></div>
+  <!--tpl {% endblock %} tpl-->
+  <div class="ff-689e112803c67004d676162c__container">
+    <form class="ff-689e112803c67004d676162c__form" action="https://form.flodesk.com/forms/689e112803c67004d676162c/submit" method="post" data-ff-el="form">
+      <div class="ff-689e112803c67004d676162c__title">
+        <div style="word-break:break-word">
+          <div data-paragraph="true"><span style="font-size:30px;">Quiz Complete!</span></div>
+        </div>
+      </div>
+      <div class="ff-689e112803c67004d676162c__subtitle">
+        <div style="word-break:break-word">
+          <div data-paragraph="true">Submit details below to receive full breakdown!</div>
+        </div>
+      </div>
+      <div class="ff-689e112803c67004d676162c__content fd-form-content" data-ff-el="content">
+        <div class="ff-689e112803c67004d676162c__fields" data-ff-el="fields">
+          <!--tpl {% block fields %} tpl-->
+
+          <div class="ff-689e112803c67004d676162c__field fd-form-group">
+            <input id="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="firstName" placeholder="Name" data-ff-tab="firstName::email" />
+            <label for="ff-689e112803c67004d676162c-firstName" class="ff-689e112803c67004d676162c__label fd-form-label">
+              <div>
+                <div>Name</div>
+              </div>
+            </label>
+          </div>
+
+
+          <div class="ff-689e112803c67004d676162c__field fd-form-group">
+            <input id="ff-689e112803c67004d676162c-email" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="email" placeholder="Email address" data-ff-tab="email:firstName:fields.archetype" required />
+            <label for="ff-689e112803c67004d676162c-email" class="ff-689e112803c67004d676162c__label fd-form-label">
+              <div>
+                <div>Email address</div>
+              </div>
+            </label>
+          </div>
+
+
+          <div class="ff-689e112803c67004d676162c__field fd-form-group">
+            <input id="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__control fd-form-control" type="text" maxlength="255" name="fields.archetype" placeholder="The Muse" data-ff-tab="fields.archetype:email:submit" />
+            <label for="ff-689e112803c67004d676162c-P1hpG613mN" class="ff-689e112803c67004d676162c__label fd-form-label">
+              <div>
+                <div>The Muse</div>
+              </div>
+            </label>
+          </div>
+
+          <input type="text" maxlength="255" name="confirm_email_address" style="display: none" />
+          <!--tpl {% endblock %} tpl-->
+        </div>
+
+        <div class="ff-689e112803c67004d676162c__footer" data-ff-el="footer">
+          <button type="submit" class="ff-689e112803c67004d676162c__button fd-btn" data-ff-el="submit" data-ff-tab="submit">
+            <span>Send me my details</span>
+          </button>
+        </div>
+      </div>
+      <div class="ff-689e112803c67004d676162c__success fd-form-success" data-ff-el="success">
+        <div class="ff-689e112803c67004d676162c__success-message">
+          <div>
+            <div>
+              <div data-paragraph="true">Thank you!</div>
             </div>
-            
+          </div>
+        </div>
+      </div>
+      <div class="ff-689e112803c67004d676162c__error fd-form-error" data-ff-el="error"></div>
+    </form>
+  </div>
+</div>
+<script>
+  (function(w, d, t, h, s, n) {
+    w.FlodeskObject = n;
+    var fn = function() {
+      (w[n].q = w[n].q || []).push(arguments);
+    };
+    w[n] = w[n] || fn;
+    var f = d.getElementsByTagName(t)[0];
+    var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+    var sm = d.createElement(t);
+    sm.async = true;
+    sm.type = 'module';
+    sm.src = h + s + '.mjs' + v;
+    f.parentNode.insertBefore(sm, f);
+    var sn = d.createElement(t);
+    sn.async = true;
+    sn.noModule = true;
+    sn.src = h + s + '.js' + v;
+    f.parentNode.insertBefore(sn, f);
+  })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+</script>
+<script>
+  window.fd('form:handle', {
+    formId: '689e112803c67004d676162c',
+    rootEl: '.ff-689e112803c67004d676162c',
+  });
+</script>
+            </div>
 
                 
             
-            <!-- Debug Section for Testing -->
-            <div class="debug-section" style="margin-top: 40px; position: relative; z-index: 10;">
-                <button type="button" id="toggleDebug" class="debug-toggle" style="background: #eceff1; border: 1px solid #cfd8dc; padding: 10px 20px; border-radius: 4px; cursor: pointer; color: #607d8b; font-family: 'Open Sans', sans-serif; position: relative; z-index: 11;">
-                    🐛 Show Debug - Answer Combinations for Each Archetype
-                </button>
-                <div id="debugCombinations" class="debug-combinations" style="display: none; margin-top: 20px; padding: 20px; background: #f5f5f5; border-radius: 4px; font-family: monospace; font-size: 0.9em; line-height: 1.6;">
-                    <h3 style="font-family: 'Oswald', sans-serif; color: #607d8b; margin-bottom: 20px;">Answer Combinations to Get Each Archetype:</h3>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h4 style="color: #546e7a; margin-bottom: 10px;">🎨 The Muse:</h4>
-                        <ul style="margin-left: 20px; color: #37474f;">
-                            <li><strong>Q1:</strong> B (Beauty & visibility support)</li>
-                            <li><strong>Q2:</strong> A (Home/family life)</li>
-                            <li><strong>Q3:</strong> A (Idea stage) OR B (Recently launched)</li>
-                            <li><strong>Q4:</strong> E (All of the above - feeling overwhelmed!)</li>
-                            <li><strong>Q5:</strong> A (Calm and grounded)</li>
-                            <li><strong>Q6:</strong> A (Yes, absolutely!) OR C (Maybe...)</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h4 style="color: #546e7a; margin-bottom: 10px;">💄 The Stylist:</h4>
-                        <ul style="margin-left: 20px; color: #37474f;">
-                            <li><strong>Q1:</strong> C (Both business clarity and beauty support)</li>
-                            <li><strong>Q2:</strong> B (Personal appearance)</li>
-                            <li><strong>Q3:</strong> C (Established and growing)</li>
-                            <li><strong>Q4:</strong> B (Managing my time effectively)</li>
-                            <li><strong>Q5:</strong> C (Creative and expressive) OR D (Driven and strategic)</li>
-                            <li><strong>Q6:</strong> B (Not really) OR C (Maybe...)</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h4 style="color: #546e7a; margin-bottom: 10px;">✏️ The Editor:</h4>
-                        <ul style="margin-left: 20px; color: #37474f;">
-                            <li><strong>Q1:</strong> C (Both business clarity and beauty support)</li>
-                            <li><strong>Q2:</strong> A (Home/family life)</li>
-                            <li><strong>Q3:</strong> A (Idea stage) OR B (Recently launched)</li>
-                            <li><strong>Q4:</strong> C (Being visible and putting myself out there) OR D (Confidence in my abilities)</li>
-                            <li><strong>Q5:</strong> B (Confident and polished)</li>
-                            <li><strong>Q6:</strong> A (Yes, absolutely!)</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h4 style="color: #546e7a; margin-bottom: 10px;">👑 The Supermodel:</h4>
-                        <ul style="margin-left: 20px; color: #37474f;">
-                            <li><strong>Q1:</strong> A (Business clarity and strategy)</li>
-                            <li><strong>Q2:</strong> D (Everything - I feel confident across the board)</li>
-                            <li><strong>Q3:</strong> A (Idea stage) OR B (Recently launched) OR C (Established and growing)</li>
-                            <li><strong>Q4:</strong> A (Clarifying my goals and direction)</li>
-                            <li><strong>Q5:</strong> B (Confident and polished) OR D (Driven and strategic)</li>
-                            <li><strong>Q6:</strong> A (Yes, absolutely!)</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: #e8f5e8; padding: 15px; border-radius: 4px; margin-top: 20px;">
-                        <p style="margin: 0; color: #2e7d32;"><strong>💡 Testing Tip:</strong> If exact combinations don't match, the quiz uses a scoring system to find the best fit archetype based on your answers.</p>
-                    </div>
-                </div>
-            </div>
         </main>
 
         <!-- Results Page - Hidden initially -->
@@ -772,177 +1501,93 @@
             console.log(message);
         }
         
-        // Function to show archetype-specific Kit.com forms
-        function showArchetypeForm(archetype) {
-
-            
-            // Show the specific form based on archetype
-            switch(archetype) {
-                case 'Muse':
-                    document.getElementById('museForm').style.display = 'block';
-                    console.log('Showing Muse form');
-                    // Load Kit.com script after making container visible
-                    loadKitForm('museFormContainer', '3ef77c7753');
-                    break;
-                case 'Stylist':
-                    document.getElementById('stylistForm').style.display = 'block';
-                    console.log('Showing Stylist form (placeholder)');
-                    break;
-                case 'Editor':
-                    document.getElementById('editorForm').style.display = 'block';
-                    console.log('Showing Editor form (placeholder)');
-                    break;
-                case 'Supermodel':
-                    document.getElementById('supermodelForm').style.display = 'block';
-                    console.log('Showing Supermodel form (placeholder)');
-                    break;
-                default:
-                    console.error('Unknown archetype:', archetype);
-                    document.getElementById('museForm').style.display = 'block'; // Default to Muse
-                    loadKitForm('museFormContainer', '3ef77c7753');
-                    break;
-            }
-        }
-        
-        // Function to monitor and maintain form visibility
-        function monitorFormVisibility(archetype) {
-            const formId = archetype.toLowerCase() + 'Form';
-            const formElement = document.getElementById(formId);
-            
-            if (!formElement) {
-                console.error('Form element not found:', formId);
-                return;
-            }
-            
-            // Check every 500ms for 10 seconds
-            let checkCount = 0;
-            const maxChecks = 20;
-            
-            const visibilityChecker = setInterval(() => {
-                checkCount++;
-                
-                if (formElement.style.display === 'none') {
-                    console.warn(`Form ${formId} became hidden, re-showing it`);
-                    formElement.style.display = 'block';
-                }
-                
-                if (checkCount >= maxChecks) {
-                    clearInterval(visibilityChecker);
-                    console.log('Form visibility monitoring stopped');
-                }
-            }, 500);
-            
-            console.log(`Started monitoring visibility for ${formId}`);
-        }
-        
-        // Function to dynamically load Kit.com form script
-        function loadKitForm(containerId, dataUid) {
-            const container = document.getElementById(containerId);
-            if (!container) {
-                console.error('Container not found:', containerId);
-                return;
-            }
-            
-            // Check if script already loaded
-            if (container.querySelector('script')) {
-                console.log('Kit.com script already loaded for container:', containerId);
-                return;
-            }
-            
-            // Add a small delay to ensure container is fully visible
+        // Function to set archetype value in Flodesk form and make it read-only
+        function setFlodeskArchetype(formId, archetype) {
+            // Wait for Flodesk form to load, then set the archetype value
             setTimeout(() => {
-                // Create and append the script
-                const script = document.createElement('script');
-                script.async = true;
-                script.setAttribute('data-uid', dataUid);
-                script.src = `https://stephanie-g-m-beauty.kit.com/${dataUid}/index.js`;
+                try {
+                    // Use Flodesk's API to set field values (try both field name formats)
+                    window.fd('field:update', {
+                        formId: formId,
+                        name: 'fields.archetype', // Correct field name from the form
+                        value: archetype
+                    });
+                    console.log(`Set archetype "${archetype}" for Flodesk form ${formId} via API`);
+                } catch (error) {
+                    console.error('Error setting Flodesk archetype via API:', error);
+                }
                 
-                // Add onload handler to debug
-                script.onload = function() {
-                    console.log(`Kit.com script loaded successfully for ${containerId}`);
+                // Always try the manual approach to find and set the field
+                // Try multiple selectors to find the archetype field
+                const possibleSelectors = [
+                    `input[name="fields.archetype"]`,
+                    `input[id="ff-${formId}-P1hpG613mN"]`,
+                    `#ff-${formId}-P1hpG613mN`,
+                    `input[name="archetype"]`,
+                    `select[name="fields.archetype"]`,
+                    `textarea[name="fields.archetype"]`
+                ];
+                
+                let archetypeField = null;
+                let usedSelector = '';
+                
+                for (const selector of possibleSelectors) {
+                    archetypeField = document.querySelector(selector);
+                    if (archetypeField) {
+                        usedSelector = selector;
+                        console.log(`Found archetype field using selector: ${selector}`);
+                        break;
+                    }
+                }
+                
+                console.log('Archetype field found:', !!archetypeField);
+                
+                if (archetypeField) {
+                    console.log('Field type:', archetypeField.tagName, 'Current value:', archetypeField.value);
+                    archetypeField.value = archetype;
+                    archetypeField.readOnly = true;
+                    archetypeField.disabled = false; // Keep enabled so value submits
+                    archetypeField.style.backgroundColor = '#f5f5f5';
+                    archetypeField.style.cursor = 'not-allowed';
+                    archetypeField.style.color = '#666';
                     
-                    // Debug what Kit.com actually created
-                    setTimeout(() => {
-                        const container = document.getElementById(containerId);
-                        console.log('Container innerHTML after Kit.com load:', container.innerHTML.substring(0, 200) + '...');
-                        console.log('Container children count:', container.children.length);
-                        
-                        // Check if any form elements were created
-                        const forms = container.querySelectorAll('form');
-                        console.log('Forms found in container:', forms.length);
-                        
-                        if (forms.length > 0) {
-                            const form = forms[0];
-                            console.log('First form display:', window.getComputedStyle(form).display);
-                            console.log('First form visibility:', window.getComputedStyle(form).visibility);
-                            console.log('First form opacity:', window.getComputedStyle(form).opacity);
-                            console.log('First form height:', window.getComputedStyle(form).height);
-                            console.log('First form class:', form.className);
-                            
-                            // Force the Kit.com form to be visible if it's hidden
-                            if (window.getComputedStyle(form).display === 'none') {
-                                // Try multiple approaches to force visibility
-                                form.style.setProperty('display', 'block', 'important');
-                                form.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important;';
-                                form.setAttribute('style', 'display: block !important; visibility: visible !important; opacity: 1 !important;');
-                                
-                                // Remove any classes that might be hiding it
-                                if (form.classList.contains('hidden')) {
-                                    form.classList.remove('hidden');
-                                }
-                                
-                                console.log('Applied multiple visibility fixes to Kit.com form');
-                                
-                                // Continuously force visibility for 5 seconds
-                                let forceCount = 0;
-                                const forceInterval = setInterval(() => {
-                                    if (window.getComputedStyle(form).display === 'none') {
-                                        form.style.setProperty('display', 'block', 'important');
-                                        console.log('Re-forcing form visibility, attempt:', forceCount + 1);
-                                    }
-                                    
-                                    forceCount++;
-                                    if (forceCount >= 10) { // Stop after 5 seconds
-                                        clearInterval(forceInterval);
-                                        console.log('Final form display:', window.getComputedStyle(form).display);
-                                        
-                                        // Add form submission debugging
-                                        form.addEventListener('submit', function(e) {
-                                            console.log('Kit.com form submission detected');
-                                            console.log('Form action:', form.action);
-                                            console.log('Form method:', form.method);
-                                            
-                                            const formData = new FormData(form);
-                                            console.log('Form data being submitted:');
-                                            for (let [key, value] of formData.entries()) {
-                                                console.log(`  ${key}: ${value}`);
-                                            }
-                                        });
-                                    }
-                                }, 500);
-                            }
-                        }
-                        
-                        // Ensure parent stays visible
-                        const parentForm = document.getElementById('museForm');
-                        console.log('Parent form display style:', parentForm.style.display);
-                        console.log('Parent form computed display:', window.getComputedStyle(parentForm).display);
-                        
-                        if (parentForm && parentForm.style.display === 'none') {
-                            parentForm.style.display = 'block';
-                            console.log('Re-showing parent form after Kit.com load');
-                        }
-                    }, 1000); // Give Kit.com time to render
-                };
-                
-                script.onerror = function() {
-                    console.error('Failed to load Kit.com script for', containerId);
-                };
-                
-                container.appendChild(script);
-                console.log(`Kit.com script loading for ${containerId} with uid: ${dataUid}`);
-            }, 100); // Small delay to ensure DOM is ready
+                    // Prevent user from changing the value
+                    archetypeField.addEventListener('keydown', function(e) {
+                        e.preventDefault();
+                    });
+                    archetypeField.addEventListener('paste', function(e) {
+                        e.preventDefault();
+                    });
+                    archetypeField.addEventListener('input', function(e) {
+                        e.target.value = archetype; // Reset to correct value
+                    });
+                    
+                    console.log(`Set archetype field to read-only with value "${archetype}". New value:`, archetypeField.value);
+                } else {
+                    console.warn('Archetype field not found with any selector. Available fields:');
+                    const allInputs = document.querySelectorAll('input, select, textarea');
+                    allInputs.forEach((input, index) => {
+                        console.log(`Field ${index}: ${input.tagName} name="${input.name}" id="${input.id}"`);
+                    });
+                }
+            }, 1000); // Give Flodesk time to load
         }
+        
+        // Function to show Flodesk form and set archetype value
+        function showArchetypeForm(archetype) {
+            // Show the Flodesk form wrapper
+            const flodeskFormWrapper = document.getElementById('flodeskFormWrapper');
+            if (flodeskFormWrapper) {
+                flodeskFormWrapper.style.display = 'block';
+                console.log(`Showing Flodesk form for archetype: ${archetype}`);
+                
+                // Pass calculated archetype to Flodesk form
+                setFlodeskArchetype('689e112803c67004d676162c', archetype);
+            } else {
+                console.error('Flodesk form wrapper not found');
+            }
+        }
+        
         
         // Archetype calculation function
         function calculateArchetype(q1, q2, q3, q4, q5, q6) {
@@ -1028,35 +1673,11 @@
        
 
         
-        // Form submission and Kit.com integration
+        // Form submission and Flodesk integration
         document.addEventListener('DOMContentLoaded', function() {
             const quizForm = document.getElementById('archetypeForm');
-            const kitForm = document.getElementById('kitForm');
             let calculatedArchetype = '';
             
-            // Debug toggle functionality
-            const toggleButton = document.getElementById('toggleDebug');
-            const debugCombinations = document.getElementById('debugCombinations');
-            
-            if (toggleButton) {
-                toggleButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    console.log('Debug button clicked!');
-                    
-                    if (debugCombinations.style.display === 'none' || debugCombinations.style.display === '') {
-                        debugCombinations.style.display = 'block';
-                        toggleButton.textContent = '🐛 Hide Debug - Answer Combinations';
-                        console.log('Showing debug combinations');
-                    } else {
-                        debugCombinations.style.display = 'none';
-                        toggleButton.textContent = '🐛 Show Debug - Answer Combinations for Each Archetype';
-                        console.log('Hiding debug combinations');
-                    }
-                });
-                console.log('Debug toggle event listener attached');
-            } else {
-                console.error('Toggle button not found!');
-            }
             
             // Function to check if all questions are answered
             function checkQuizCompletion() {
@@ -1080,27 +1701,18 @@
                     
                     // No need to populate archetype field - each form is specific to the archetype
                     
-                    // Update the archetype display in the form
-                    const archetypeNameElement = document.getElementById('archetypeName');
-                    if (archetypeNameElement) {
-                        archetypeNameElement.textContent = `The ${calculatedArchetype}`;
-                    }
+                    // No need to display archetype - form will handle everything
                     
-                    // Let Kit.com handle success messages and redirects naturally
-                    
-                    // Show Kit.com form section
-                    kitForm.style.display = 'block';
-                    
-                    // Show archetype-specific Kit.com form
+                    // Show archetype-specific Flodesk form
                     showArchetypeForm(calculatedArchetype);
                     
-                    // Monitor form visibility
-                    monitorFormVisibility(calculatedArchetype);
+                    // Scroll to the Flodesk form
+                    const flodeskFormWrapper = document.getElementById('flodeskFormWrapper');
+                    if (flodeskFormWrapper) {
+                        flodeskFormWrapper.scrollIntoView({ behavior: 'smooth' });
+                    }
                     
-                    // Scroll to the Kit.com form
-                    kitForm.scrollIntoView({ behavior: 'smooth' });
-                    
-                    console.log(`Quiz completed, loading form for: ${calculatedArchetype}`);
+                    console.log(`Quiz completed, loading Flodesk form for: ${calculatedArchetype}`);
                 }
             }
             
@@ -1112,7 +1724,7 @@
                 });
             }
             
-            // Kit.com will handle form submission naturally - no interference needed
+            // Flodesk will handle form submission naturally - no interference needed
         });
     </script>
 </body>

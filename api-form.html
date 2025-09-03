@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Flodesk API Form - Business Archetype Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--backdrop-color, #f8f9fa);
+            min-height: 100vh;
+            color: var(--font-color, #37474f);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--canvas-color, white);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color, #607d8b);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 40px;
+        }
+        
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--font-color, #37474f);
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--link-color, #607d8b);
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        
+        .archetype-display {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(96, 125, 139, 0.1);
+            border-radius: 4px;
+            border-left: 4px solid var(--primary-color, #607d8b);
+        }
+        
+        .archetype-display h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2em;
+            color: var(--primary-color, #607d8b);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Oswald', sans-serif;
+            color: var(--font-color, #37474f);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #cfd8dc;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: 'Open Sans', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--primary-color, #607d8b);
+            box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.1);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px 45px;
+            background: var(--primary-color, #607d8b);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(96, 125, 139, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            background: var(--primary-dark, #546e7a);
+            box-shadow: 0 6px 16px rgba(96, 125, 139, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            color: var(--link-color, #607d8b);
+            margin-top: 10px;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e8;
+            color: #2e7d32;
+            border-radius: 4px;
+            margin-top: 20px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .error-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #ffebee;
+            color: #c62828;
+            border-radius: 4px;
+            margin-top: 20px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .debug-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        
+        .debug-info h3 {
+            color: var(--primary-color, #607d8b);
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            .archetype-display h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Get Your Archetype Details</h1>
+        <p class="subtitle">Complete the form below to receive your personalized business archetype insights</p>
+        
+        <div class="archetype-display">
+            <h2 id="archetype-name">The Muse</h2>
+            <p>Your complete archetype breakdown with personalized insights will be sent to your inbox!</p>
+        </div>
+        
+        <div class="debug-info">
+            <h3>API Integration Test</h3>
+            <p><strong>Archetype:</strong> <span id="debug-archetype">Muse</span></p>
+            <p><strong>API Endpoint:</strong> https://api.flodesk.com/v1/subscribers</p>
+            <p><strong>Status:</strong> <span id="debug-status">Ready</span></p>
+        </div>
+        
+        <form id="archetype-form">
+            <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submit-btn">
+                Get My Archetype Insights
+            </button>
+            
+            <div class="loading" id="loading">
+                <p>Submitting your information...</p>
+            </div>
+        </form>
+        
+        <div class="success-message" id="success-message">
+            <h3>Success! 🎉</h3>
+            <p>Your archetype insights have been sent to your email. Check your inbox in a few minutes!</p>
+        </div>
+        
+        <div class="error-message" id="error-message">
+            <h3>Oops! Something went wrong.</h3>
+            <p id="error-details">Please try again or contact support if the problem persists.</p>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const FLODESK_API_KEY = 'fd_key_1e71460ac43d4700a54c786dcc90ed6b.i1l54YA3DPiNCsXe2wS7sg6s6rz4fvvXUHhUTA2rZCGvMeKvIIVjG1b4oKKUl8Qygp8WdUKr4oR0yIFEYvgujetkYF4QuVFweCLKL884cc1voObxBKH2LntrefiSdRdPL4FM3VIMAHTTvG67MkFx02QINS9qMNgenE8ihwevnzLmMbJpbc0zQWDIhAYRLEG5';
+        const FLODESK_API_URL = 'https://api.flodesk.com/v1/subscribers';
+        
+        // Get archetype from URL parameter or default to Muse
+        function getArchetype() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('archetype') || 'Muse';
+        }
+        
+        // Initialize page with archetype
+        function initializePage() {
+            const archetype = getArchetype();
+            document.getElementById('archetype-name').textContent = `The ${archetype}`;
+            document.getElementById('debug-archetype').textContent = archetype;
+            console.log('Page initialized with archetype:', archetype);
+        }
+        
+        // Submit to Flodesk API
+        async function submitToFlodesk(formData) {
+            const archetype = getArchetype();
+            
+            const payload = {
+                email: formData.email,
+                first_name: formData.firstName,
+                custom_fields: {
+                    archetype: archetype
+                },
+                // Add subscriber to a segment to trigger workflows
+                segment_ids: ["your_quiz_segment_id_here"] // You'll need to get this from Flodesk
+            };
+            
+            console.log('Submitting to Flodesk API:', payload);
+            document.getElementById('debug-status').textContent = 'Submitting...';
+            
+            try {
+                const response = await fetch(FLODESK_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${btoa(FLODESK_API_KEY + ':')}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers.entries()]);
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('Success response:', result);
+                    document.getElementById('debug-status').textContent = 'Success!';
+                    return { success: true, data: result };
+                } else {
+                    const error = await response.text();
+                    console.error('API error:', response.status, error);
+                    document.getElementById('debug-status').textContent = `Error: ${response.status}`;
+                    return { success: false, error: `API Error: ${response.status} - ${error}` };
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                document.getElementById('debug-status').textContent = 'Network Error';
+                return { success: false, error: `Network Error: ${error.message}` };
+            }
+        }
+        
+        // Handle form submission
+        document.getElementById('archetype-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const loading = document.getElementById('loading');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Get form data
+            const formData = {
+                firstName: document.getElementById('firstName').value.trim(),
+                email: document.getElementById('email').value.trim()
+            };
+            
+            // Validate form
+            if (!formData.firstName || !formData.email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            loading.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            console.log('Form submitted with data:', formData);
+            
+            // Submit to Flodesk
+            const result = await submitToFlodesk(formData);
+            
+            // Hide loading
+            loading.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Get My Archetype Insights';
+            
+            if (result.success) {
+                // Show success message
+                successMessage.style.display = 'block';
+                document.getElementById('archetype-form').style.display = 'none';
+                
+                // Optional: Redirect after delay
+                setTimeout(() => {
+                    window.location.href = `results.html?archetype=${getArchetype()}`;
+                }, 3000);
+                
+            } else {
+                // Show error message
+                errorMessage.style.display = 'block';
+                document.getElementById('error-details').textContent = result.error;
+            }
+        });
+        
+        // Initialize page when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializePage);
+        
+        // Additional debugging
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded');
+            console.log('Current archetype:', getArchetype());
+        });
+    </script>
+</body>
+</html>
